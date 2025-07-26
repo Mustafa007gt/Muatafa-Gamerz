@@ -180,7 +180,20 @@
 </head>
 <body>
 
-  <header>
+  
+<!-- القائمة الجانبية -->
+<div id="menu-toggle" style="font-size: 28px; cursor: pointer; position: fixed; top: 20px; right: 20px; z-index: 10001; color: white;">☰</div>
+<div id="side-menu" style="width: 260px; height: 100%; background-color: #111; position: fixed; top: 0; right: -260px; z-index: 10000; transition: 0.3s; padding-top: 60px;">
+  <a href="javascript:void(0)" id="close-menu" style="position: absolute; top: 20px; left: 20px; font-size: 36px; color: white;">&times;</a>
+  <a href="#android" style="padding: 10px 20px; display: block; color: white; text-decoration: none;">ألعاب أندرويد</a>
+  <a href="#ppsspp" style="padding: 10px 20px; display: block; color: white; text-decoration: none;">ألعاب PPSSPP</a>
+  <a href="#ps2" style="padding: 10px 20px; display: block; color: white; text-decoration: none;">ألعاب PS2</a>
+  <a href="#ps3" style="padding: 10px 20px; display: block; color: white; text-decoration: none;">ألعاب PS3</a>
+  <a href="#pc" style="padding: 10px 20px; display: block; color: white; text-decoration: none;">ألعاب PC</a>
+  <a href="#apps" style="padding: 10px 20px; display: block; color: white; text-decoration: none;">تطبيقات</a>
+</div>
+
+<header>
     
 <h1>مصطفى جيمرز</h1>
 <input type="text" id="searchInput" placeholder="ابحث عن لعبة..." />
@@ -268,6 +281,21 @@
     <path d="M12 0C5.375 0 0 5.375 0 12s5.375 12 12 12 12-5.375 12-12S18.625 0 12 0zm5.813 8.469l-1.875 8.813c-.156.688-.563.844-1.125.531l-3.094-2.281-1.5 1.438c-.156.156-.281.281-.563.281l.188-2.688 4.875-4.406c.219-.187-.031-.313-.344-.125l-6.031 3.781-2.594-.813c-.563-.188-.563-.563.125-.844l10.125-3.906c.469-.187.875.125.719.844z"/>
   </svg>
 </a>
+
+<script>
+  const menu = document.getElementById("side-menu");
+  const openBtn = document.getElementById("menu-toggle");
+  const closeBtn = document.getElementById("close-menu");
+
+  openBtn.onclick = function () {
+    menu.style.right = "0";
+  }
+
+  closeBtn.onclick = function () {
+    menu.style.right = "-260px";
+  }
+</script>
+
 </body>
 
 </html>
