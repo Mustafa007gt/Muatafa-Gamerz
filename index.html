@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -62,19 +63,13 @@
     }
 
     .games-container {
-      display: flex;
-      flex-direction: row;
-      overflow-x: auto;
-      gap: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
       padding: 40px 20px;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
     }
 
     .game-card {
-      min-width: 280px;
-      flex-shrink: 0;
-      scroll-snap-align: start;
       background: #121212dd;
       border-radius: 16px;
       padding: 20px;
@@ -176,6 +171,7 @@
       <input id="searchInput" type="text" placeholder="ابحث..." style="padding: 6px 10px; font-size: 14px; border-radius: 6px; border: none; outline: none;" />
       <h1>مصطفى جيمرز</h1>
     </div>
+    
   </header>
 
   <main class="games-container">
@@ -194,40 +190,46 @@
     </div>
 
     <div class="game-card">
-      <img src="images/de.jpg" alt="GTA: SA THE DEFINITIVE EDITION" />
-      <h2>GTA: SA THE DEFINITIVE EDITION</h2>
-      <p>النسخة المحسنة من سان اندرياس</p>
-      <a href="https://www.mediafire.com/file_premium/besfl3k3fjb8eut/60FPS-GTA-SA-DE-1.86.44544238-full-apkvision.apks/file" target="_blank">تحميل</a>
-    </div>
+  <img src="images/de.jpg" alt="GTA: SA THE DEFINITIVE EDITION" />
+  <h2>GTA: SA THE DEFINITIVE EDITION</h2>
+  <p>النسخة المحسنة من سان اندرياس</p>
+  <a href="https://www.mediafire.com/file_premium/besfl3k3fjb8eut/60FPS-GTA-SA-DE-1.86.44544238-full-apkvision.apks/file" target="_blank">تحميل</a>
+</div>
 
     <div class="game-card">
-      <img src="images/bm.jpg" alt="Bright memory infinit" />
-      <h2>bright memory infunt</h2>
-      <p>لعبة الكمبيوتر القوية صارت على الاندرويد</p>
-      <a href="https://dl.apkvision.org/bright-memory-infinite/bright-memory-infinite-1.31-mod-menu-apkvision.apk" target="_blank">تحميل</a>
-    </div>
+  <img src="images/bm.jpg" alt="Bright memory infinit" />
+  <h2>bright memory infunt</h2>
+  <p>لعبة الكمبيوتر القوية صارت على الاندرويد</p>
+  <a href="https://dl.apkvision.org/bright-memory-infinite/bright-memory-infinite-1.31-mod-menu-apkvision.apk" target="_blank">تحميل</a>
+</div>
+<div class="game-card">
+  <img src="images/bully.jpg" alt="Bully" />
+  <h2>Bully</h2>
+  <p>لعبة الشغب في المدرسة الشهيرة</p>
+  <a href="https://dl.apkvision.org/bully-anniversary-edition/Bully-v1.4.299-60FPS-mod-apkvision.apk" target="_blank">تحميل</a>
+</div>
 
-    <div class="game-card">
-      <img src="images/bully.jpg" alt="Bully" />
-      <h2>Bully</h2>
-      <p>لعبة الشغب في المدرسة الشهيرة</p>
-      <a href="https://dl.apkvision.org/bully-anniversary-edition/Bully-v1.4.299-60FPS-mod-apkvision.apk" target="_blank">تحميل</a>
-    </div>
+    
+
+
   </main>
 
-  <a href="https://t.me/mustafaGMZ" target="_blank" style="
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    background-color: transparent;
-    padding: 0;
-    border-radius: 50%;
-    text-align: center;
-    text-decoration: none;
-    z-index: 1000;
-  " title="تابعني على التليجرام">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" style="width:48px;height:48px;box-shadow: 0 0 15px #00f7ff80;border-radius: 50%;" />
-  </a>
+  
+<a href="https://t.me/mustafaGMZ" target="_blank" style="
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color: transparent;
+  padding: 0;
+  border-radius: 50%;
+  text-align: center;
+  text-decoration: none;
+  z-index: 1000;
+" title="تابعني على التليجرام">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" style="width:48px;height:48px;box-shadow: 0 0 15px #00f7ff80;border-radius: 50%;" />
+</a>
+
+
 
   <footer>
     <p>جميع الحقوق محفوظة © 2025</p>
