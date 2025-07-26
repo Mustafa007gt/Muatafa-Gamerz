@@ -1,125 +1,109 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>مصطفى جيمرز</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600&display=swap" rel="stylesheet">
   <style>
     body {
+      background-color: #111;
+      color: white;
+      font-family: sans-serif;
       margin: 0;
-      font-family: 'Cairo', sans-serif;
-      background-color: #121212;
-      color: #fff;
+      padding: 0;
     }
 
     header {
-      background-color: #1f1f1f;
-      padding: 15px 20px;
+      background-color: #000;
+      padding: 10px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 999;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
 
-    header h1 {
-      margin: 0;
-      font-size: 1.5em;
-      color: #00d0ff;
-    }
-
-    .telegram-link {
-      background-color: #0088cc;
+    .telegram-btn {
+      background-color: #00bfff;
       color: white;
-      padding: 8px 16px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background-color 0.3s;
-    }
-
-    .telegram-link:hover {
-      background-color: #0071b8;
-    }
-
-    .games-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-      padding: 40px 20px;
-    }
-
-    .game-card {
-      background-color: #1e1e1e;
-      border-radius: 12px;
-      padding: 20px;
-      text-align: center;
-      box-shadow: 0 0 15px rgba(0,0,0,0.5);
-      transition: transform 0.3s;
-    }
-
-    .game-card:hover {
-      transform: scale(1.03);
-    }
-
-    .game-card img {
-      max-width: 100%;
+      padding: 10px 15px;
+      border: none;
       border-radius: 10px;
-      margin-bottom: 15px;
+      text-decoration: none;
     }
 
-    .game-card h2 {
-      color: #00d0ff;
+    .title {
+      color: #00bfff;
+      font-size: 20px;
+      margin: 0 10px;
     }
 
-    .game-card a {
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+      padding: 15px;
+    }
+
+    .card {
+      background-color: #222;
+      padding: 10px;
+      border-radius: 15px;
+      text-align: center;
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .card h3 {
+      color: #00bfff;
+      margin: 10px 0 5px;
+    }
+
+    .card p {
+      font-size: 14px;
+      color: #ccc;
+    }
+
+    .download-btn {
+      background-color: #00bfff;
+      color: black;
+      padding: 8px 15px;
+      border: none;
+      border-radius: 10px;
+      text-decoration: none;
       display: inline-block;
       margin-top: 10px;
-      background-color: #00d0ff;
-      color: #000;
-      padding: 10px 20px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      background-color: #1f1f1f;
-      margin-top: 40px;
-      color: #888;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>مصطفى جيمرز</h1>
-    <a class="telegram-link" href="https://t.me/mustafaGMZ" target="_blank">قناتي على التليجرام</a>
-  </header>
+<header>
+  <a class="telegram-btn" href="https://t.me/mustafa">قناتي على التليجرام</a>
+  <h1 class="title">مصطفى جيمرز</h1>
+</header>
 
-  <main class="games-container">
-    <div class="game-card">
-      <img src="images/gta3.jpg" alt="GTA 3 The definitive edition" />
-      <h2>GTA 3 the definitive edition</h2>
-      <p>لعبة الأكشن الشهيرة بنسختها الأصلية على الأندرويد.</p>
-      <a href="https://dl.apkvision.org/gta-iii-definitive/GTA-III-Definitive-v1.84.18-mod-money-apkvision.apk" target="_blank">تحميل</a>
-    </div>
+<div class="grid">
+  <!-- بطاقة اللعبة الأولى -->
+  <div class="card">
+    <img src="gta3.jpg" alt="GTA 3">
+    <h3>GTA 3 the definitive edition</h3>
+    <p>لعبة الأكشن الشهيرة بنسختها الأصلية على الأندرويد.</p>
+    <a class="download-btn" href="#">تحميل</a>
+  </div>
 
-    <div class="game-card">
-      <img src="images/gtasa.jpg" alt="Gta San Andreas" />
-      <h2>Gta san Andreas</h2>
-      <p>اشهر لعبة عالم مفتوح على الاطلاق</p>
-      <a href="https://dl.apkvision.org/grand-theft-auto-san-andreas/GTA-SA-v2.11.277-full-mod-money-apkvision.apk" target="_blank">تحميل</a>
-    </div>
-  </main>
+  <!-- بطاقة لعبة أخرى (كرر عند الحاجة) -->
+  <div class="card">
+    <img src="gta-vice.jpg" alt="GTA Vice City">
+    <h3>GTA Vice City</h3>
+    <p>النسخة الكلاسيكية من فايس سيتي لمحبي الأكشن.</p>
+    <a class="download-btn" href="#">تحميل</a>
+  </div>
 
-  <footer>
-    <p>جميع الحقوق محفوظة © 2025</p>
-  </footer>
+  <!-- أضف المزيد بنفس الشكل -->
+
+</div>
+
 </body>
 </html>
