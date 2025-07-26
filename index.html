@@ -45,11 +45,21 @@
       background-color: #0071b8;
     }
 
+    section {
+      padding: 40px 20px;
+    }
+
+    section h2 {
+      color: #00d0ff;
+      border-bottom: 2px solid #00d0ff;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+
     .games-container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 20px;
-      padding: 40px 20px;
     }
 
     .game-card {
@@ -71,7 +81,7 @@
       margin-bottom: 15px;
     }
 
-    .game-card h2 {
+    .game-card h3 {
       color: #00d0ff;
     }
 
@@ -102,24 +112,76 @@
     <a class="telegram-link" href="https://t.me/mustafaGMZ" target="_blank">قناتي على التليجرام</a>
   </header>
 
-  <main class="games-container">
-    <div class="game-card">
-      <img src="images/gta3.jpg" alt="GTA 3 The definitive edition" />
-      <h2>GTA 3 the definitive edition</h2>
-      <p>لعبة الأكشن الشهيرة بنسختها الأصلية على الأندرويد.</p>
-      <a href="https://dl.apkvision.org/gta-iii-definitive/GTA-III-Definitive-v1.84.18-mod-money-apkvision.apk" target="_blank">تحميل</a>
+  <!-- قسم ألعاب الأندرويد -->
+  <section>
+    <h2>📱 ألعاب الأندرويد</h2>
+    <div class="games-container">
+      <div class="game-card">
+        <img src="images/gta3.jpg" alt="GTA 3" />
+        <h3>GTA 3</h3>
+        <p>نسخة الأندرويد الأصلية من لعبة GTA 3</p>
+        <a href="#">تحميل</a>
+      </div>
+      <!-- أضف المزيد هنا -->
     </div>
+  </section>
 
-    <div class="game-card">
-      <img src="images/gtasa.jpg" alt="Gta San Andreas" />
-      <h2>Gta san Andreas</h2>
-      <p>اشهر لعبة عالم مفتوح على الاطلاق</p>
-      <a href="https://dl.apkvision.org/grand-theft-auto-san-andreas/GTA-SA-v2.11.277-full-mod-money-apkvision.apk" target="_blank">تحميل</a>
+  <!-- قسم ألعاب PPSSPP -->
+  <section>
+    <h2>🎮 ألعاب PPSSPP</h2>
+    <div class="games-container">
+      <div class="game-card">
+        <img src="images/ppsspp_game.jpg" alt="PES 2025" />
+        <h3>PES 2025</h3>
+        <p>لعبة كرة القدم الشهيرة على محاكي PSP</p>
+        <a href="#">تحميل</a>
+      </div>
+      <!-- أضف المزيد هنا -->
     </div>
-  </main>
+  </section>
+
+  <!-- قسم ألعاب PS2 -->
+  <section>
+    <h2>🎮 ألعاب PS2</h2>
+    <div class="games-container">
+      <div class="game-card">
+        <img src="images/ps2_game.jpg" alt="God of War 2" />
+        <h3>God of War 2</h3>
+        <p>من أفضل ألعاب الأكشن على بلايستيشن 2</p>
+        <a href="#">تحميل</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- قسم التطبيقات -->
+  <section>
+    <h2>🛠️ التطبيقات</h2>
+    <div class="games-container">
+      <div class="game-card">
+        <img src="images/app.jpg" alt="Winlator" />
+        <h3>Winlator</h3>
+        <p>أفضل تطبيق لتشغيل ألعاب الكمبيوتر على الأندرويد</p>
+        <a href="#">تحميل</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- قسم ألعاب الكمبيوتر -->
+  <section>
+    <h2>💻 ألعاب الكمبيوتر</h2>
+    <div class="games-container">
+      <div class="game-card">
+        <img src="images/pc_game.jpg" alt="GTA V" />
+        <h3>GTA V</h3>
+        <p>اللعبة الشهيرة على الحاسوب نسخة كاملة</p>
+        <a href="#">تحميل</a>
+      </div>
+    </div>
+  </section>
 
   <footer>
     <p>جميع الحقوق محفوظة © 2025</p>
   </footer>
+
 </body>
 </html>
