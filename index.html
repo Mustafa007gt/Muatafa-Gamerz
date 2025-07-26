@@ -161,12 +161,30 @@
       font-size: 14px;
       backdrop-filter: blur(8px);
     }
-  </style>
+  
+#searchInput {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  font-size: 16px;
+  width: 200px;
+  transition: box-shadow 0.3s;
+}
+
+#searchInput:focus {
+  outline: none;
+  box-shadow: 0 0 10px #00f7ff;
+}
+
+</style>
 </head>
 <body>
 
   <header>
-    <h1>مصطفى جيمرز</h1>
+    
+<h1>مصطفى جيمرز</h1>
+<input type="text" id="searchInput" placeholder="ابحث عن لعبة..." />
+
     <a class="telegram-link" href="https://t.me/mustafaGMZ" target="_blank">قناتي على التليجرام</a>
   </header>
 
@@ -196,5 +214,23 @@
   <footer>
     <p>جميع الحقوق محفوظة © 2025</p>
   </footer>
+
+<script>
+  const searchInput = document.getElementById("searchInput");
+  searchInput.addEventListener("input", function () {
+    const query = this.value.toLowerCase();
+    const cards = document.querySelectorAll(".game-card");
+
+    cards.forEach(card => {
+      const title = card.querySelector("h2").textContent.toLowerCase();
+      if (title.includes(query)) {
+        card.style.display = "block";
+      } else {
+        card.style.display = "none";
+      }
+    });
+  });
+</script>
+
 </body>
 </html>
