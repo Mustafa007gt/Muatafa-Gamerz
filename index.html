@@ -1,273 +1,193 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>مصطفى جيمرز</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600&display=swap" rel="stylesheet">
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>مصطفى جيمرز</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-    body {
-      margin: 0;
-      font-family: 'Cairo', sans-serif;
-      background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #1f1f1f);
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
-      color: #fff;
-    }
+    body {
+      margin: 0;
+      font-family: 'Cairo', sans-serif;
+      background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #1f1f1f);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      color: #fff;
+    }
 
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
 
-    header {
-      background-color: #000000aa;
-      padding: 15px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 999;
-      box-shadow: 0 2px 10px #00f7ff80;
-      backdrop-filter: blur(8px);
-    }
+    header {
+      background-color: #000000aa;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 2px 10px #00f7ff80;
+      backdrop-filter: blur(8px);
+    }
 
-    header h1 {
-      margin: 0;
-      font-size: 1.8em;
-      color: #fff;
-      text-shadow: 0 0 10px #00f7ff, 0 0 20px #00f7ff;
-    }
+    header h1 {
+      margin: 0;
+      font-size: 1.8em;
+      color: #fff;
+      text-shadow: 0 0 10px #00f7ff, 0 0 20px #00f7ff;
+    }
 
-    .telegram-link {
-      background: linear-gradient(90deg, #00f7ff, #ff00f7);
-      color: white;
-      padding: 10px 18px;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: transform 0.3s, box-shadow 0.3s;
-      box-shadow: 0 0 15px #00f7ff80;
-    }
+    .telegram-link {
+      background: linear-gradient(90deg, #00f7ff, #ff00f7);
+      color: white;
+      padding: 10px 18px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 0 15px #00f7ff80;
+    }
 
-    .telegram-link:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 25px #00f7ff;
-    }
+    .telegram-link:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px #00f7ff;
+    }
 
-    .games-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 25px;
-      padding: 40px 20px;
-    }
+    .games-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      padding: 40px 20px;
+    }
 
-    .game-card {
-      background: #121212dd;
-      border-radius: 16px;
-      padding: 20px;
-      text-align: center;
-      box-shadow: 0 0 20px #00f7ff30;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
+    .game-card {
+      background: #121212dd;
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 0 20px #00f7ff30;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
 
-    .game-card:hover {
-      transform: scale(1.03);
-      box-shadow: 0 0 25px #00f7ff80;
-    }
+    .game-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 25px #00f7ff80;
+    }
 
-    .game-card img {
-      max-width: 100%;
-      border-radius: 10px;
-      margin-bottom: 15px;
-    }
+    .game-card img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
 
-    .game-card h2 {
-      color: #00f7ff;
-      text-shadow: 0 0 5px #00f7ff;
-    }
+    .game-card h2 {
+      color: #00f7ff;
+      text-shadow: 0 0 5px #00f7ff;
+    }
 
-    .game-card a {
-      position: relative;
-      display: inline-block;
-      margin-top: 10px;
-      padding: 12px 24px;
-      color: #fff;
-      font-weight: bold;
-      text-decoration: none;
-      border-radius: 12px;
-      overflow: hidden;
-      background: linear-gradient(270deg, #ff00f7, #00f7ff, #00ff88, #fffb00);
-      background-size: 600% 600%;
-      animation: rgb-glow 8s ease infinite;
-      box-shadow: 0 0 15px #00f7ff88;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
+    .game-card a {
+      position: relative;
+      display: inline-block;
+      margin-top: 10px;
+      padding: 12px 24px;
+      color: #fff;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 12px;
+      overflow: hidden;
+      background: linear-gradient(270deg, #ff00f7, #00f7ff, #00ff88, #fffb00);
+      background-size: 600% 600%;
+      animation: rgb-glow 8s ease infinite;
+      box-shadow: 0 0 15px #00f7ff88;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
 
-    .game-card a::before {
-      content: "";
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: inherit;
-      z-index: -1;
-      filter: blur(25px);
-      animation: rgb-glow 8s ease infinite;
-    }
+    .game-card a::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: inherit;
+      z-index: -1;
+      filter: blur(25px);
+      animation: rgb-glow 8s ease infinite;
+    }
 
-    .game-card a:hover {
-      transform: scale(1.08);
-      box-shadow: 0 0 30px #00f7ffcc;
-    }
+    .game-card a:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 30px #00f7ffcc;
+    }
 
-    .game-card a::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -75%;
-      width: 50%;
-      height: 100%;
-      background: rgba(255, 255, 255, 0.2);
-      transform: skewX(-25deg);
-      animation: shine 3s infinite;
-    }
+    .game-card a::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -75%;
+      width: 50%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.2);
+      transform: skewX(-25deg);
+      animation: shine 3s infinite;
+    }
 
-    @keyframes rgb-glow {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+    @keyframes rgb-glow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
 
-    @keyframes shine {
-      0% { left: -75%; }
-      50% { left: 125%; }
-      100% { left: 125%; }
-    }
+    @keyframes shine {
+      0% { left: -75%; }
+      50% { left: 125%; }
+      100% { left: 125%; }
+    }
 
-    footer {
-      text-align: center;
-      padding: 20px;
-      background-color: #000000aa;
-      margin-top: 40px;
-      color: #aaa;
-      font-size: 14px;
-      backdrop-filter: blur(8px);
-    }
-  
-#searchInput {
-  padding: 10px;
-  border-radius: 10px;
-  border: none;
-  font-size: 16px;
-  width: 200px;
-  transition: box-shadow 0.3s;
-}
-
-#searchInput:focus {
-  outline: none;
-  box-shadow: 0 0 10px #00f7ff;
-}
-
-</style>
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #000000aa;
+      margin-top: 40px;
+      color: #aaa;
+      font-size: 14px;
+      backdrop-filter: blur(8px);
+    }
+  </style>
 </head>
 <body>
 
-  <header>
-    
-<h1>مصطفى جيمرز</h1>
-<input type="text" id="searchInput" placeholder="ابحث عن لعبة..." />
+  <header>
+    <h1>مصطفى جيمرز</h1>
+    <a class="telegram-link" href="https://t.me/mustafaGMZ" target="_blank">قناتي على التليجرام</a>
+  </header>
 
-    
-  </header>
+  <main class="games-container">
+    <div class="game-card">
+      <img src="images/gta3.jpg" alt="GTA 3 The definitive edition" />
+      <h2>GTA 3 the definitive edition</h2>
+      <p>لعبة الأكشن الشهيرة بنسختها الأصلية على الأندرويد.</p>
+      <a href="https://dl.apkvision.org/gta-iii-definitive/GTA-III-Definitive-v1.84.18-mod-money-apkvision.apk" target="_blank">تحميل</a>
+    </div>
 
-  <main class="games-container">
-    <div class="game-card">
-      <img src="images/gta3.jpg" alt="GTA 3 The definitive edition" />
-      <h2>GTA 3 the definitive edition</h2>
-      <p>لعبة الأكشن الشهيرة بنسختها الأصلية على الأندرويد.</p>
-      <a href="https://dl.apkvision.org/gta-iii-definitive/GTA-III-Definitive-v1.84.18-mod-money-apkvision.apk" target="_blank">تحميل</a>
-    </div>
+    <div class="game-card">
+      <img src="images/gtasa.jpg" alt="Gta San Andreas" />
+      <h2>Gta san Andreas</h2>
+      <p>اشهر لعبة عالم مفتوح على الاطلاق</p>
+      <a href="https://dl.apkvision.org/grand-theft-auto-san-andreas/GTA-SA-v2.11.277-full-mod-money-apkvision.apk" target="_blank">تحميل</a>
+    </div>
+  </main>
 
-    <div class="game-card">
-      <img src="images/gtasa.jpg" alt="Gta San Andreas" />
-      <h2>Gta san Andreas</h2>
-      <p>اشهر لعبة عالم مفتوح على الاطلاق</p>
-      <a href="https://dl.apkvision.org/grand-theft-auto-san-andreas/GTA-SA-v2.11.277-full-mod-money-apkvision.apk" target="_blank">تحميل</a>
-    </div>
-
-    <div class="game-card">
-  <img src="images/pp4.jpg" alt="Poppy playtime 4" />
-  <h2>poppy playtime 4</h2>
-  <p>لعبة الرعب الشهيرة الان صارت على الاندرويد</p>
-  <a href="https://dl.apkvision.org/poppy-playtime-chapter-4-2/Poppy-Playtime-Chapter-4-v1.0.5-full-apkvision.apk" target="_blank">تحميل</a>
-    </div>
-
-    <div class="game-card">
-  <img src="images/bully.jpg" alt="Bully" />
-  <h2>Bully</h2>
-  <p>لعب مشاغب المدرسة الشهيرة </p>
-  <a href="https://dl.apkvision.org/bully-anniversary-edition/Bully-v1.4.299-60FPS-mod-apkvision.apk" target="_blank">تحميل</a>
-</div>
-
-
-    <div class="game-card">
-  <img src="images/de.jpg" alt="GTA:SAN ANDREAS YHE DEFINITIVE EDITION" />
-  <h2>GTA:SAN ANDREAS THE DEFINITIVE EDITION</h2>
-  <p>النسخة المحسنة من سان اندرياس</p>
-  <a href="https://www.mediafire.com/file_premium/besfl3k3fjb8eut/60FPS-GTA-SA-DE-1.86.44544238-full-apkvision.apks/file" target="_blank">تحميل</a>
-</div>
-
-
-  </main>
-
-  <footer>
-    <p>جميع الحقوق محفوظة © 2025 لقناة مصطفى جيمرز في التليجرام</p>
-  </footer>
-
-<script>
-  const searchInput = document.getElementById("searchInput");
-  searchInput.addEventListener("input", function () {
-    const query = this.value.toLowerCase();
-    const cards = document.querySelectorAll(".game-card");
-
-    cards.forEach(card => {
-      const title = card.querySelector("h2").textContent.toLowerCase();
-      if (title.includes(query)) {
-        card.style.display = "block";
-      } else {
-        card.style.display = "none";
-      }
-    });
-  });
-</script>
-
-
-<a href="https://t.me/mustafaGMZ" target="_blank" style="
-  position: fixed;
-  bottom: 15px;
-  left: 15px;
-  z-index: 999;
-  background: #0088cc;
-  padding: 10px;
-  border-radius: 50%;
-  box-shadow: 0 0 10px #00f7ff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-">
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#fff" viewBox="0 0 24 24">
-    <path d="M12 0C5.375 0 0 5.375 0 12s5.375 12 12 12 12-5.375 12-12S18.625 0 12 0zm5.813 8.469l-1.875 8.813c-.156.688-.563.844-1.125.531l-3.094-2.281-1.5 1.438c-.156.156-.281.281-.563.281l.188-2.688 4.875-4.406c.219-.187-.031-.313-.344-.125l-6.031 3.781-2.594-.813c-.563-.188-.563-.563.125-.844l10.125-3.906c.469-.187.875.125.719.844z"/>
-  </svg>
-</a>
+  <footer>
+    <p>جميع الحقوق محفوظة © 2025</p>
+  </footer>
 </body>
-
 </html>
