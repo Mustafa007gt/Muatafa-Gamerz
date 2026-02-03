@@ -1,291 +1,347 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>مصطفى جيمرز</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600&display=swap" rel="stylesheet">
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>مصطفى جيمرز</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; }
 
-    body {
-      margin: 0;
-      font-family: 'Cairo', sans-serif;
-      background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #1f1f1f);
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
-      color: #fff;
-    }
+body {
+  margin: 0;
+  font-family: 'Cairo', sans-serif;
+  background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #1f1f1f);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  color: #fff;
+  display: flex;
+}
 
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 
-    header {
-      background-color: #000000aa;
-      padding: 15px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 999;
-      box-shadow: 0 2px 10px #00f7ff80;
-      backdrop-filter: blur(8px);
-    }
+/* Header */
+header {
+  background-color: #000000aa;
+  padding: 15px 20px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  box-shadow: 0 2px 10px #00f7ff80;
+  backdrop-filter: blur(8px);
+}
 
-    header h1 {
-      margin: 0;
-      font-size: 1.8em;
-      color: #fff;
-      text-shadow: 0 0 10px #00f7ff, 0 0 20px #00f7ff;
-    }
+header h1 {
+  margin: 0;
+  font-size: 1.8em;
+  color: #fff;
+  text-shadow: 0 0 10px #00f7ff, 0 0 20px #00f7ff;
+}
 
-    .telegram-link {
-      background: linear-gradient(90deg, #00f7ff, #ff00f7);
-      color: white;
-      padding: 10px 18px;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: transform 0.3s, box-shadow 0.3s;
-      box-shadow: 0 0 15px #00f7ff80;
-    }
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 100%;
+  background-color: #111;
+  padding: 80px 20px 20px 20px; /* 80px عشان ما يغطى الهيدر */
+  box-shadow: 2px 0 10px #00f7ff50;
+  z-index: 900;
+}
 
-    .telegram-link:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 25px #00f7ff;
-    }
+.sidebar h2 {
+  color: #00f7ff;
+  text-align: center;
+  margin-bottom: 20px;
+}
 
-    .games-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 25px;
-      padding: 40px 20px;
-    }
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
 
-    .game-card {
-      background: #121212dd;
-      border-radius: 16px;
-      padding: 20px;
-      text-align: center;
-      box-shadow: 0 0 20px #00f7ff30;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
+.sidebar ul li {
+  margin: 15px 0;
+}
 
-    .game-card:hover {
-      transform: scale(1.03);
-      box-shadow: 0 0 25px #00f7ff80;
-    }
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
 
-    .game-card img {
-      max-width: 100%;
-      border-radius: 10px;
-      margin-bottom: 15px;
-    }
+.sidebar ul li a:hover {
+  color: #00f7ff;
+}
 
-    .game-card h2 {
-      color: #00f7ff;
-      text-shadow: 0 0 5px #00f7ff;
-    }
+/* Main content */
+.main-content {
+  margin-left: 220px; /* عشان ما يتغطى بالsidebar */
+  padding: 100px 20px 20px 20px; /* 100px عشان الهيدر */
+  flex: 1;
+}
 
-    .game-card a {
-      position: relative;
-      display: inline-block;
-      margin-top: 10px;
-      padding: 12px 24px;
-      color: #fff;
-      font-weight: bold;
-      text-decoration: none;
-      border-radius: 12px;
-      overflow: hidden;
-      background: linear-gradient(270deg, #ff00f7, #00f7ff, #00ff88, #fffb00);
-      background-size: 600% 600%;
-      animation: rgb-glow 8s ease infinite;
-      box-shadow: 0 0 15px #00f7ff88;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
+/* Game cards */
+.games-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+}
 
-    .game-card a::before {
-      content: "";
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: inherit;
-      z-index: -1;
-      filter: blur(25px);
-      animation: rgb-glow 8s ease infinite;
-    }
+.game-card {
+  background: #121212dd;
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 0 20px #00f7ff30;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
 
-    .game-card a:hover {
-      transform: scale(1.08);
-      box-shadow: 0 0 30px #00f7ffcc;
-    }
+.game-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 25px #00f7ff80;
+}
 
-    .game-card a::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -75%;
-      width: 50%;
-      height: 100%;
-      background: rgba(255, 255, 255, 0.2);
-      transform: skewX(-25deg);
-      animation: shine 3s infinite;
-    }
+.game-card img {
+  max-width: 100%;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
 
-    @keyframes rgb-glow {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+.game-card h2 {
+  color: #00f7ff;
+  text-shadow: 0 0 5px #00f7ff;
+}
 
-    @keyframes shine {
-      0% { left: -75%; }
-      50% { left: 125%; }
-      100% { left: 125%; }
-    }
+.game-card a {
+  position: relative;
+  display: inline-block;
+  margin-top: 10px;
+  padding: 12px 24px;
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 12px;
+  overflow: hidden;
+  background: linear-gradient(270deg, #ff00f7, #00f7ff, #00ff88, #fffb00);
+  background-size: 600% 600%;
+  animation: rgb-glow 8s ease infinite;
+  box-shadow: 0 0 15px #00f7ff88;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
 
-    footer {
-      text-align: center;
-      padding: 20px;
-      background-color: #000000aa;
-      margin-top: 40px;
-      color: #aaa;
-      font-size: 14px;
-      backdrop-filter: blur(8px);
-    }
-  </style>
-</head>
-<body>
+.game-card a::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: inherit;
+  z-index: -1;
+  filter: blur(25px);
+  animation: rgb-glow 8s ease infinite;
+}
 
-  <header>
-    <div style="display: flex; align-items: center; gap: 15px;">
-      <input id="searchInput" type="text" placeholder="ابحث..." style="padding: 6px 10px; font-size: 14px; border-radius: 6px; border: none; outline: none;" />
-      <h1>مصطفى جيمرز</h1>
-    </div>
-    
-  </header>
+.game-card a:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 30px #00f7ffcc;
+}
 
-  <div class="game-card">
-  <img src="images/silksong.jpg" alt="silksong" />
-  <h2>silksong</h2>
-  <p>كاملة للاندرويد</p></p>
-  <a href="https://www.mediafire.com/file/0ip1psf307admi1/silksong_1.0.1.apk/file" target="_blank">تحميل</a>
-    </div>
+.game-card a::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: skewX(-25deg);
+  animation: shine 3s infinite;
+}
 
+@keyframes rgb-glow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 
-  <main class="games-container">
-    <div class="game-card">
-      <img src="images/gta3.jpg" alt="GTA 3 The definitive edition" />
-      <h2>GTA 3 the definitive edition</h2>
-      <p>لعبة الأكشن الشهيرة بنسختها الأصلية على الأندرويد.</p>
-      <a href="https://dl.apkvision.org/gta-iii-definitive/GTA-III-Definitive-v1.84.18-mod-money-apkvision.apk" target="_blank">تحميل</a>
-    </div>
+@keyframes shine {
+  0% { left: -75%; }
+  50% { left: 125%; }
+  100% { left: 125%; }
+}
 
-    <div class="game-card">
-      <img src="images/gtasa.jpg" alt="Gta San Andreas" />
-      <h2>Gta san Andreas</h2>
-      <p>اشهر لعبة عالم مفتوح على الاطلاق</p>
-      <a href="https://dl.apkvision.org/grand-theft-auto-san-andreas/GTA-SA-v2.11.277-full-mod-money-apkvision.apk" target="_blank">تحميل</a>
-    </div>
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #000000aa;
+  margin-top: 40px;
+  color: #aaa;
+  font-size: 14px;
+  backdrop-filter: blur(8px);
+}
 
-    <div class="game-card">
-  <img src="images/de.jpg" alt="GTA: SA THE DEFINITIVE EDITION" />
-  <h2>GTA: SA THE DEFINITIVE EDITION</h2>
-  <p>النسخة المحسنة من سان اندرياس</p>
-  <a href="https://www.mediafire.com/file_premium/besfl3k3fjb8eut/60FPS-GTA-SA-DE-1.86.44544238-full-apkvision.apks/file" target="_blank">تحميل</a>
-</div>
-
-    <div class="game-card">
-  <img src="images/bm.jpg" alt="Bright memory infinit" />
-  <h2>bright memory infunt</h2>
-  <p>لعبة الكمبيوتر القوية صارت على الاندرويد</p>
-  <a href="https://dl.apkvision.org/bright-memory-infinite/bright-memory-infinite-1.31-mod-menu-apkvision.apk" target="_blank">تحميل</a>
-</div>
-<div class="game-card">
-  <img src="images/lcs.jpg" alt="GTA: LCS" />
-  <h2>GTA:LCS</h2>
-  <p>اخر جزء صدر على الموبايل</p>
-  <a href="https://dl.apkvision.org/gta-liberty-city-stories/GTA-LCS-v2.4.362-mod-apkvision.apk" target="_blank">تحميل</a>
-</div>
-
-  <div class="game-card">
-  <img src="images/bully.jpg" alt="Bully" />
-  <h2>Bully</h2>
-  <p>الشغب في المدرسة</p></p>
-  <a href="https://dl.apkvision.org/bully-anniversary-edition/Bully-v1.4.299-60FPS-mod-apkvision.apk" target="_blank">تحميل</a>
-</div>
-
-<div class="game-card">
-  <img src="images/rdr.jpg" alt="red dead redemption" />
-  <h2>red dead redemption</h2>
-  <p>افضل لعبة العالم الغربي على الاطلاق</p></p>
-  <a href="https://www.mediafire.com/file/vt7ytpf83w2nuks/red-dead-redemption-v1.53.61003005-mod.apk/file" target="_blank">تحميل</a>
-</div>
-
-  <div class="game-card">
-  <img src="images/asphalt 9.jpg" alt="asphalt 9" />
-  <h2>asphalt 9</h2>
-  <p>اقوى لعبة سباق سيارات بدون نت </p></p>
-  <a href="https://modsfire.com/OUc3Atc1UiW0jgt" target="_blank">تحميل</a>
-    </div>
-    
-<div class="game-card">
-  <img src="images/hk.jpg" alt="hk" />
-  <h2>hollow knight</h2>
-  <p>فارس الظلام الجزء الاول </p></p>
-  <a href="https://dl.apkvision.org/hollow-knight-mobile/hollow-knight-mobile-1.5.78.11833-mod-apkvision.apk" target="_blank">تحميل</a>
-</div>
-    
-  </main>
-
-  
-<a href="https://t.me/mustafaGMZ" target="_blank" style="
+/* Telegram floating button */
+.telegram-btn {
   position: fixed;
   bottom: 20px;
   left: 20px;
-  background-color: transparent;
-  padding: 0;
-  border-radius: 50%;
-  text-align: center;
-  text-decoration: none;
   z-index: 1000;
-" title="تابعني على التليجرام">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" style="width:48px;height:48px;box-shadow: 0 0 15px #00f7ff80;border-radius: 50%;" />
+}
+.telegram-btn img {
+  width:48px;
+  height:48px;
+  box-shadow: 0 0 15px #00f7ff80;
+  border-radius: 50%;
+}
+
+/* Search input */
+#searchInput {
+  padding: 6px 10px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div style="display: flex; align-items: center; gap: 15px;">
+    <input id="searchInput" type="text" placeholder="ابحث..." />
+    <h1>مصطفى جيمرز</h1>
+  </div>
+</header>
+
+<div class="sidebar">
+  <h2>الأقسام</h2>
+  <ul>
+    <li><a href="#games">الألعاب</a></li>
+    <li><a href="#apps">التطبيقات</a></li>
+  </ul>
+</div>
+
+<div class="main-content">
+
+  <!-- قسم الألعاب -->
+  <section id="games">
+    <h1>الألعاب</h1>
+    <div class="games-container">
+      <div class="game-card">
+        <img src="images/gta3.jpg" alt="GTA 3" />
+        <h2>GTA 3 the definitive edition</h2>
+        <p>لعبة الأكشن الشهيرة بنسختها الأصلية على الأندرويد.</p>
+        <a href="https://dl.apkvision.org/gta-iii-definitive/GTA-III-Definitive-v1.84.18-mod-money-apkvision.apk" target="_blank">تحميل</a>
+      </div>
+      <div class="game-card">
+        <img src="images/gtasa.jpg" alt="Gta San Andreas" />
+        <h2>Gta san Andreas</h2>
+        <p>اشهر لعبة عالم مفتوح على الاطلاق</p>
+        <a href="https://dl.apkvision.org/grand-theft-auto-san-andreas/GTA-SA-v2.11.277-full-mod-money-apkvision.apk" target="_blank">تحميل</a>
+      </div>
+      <div class="game-card">
+        <img src="images/de.jpg" alt="GTA: SA DE" />
+        <h2>GTA: SA THE DEFINITIVE EDITION</h2>
+        <p>النسخة المحسنة من سان اندرياس</p>
+        <a href="https://www.mediafire.com/file_premium/besfl3k3fjb8eut/60FPS-GTA-SA-DE-1.86.44544238-full-apkvision.apks/file" target="_blank">تحميل</a>
+      </div>
+      <div class="game-card">
+        <img src="images/bm.jpg" alt="Bright memory infinite" />
+        <h2>Bright memory infinite</h2>
+        <p>لعبة الكمبيوتر القوية صارت على الاندرويد</p>
+        <a href="https://dl.apkvision.org/bright-memory-infinite/bright-memory-infinite-1.31-mod-menu-apkvision.apk" target="_blank">تحميل</a>
+      </div>
+      <div class="game-card">
+        <img src="images/lcs.jpg" alt="GTA: LCS" />
+        <h2>GTA:LCS</h2>
+        <p>اخر جزء صدر على الموبايل</p>
+        <a href="https://dl.apkvision.org/gta-liberty-city-stories/GTA-LCS-v2.4.362-mod-apkvision.apk" target="_blank">تحميل</a>
+      </div>
+      <div class="game-card">
+        <img src="images/bully.jpg" alt="Bully" />
+        <h2>Bully</h2>
+        <p>الشغب في المدرسة</p>
+        <a href="https://dl.apkvision.org/bully-anniversary-edition/Bully-v1.4.299-60FPS-mod-apkvision.apk" target="_blank">تحميل</a>
+      </div>
+      <div class="game-card">
+        <img src="images/rdr.jpg" alt="Red Dead Redemption" />
+        <h2>Red Dead Redemption</h2>
+        <p>افضل لعبة العالم الغربي على الاطلاق</p>
+        <a href="https://www.mediafire.com/file/vt7ytpf83w2nuks/red-dead-redemption-v1.53.61003005-mod.apk/file" target="_blank">تحميل</a>
+      </div>
+      <div class="game-card">
+        <img src="images/asphalt 9.jpg" alt="Asphalt 9" />
+        <h2>Asphalt 9</h2>
+        <p>اقوى لعبة سباق سيارات بدون نت</p>
+        <a href="https://modsfire.com/OUc3Atc1UiW0jgt" target="_blank">تحميل</a>
+      </div>
+      <div class="game-card">
+        <img src="images/hk.jpg" alt="Hollow Knight" />
+        <h2>Hollow Knight</h2>
+        <p>فارس الظلام الجزء الاول</p>
+        <a href="https://dl.apkvision.org/hollow-knight-mobile/hollow-knight-mobile-1.5.78.11833-mod-apkvision.apk" target="_blank">تحميل</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- قسم التطبيقات -->
+  <section id="apps">
+    <h1>التطبيقات</h1>
+    <div class="games-container">
+      <div class="game-card">
+        <img src="images/silksong.jpg" alt="Silksong" />
+        <h2>Silksong</h2>
+        <p>تطبيق كامل للاندرويد</p>
+        <a href="https://www.mediafire.com/file/0ip1psf307admi1/silksong_1.0.1.apk/file" target="_blank">تحميل</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- زر التليجرام -->
+<a href="https://t.me/mustafaGMZ" target="_blank" class="telegram-btn" title="تابعني على التليجرام">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" />
 </a>
 
+<footer>
+  <p>جميع الحقوق محفوظة © 2025</p>
+</footer>
 
+<!-- Search Script -->
+<script>
+const searchInput = document.getElementById('searchInput');
+const gameCards = document.querySelectorAll('.game-card');
 
-  <footer>
-    <p>جميع الحقوق محفوظة © 2025</p>
-  </footer>
+searchInput.addEventListener('input', function () {
+  const query = this.value.toLowerCase();
 
-  <script>
-    const searchInput = document.getElementById('searchInput');
-    const gameCards = document.querySelectorAll('.game-card');
+  gameCards.forEach(card => {
+    const title = card.querySelector('h2').textContent.toLowerCase();
+    const description = card.querySelector('p').textContent.toLowerCase();
 
-    searchInput.addEventListener('input', function () {
-      const query = this.value.toLowerCase();
+    if (title.includes(query) || description.includes(query)) {
+      card.style.display = '';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+});
+</script>
 
-      gameCards.forEach(card => {
-        const title = card.querySelector('h2').textContent.toLowerCase();
-        const description = card.querySelector('p').textContent.toLowerCase();
-
-        if (title.includes(query) || description.includes(query)) {
-          card.style.display = '';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    });
-  </script>
 </body>
 </html>
