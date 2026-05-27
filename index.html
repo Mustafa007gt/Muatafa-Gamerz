@@ -206,7 +206,6 @@
       margin-bottom: 15px;
     }
 
-    /* حاوية الأزرار لترتيب زر التحميل والأيقونة سوية */
     .card-actions {
       display: flex;
       gap: 12px;
@@ -215,7 +214,6 @@
       margin-top: 10px;
     }
 
-    /* زر التحميل الأساسي */
     .download-link {
       position: relative;
       display: inline-block;
@@ -233,7 +231,7 @@
       cursor: pointer;
       font-family: 'Cairo', sans-serif;
       font-size: 16px;
-      flex: 1; /* يأخذ المساحة المتبقية من الكرت */
+      flex: 1;
     }
 
     .download-link.counting {
@@ -257,7 +255,6 @@
       box-shadow: 0 0 25px #00f7ffcc;
     }
 
-    /* زر أيقونة اليوتيوب الصافي والنظيف */
     .youtube-icon-btn {
       width: 48px;
       height: 48px;
@@ -675,7 +672,6 @@
   <footer>
     <div class="footer-content">
       <p class="footer-title">مصطفى جيمرز</p>
-      
       <div class="social-links">
         <a href="https://www.youtube.com/@MustafaGamers" target="_blank" class="social-icon youtube">
           <i class="fab fa-youtube"></i>
@@ -684,7 +680,6 @@
           <i class="fab fa-telegram-plane"></i>
         </a>
       </div>
-
       <p class="footer-rights">جميع الحقوق محفوظة © 2026</p>
     </div>
   </footer>
@@ -750,15 +745,13 @@
 
     // العداد التنازلي للتحميل
     function startDownload(event, element) {
-      event.preventDefault(); 
-      
+      event.preventDefault();
       const targetUrl = element.getAttribute('href');
       const gameTitle = element.parentElement.parentElement.querySelector('h2').textContent;
-      let timeLeft = 3; 
-      
+      let timeLeft = 3;
+
       element.classList.add('counting');
       element.textContent = `تجهيز.. (${timeLeft})`;
-      
       showToast(`🛡️ جاري تجهيز رابط آمن للعبة: <br><span style="color:#00f7ff">${gameTitle}</span>`);
 
       const countdown = setInterval(() => {
@@ -774,7 +767,7 @@
       }, 1000);
     }
 
-    // التقييم بالنجوم التفاعلية
+    // التقييم بالنجوم التفاعلية - تم إصلاحه ليعمل بشكل معزول وصحيح لكل كرت
     document.querySelectorAll('.rating-stars').forEach(container => {
       const defaultStars = parseInt(container.getAttribute('data-stars')) || 5;
       const stars = container.querySelectorAll('span');
@@ -796,594 +789,10 @@
         star.addEventListener('click', (e) => {
           e.stopPropagation(); 
           const clickedValue = parseInt(star.getAttribute('data-value'));
-          const gameTitle = container.parentElement.querySelector('h2').textContent;
           
-          container.setAttribute('data-stars', clickedValue);
-          setStarsValue(clickedValue);
-
-          showToast(`⭐ شكراً لتقييمك لعبة <span style="color:#ffcc00">${gameTitle}</span> بـ ${clickedValue} نجوم!`, true);
-        });
-      });
-    });
-  </script>
-</body>
-</html>
-        <a class="download-link" href="https://modsfire.com/Z0ve5Oi45777c7k" onclick="startDownload(event, this)">تحميل</a>
-        <a class="youtube-icon-btn" href="https://www.youtube.com/@MustafaGamers" target="_blank" title="شاهد الشرح بالفيديو"><i class="fab fa-youtube"></i></a>
-      </div>
-    </div>
-  
-    <div class="game-card" data-category="cars">
-      <div class="img-container"><img src="images/tru.jpg" alt="Truck Simulator Ultimate" /></div>
-      <h2>Truck Simulator Ultimate</h2>
-      <div class="rating-stars" data-stars="4"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
-      <p>افضل لعبة شاحنات</p>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/4SWwA64eGAc4MDb" onclick="startDownload(event, this)">تحميل</a>
-        <a class="youtube-icon-btn" href="https://www.youtube.com/@MustafaGamers" target="_blank" title="شاهد الشرح بالفيديو"><i class="fab fa-youtube"></i></a>
-      </div>
-    </div>
-
-    <div class="game-card" data-category="cars">
-      <div class="img-container"><img src="images/asphalt 9.jpg" alt="asphalt 9" /></div>
-      <h2>asphalt 9</h2>
-      <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
-      <p>اقوى لعبة سباق سيارات بدون نت</p>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/OUc3Atc1UiW0jgt" onclick="startDownload(event, this)">تحميل</a>
-        <a class="youtube-icon-btn" href="https://www.youtube.com/@MustafaGamers" target="_blank" title="شاهد الشرح بالفيديو"><i class="fab fa-youtube"></i></a>
-      </div>
-    </div>
-
-    <div class="game-card" data-category="sports">
-      <div class="img-container"><img src="images/dls.jpg" alt="dls 19" /></div>
-      <h2>DlS 19</h2>
-      <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
-      <p>اكثر لعبة كرة قدم ممتعة للجوال باموال غير محدودة</p>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/bza1Ej6rl9A1p94" onclick="startDownload(event, this)">تحميل</a>
-        <a class="youtube-icon-btn" href="https://www.youtube.com/@MustafaGamers" target="_blank" title="شاهد الشرح بالفيديو"><i class="fab fa-youtube"></i></a>
-      </div>
-    </div>
-
-    <div class="game-card" data-category="action">
-      <div class="img-container"><img src="images/dan.jpg" alt="dust and neon" /></div>
-      <h2>dust and neon</h2>
-      <div class="rating-stars" data-stars="4"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
-      <p>لعبة اكشن بطابع غربي</p>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/EPO884yuBSjBryO" onclick="startDownload(event, this)">تحميل</a>
-        <a class="youtube-icon-btn" href="https://www.youtube.com/@MustafaGamers" target="_blank" title="شاهد الشرح بالفيديو"><i class="fab fa-youtube"></i></a>
-      </div>
-    </div>
-
-    <div class="game-card" data-category="action">
-      <div class="img-container"><img src="images/hwn.jpg" alt="Huntdown" /></div>
-      <h2>Huntdown</h2>
-      <div class="rating-stars" data-stars="4"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
-      <p>كانت هذا اللعبة على ps4 وصدرت للاندرويد</p>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/c75w46p9kds4cjR" onclick="startDownload(event, this)">تحميل</a>
-        <a class="youtube-icon-btn" href="https://www.youtube.com/@MustafaGamers" target="_blank" title="شاهد الشرح بالفيديو"><i class="fab fa-youtube"></i></a>
-      </div>
-    </div>
-
-    <div class="game-card" data-category="action">
-      <div class="img-container"><img src="images/gunsim.jpg" alt="gunsim" /></div>
-      <h2>gunsim 3d</h2>
-      <div class="rating-stars" data-stars="4"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
-      <p>لعبة تصويب واقعية جدا</p>
-      <div class="card-actions">
-        <a class="download-link" href="https://www.mediafire.com/file/5p7pe43ts55gs2h/gsim08115mod-androidoyunclub.apk/file" onclick="startDownload(event, this)">تحميل</a>
-        <a class="youtube-icon-btn" href="https://www.youtube.com/@MustafaGamers" target="_blank" title="شاهد الشرح بالفيديو"><i class="fab fa-youtube"></i></a>
-      </div>
-    </div>
-  
-    <div class="game-card" data-category="action">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="images/silksong.jpg" alt="silksong" /></div>
-      <h2>silksong</h2>
-      <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
-      <p>كاملة للاندرويد</p>
-      <div class="card-actions">
-        <a class="download-link" href="https://www.mediafire.com/file/0ip1psf307admi1/silksong_1.0.1.apk/file" onclick="startDownload(event, this)">تحميل</a>
-        <a class="youtube-icon-btn" href="https://www.youtube.com/@MustafaGamers" target="_blank" title="شاهد الشرح بالفيديو"><i class="fab fa-youtube"></i></a>
-      </div>
-    </div>
-
-    <div class="game-card" data-category="action">
-      <div class="img-container"><img src="images/haak.jpg" alt="HAAK" /></div>
-      <h2>HAAK</h2>
-      <div class="rating-stars" data-stars="4"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
-      <p>لعبة مغامرات 2d تشبه هولو نايت</p>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/pB5VHQCm9Ushw88" onclick="startDownload(event, this)">تحميل</a>
-        <a class="youtube-icon-btn" href="https://www.youtube.com/@MustafaGamers" target="_blank" title="شاهد الشرح بالفيديو"><i class="fab fa-youtube"></i></a>
-      </div>
-    </div>
-
-    <div class="game-card" data-category="action">
-      <div class="img-container"><img src="images/bm.jpg" alt="Bright memory infinit" /></div>
-      <h2>bright memory infunt</h2>
-      <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
-      <p>لعبة الكمبيوتر القوية صارت على الاندرويد</p>
-      <div class="card-actions">
-        <a class="download-link" href="https://dl.apkvision.org/bright-memory-infinite/bright-memory-infinite-1.31-mod-menu-apkvision.apk" onclick="startDownload(event, this)">تحميل</a>
-        <a class="youtube-icon-btn" href="https://www.youtube.com/@MustafaGamers" target="_blank" title="شاهد الشرح بالفيديو"><i class="fab fa-youtube"></i></a>
-      </div>
-    </div>
-
-    <div class="game-card" data-category="action">
-      <div class="img-container"><img src="images/hk.jpg" alt="hollow knight" /></div>
-      <h2>hollow knight</h2>
-      <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
-      <p>فارس الظلام الجزء الاول</p>
-      <div class="card-actions">
-        <a class="download-link" href="https://dl.apkvision.org/hollow-knight-mobile/hollow-knight-mobile-1.5.78.11833-mod-apkvision.apk" onclick="startDownload(event, this)">تحميل</a>
-        <a class="youtube-icon-btn" href="https://www.youtube.com/@MustafaGamers" target="_blank" title="شاهد الشرح بالفيديو"><i class="fab fa-youtube"></i></a>
-      </div>
-    </div>
-    
-    <div class="game-card" data-category="action">
-      <div class="img-container"><img src="images/hits.jpg" alt="hitman sniper" /></div>
-      <h2>hitman sniper</h2>
-      <div class="rating-stars" data-stars="4"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
-      <p>افضل لعبة قناص للموبايل</p>
-      <div class="card-actions">
-        <a class="download-link" href="https://dl.apkvision.org/bully-anniversary-edition/Bully-v1.4.299-60FPS-mod-apkvision.apk" onclick="startDownload(event, this)">تحميل</a>
-        <a class="youtube-icon-btn" href="https://www.youtube.com/@MustafaGamers" target="_blank" title="شاهد الشرح بالفيديو"><i class="fab fa-youtube"></i></a>
-      </div>
-    </div>
-
-    <div class="game-card" data-category="horror">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="images/ppt5.jpg" alt="poppy playtime 5" /></div>
-      <h2>poppy playtime 5</h2>
-      <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
-      <p>الجزء الخامس من اللعب مع بوبي</p>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/ALUYSXx9KEqoVx0" onclick="startDownload(event, this)">تحميل</a>
-        <a class="youtube-icon-btn" href="https://www.youtube.com/@MustafaGamers" target="_blank" title="شاهد الشرح بالفيديو"><i class="fab fa-youtube"></i></a>
-      </div>
-    </div>
-
-    <div class="game-card" data-category="horror">
-      <div class="img-container"><img src="images/repo.jpg" alt="R.E.P.O" /></div>
-      <h2>R.E.P.O</h2>
-      <div class="rating-stars" data-stars="4"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
-      <p>افضل لعب رعب بطابع كوميدي</p>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/tk0FODw2mqUKXhp" onclick="startDownload(event, this)">تحميل</a>
-        <a class="youtube-icon-btn" href="https://www.youtube.com/@MustafaGamers" target="_blank" title="شاهد الشرح بالفيديو"><i class="fab fa-youtube"></i></a>
-      </div>
-    </div>
-
-  </main>
-
-  <footer>
-    <div class="footer-content">
-      <p class="footer-title">مصطفى جيمرز</p>
-      
-      <div class="social-links">
-        <a href="https://www.youtube.com/@MustafaGamers" target="_blank" class="social-icon youtube" title="قناتي على اليوتيوب">
-          <i class="fab fa-youtube"></i>
-        </a>
-        <a href="https://t.me/mustafaGWZ" target="_blank" class="social-icon telegram" title="قناتي على التليجرام">
-          <i class="fab fa-telegram-plane"></i>
-        </a>
-      </div>
-
-      <p class="footer-rights">جميع الحقوق محفوظة © 2026</p>
-    </div>
-  </footer>
-
-  <script>
-    let currentCategory = 'all';
-
-    function filterCategory(category) {
-      currentCategory = category;
-      const buttons = document.querySelectorAll('.category-btn');
-      buttons.forEach(btn => btn.classList.remove('active'));
-      if(event) {
-        event.target.classList.add('active');
-      }
-      applyFilter();
-    }
-
-    const searchInput = document.getElementById('searchInput');
-    searchInput.addEventListener('input', applyFilter);
-
-    function applyFilter() {
-      const query = searchInput.value.toLowerCase();
-      const gameCards = document.querySelectorAll('.game-card');
-
-      gameCards.forEach(card => {
-        const title = card.querySelector('h2').textContent.toLowerCase();
-        const description = card.querySelector('p').textContent.toLowerCase();
-        const cardCategory = card.getAttribute('data-category');
-
-        const matchesSearch = title.includes(query) || description.includes(query);
-        const matchesCategory = currentCategory === 'all' || cardCategory === currentCategory;
-
-        if (matchesSearch && matchesCategory) {
-          card.classList.remove('hidden');
-        } else {
-          card.classList.add('hidden');
-        }
-      });
-    }
-
-    // نظام الإشعارات المنبثقة
-    function showToast(message, isRating = false) {
-      const container = document.getElementById('toast-container');
-      const toast = document.createElement('div');
-      toast.className = 'toast-notification';
-      if(isRating) {
-        toast.classList.add('toast-rating');
-      }
-      toast.innerHTML = message;
-      container.appendChild(toast);
-
-      setTimeout(() => {
-        toast.classList.add('show');
-      }, 50);
-
-      setTimeout(() => {
-        toast.classList.remove('show');
-        setTimeout(() => {
-          toast.remove();
-        }, 400);
-      }, 3000);
-    }
-
-    // العداد التنازلي للتحميل
-    function startDownload(event, element) {
-      event.preventDefault(); 
-      
-      const targetUrl = element.getAttribute('href');
-      const gameTitle = element.parentElement.parentElement.querySelector('h2').textContent;
-      let timeLeft = 3; 
-      
-      element.classList.add('counting');
-      element.textContent = `تجهيز.. (${timeLeft})`;
-      
-      showToast suicide(`🛡️ جاري تجهيز رابط آمن للعبة: <br><span style="color:#00f7ff">${gameTitle}</span>`);
-
-      const countdown = setInterval(() => {
-        timeLeft--;
-        if (timeLeft <= 0) {
-          clearInterval(countdown);
-          element.classList.remove('counting');
-          element.textContent = 'تحميل';
-          window.open(targetUrl, '_blank'); 
-        } else {
-          element.textContent = `تجهيز.. (${timeLeft})`;
-        }
-      }, 1000);
-    }
-
-    // التقييم بالنجوم التفاعلية
-    document.querySelectorAll('.rating-stars').forEach(container => {
-      const defaultStars = parseInt(container.getAttribute('data-stars')) || 5;
-      const stars = container.querySelectorAll('span');
-      
-      const setStarsValue = (val) => {
-        stars.forEach(star => {
-          const starValue = parseInt(star.getAttribute('data-value'));
-          if (starValue <= val) {
-            star.classList.add('active');
-          } else {
-            star.classList.remove('active');
-          }
-        });
-      };
-
-      setStarsValue(defaultStars);
-
-      stars.forEach(star => {
-        star.addEventListener('click', (e) => {
-          e.stopPropagation(); 
-          const clickedValue = parseInt(star.getAttribute('data-value'));
-          const gameTitle = container.parentElement.querySelector('h2').textContent;
-          
-          container.setAttribute('data-stars', clickedValue);
-          setStarsValue(clickedValue);
-
-          showToast(`⭐ شكراً لتقييمك لعبة <span style="color:#ffcc00">${gameTitle}</span> بـ ${clickedValue} نجوم!`, true);
-        });
-      });
-    });
-  </script>
-</body>
-</html>
-        <a class="download-link" href="https://modsfire.com/Z0ve5Oi45777c7k" onclick="startDownload(event, this)">تحميل</a>
-        <a class="youtube-link" href="https://www.youtube.com/@MustafaGamers" target="_blank">شاهد الشرح <i class="fab fa-youtube"></i></a>
-      </div>
-    </div>
-  
-    <div class="game-card" data-category="cars">
-      <div class="img-container"><img src="images/tru.jpg" alt="Truck Simulator Ultimate" /></div>
-      <h2>Truck Simulator Ultimate</h2>
-      <div class="rating-stars" data-stars="4"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
-      <p>افضل لعبة شاحنات</p>
-      <div class="card-buttons">
-        <a class="download-link" href="https://modsfire.com/4SWwA64eGAc4MDb" onclick="startDownload(event, this)">تحميل</a>
-        <a class="youtube-link" href="https://www.youtube.com/@MustafaGamers" target="_blank">شاهد الشرح <i class="fab fa-youtube"></i></a>
-      </div>
-    </div>
-
-    <div class="game-card" data-category="cars">
-      <div class="img-container"><img src="images/asphalt 9.jpg" alt="asphalt 9" /></div>
-      <h2>asphalt 9</h2>
-      <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
-      <p>اقوى لعبة سباق سيارات بدون نت</p>
-      <div class="card-buttons">
-        <a class="download-link" href="https://modsfire.com/OUc3Atc1UiW0jgt" onclick="startDownload(event, this)">تحميل</a>
-        <a class="youtube-link" href="https://www.youtube.com/@MustafaGamers" target="_blank">شاهد الشرح <i class="fab fa-youtube"></i></a>
-      </div>
-    </div>
-
-    <div class="game-card" data-category="sports">
-      <div class="img-container"><img src="images/dls.jpg" alt="dls 19" /></div>
-      <h2>DlS 19</h2>
-      <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
-      <p>اكثر لعبة كرة قدم ممتعة للجوال باموال غير محدودة</p>
-      <div class="card-buttons">
-        <a class="download-link" href="https://modsfire.com/bza1Ej6rl9A1p94" onclick="startDownload(event, this)">تحميل</a>
-        <a class="youtube-link" href="https://www.youtube.com/@MustafaGamers" target="_blank">شاهد الشرح <i class="fab fa-youtube"></i></a>
-      </div>
-    </div>
-
-    <div class="game-card" data-category="action">
-      <div class="img-container"><img src="images/dan.jpg" alt="dust and neon" /></div>
-      <h2>dust and neon</h2>
-      <div class="rating-stars" data-stars="4"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
-      <p>لعبة اكشن بطابع غربي</p>
-      <div class="card-buttons">
-        <a class="download-link" href="https://modsfire.com/EPO884yuBSjBryO" onclick="startDownload(event, this)">تحميل</a>
-        <a class="youtube-link" href="https://www.youtube.com/@MustafaGamers" target="_blank">شاهد الشرح <i class="fab fa-youtube"></i></a>
-      </div>
-    </div>
-
-    <div class="game-card" data-category="action">
-      <div class="img-container"><img src="images/hwn.jpg" alt="Huntdown" /></div>
-      <h2>Huntdown</h2>
-      <div class="rating-stars" data-stars="4"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
-      <p>كانت هذا اللعبة على ps4 وصدرت للاندرويد</p>
-      <div class="card-buttons">
-        <a class="download-link" href="https://modsfire.com/c75w46p9kds4cjR" onclick="startDownload(event, this)">تحميل</a>
-        <a class="youtube-link" href="https://www.youtube.com/@MustafaGamers" target="_blank">شاهد الشرح <i class="fab fa-youtube"></i></a>
-      </div>
-    </div>
-
-    <div class="game-card" data-category="action">
-      <div class="img-container"><img src="images/gunsim.jpg" alt="gunsim" /></div>
-      <h2>gunsim 3d</h2>
-      <div class="rating-stars" data-stars="4"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
-      <p>لعبة تصويب واقعية جدا</p>
-      <div class="card-buttons">
-        <a class="download-link" href="https://www.mediafire.com/file/5p7pe43ts55gs2h/gsim08115mod-androidoyunclub.apk/file" onclick="startDownload(event, this)">تحميل</a>
-        <a class="youtube-link" href="https://www.youtube.com/@MustafaGamers" target="_blank">شاهد الشرح <i class="fab fa-youtube"></i></a>
-      </div>
-    </div>
-  
-    <div class="game-card" data-category="action">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="images/silksong.jpg" alt="silksong" /></div>
-      <h2>silksong</h2>
-      <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
-      <p>كاملة للاندرويد</p>
-      <div class="card-buttons">
-        <a class="download-link" href="https://www.mediafire.com/file/0ip1psf307admi1/silksong_1.0.1.apk/file" onclick="startDownload(event, this)">تحميل</a>
-        <a class="youtube-link" href="https://www.youtube.com/@MustafaGamers" target="_blank">شاهد الشرح <i class="fab fa-youtube"></i></a>
-      </div>
-    </div>
-
-    <div class="game-card" data-category="action">
-      <div class="img-container"><img src="images/haak.jpg" alt="HAAK" /></div>
-      <h2>HAAK</h2>
-      <div class="rating-stars" data-stars="4"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
-      <p>لعبة مغامرات 2d تشبه هولو نايت</p>
-      <div class="card-buttons">
-        <a class="download-link" href="https://modsfire.com/pB5VHQCm9Ushw88" onclick="startDownload(event, this)">تحميل</a>
-        <a class="youtube-link" href="https://www.youtube.com/@MustafaGamers" target="_blank">شاهد الشرح <i class="fab fa-youtube"></i></a>
-      </div>
-    </div>
-
-    <div class="game-card" data-category="action">
-      <div class="img-container"><img src="images/bm.jpg" alt="Bright memory infinit" /></div>
-      <h2>bright memory infunt</h2>
-      <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
-      <p>لعبة الكمبيوتر القوية صارت على الاندرويد</p>
-      <div class="card-buttons">
-        <a class="download-link" href="https://dl.apkvision.org/bright-memory-infinite/bright-memory-infinite-1.31-mod-menu-apkvision.apk" onclick="startDownload(event, this)">تحميل</a>
-        <a class="youtube-link" href="https://www.youtube.com/@MustafaGamers" target="_blank">شاهد الشرح <i class="fab fa-youtube"></i></a>
-      </div>
-    </div>
-
-    <div class="game-card" data-category="action">
-      <div class="img-container"><img src="images/hk.jpg" alt="hollow knight" /></div>
-      <h2>hollow knight</h2>
-      <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
-      <p>فارس الظلام الجزء الاول</p>
-      <div class="card-buttons">
-        <a class="download-link" href="https://dl.apkvision.org/hollow-knight-mobile/hollow-knight-mobile-1.5.78.11833-mod-apkvision.apk" onclick="startDownload(event, this)">تحميل</a>
-        <a class="youtube-link" href="https://www.youtube.com/@MustafaGamers" target="_blank">شاهد الشرح <i class="fab fa-youtube"></i></a>
-      </div>
-    </div>
-    
-    <div class="game-card" data-category="action">
-      <div class="img-container"><img src="images/hits.jpg" alt="hitman sniper" /></div>
-      <h2>hitman sniper</h2>
-      <div class="rating-stars" data-stars="4"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
-      <p>افضل لعبة قناص للموبايل</p>
-      <div class="card-buttons">
-        <a class="download-link" href="https://dl.apkvision.org/bully-anniversary-edition/Bully-v1.4.299-60FPS-mod-apkvision.apk" onclick="startDownload(event, this)">تحميل</a>
-        <a class="youtube-link" href="https://www.youtube.com/@MustafaGamers" target="_blank">شاهد الشرح <i class="fab fa-youtube"></i></a>
-      </div>
-    </div>
-
-    <div class="game-card" data-category="horror">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="images/ppt5.jpg" alt="poppy playtime 5" /></div>
-      <h2>poppy playtime 5</h2>
-      <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
-      <p>الجزء الخامس من اللعب مع بوبي</p>
-      <div class="card-buttons">
-        <a class="download-link" href="https://modsfire.com/ALUYSXx9KEqoVx0" onclick="startDownload(event, this)">تحميل</a>
-        <a class="youtube-link" href="https://www.youtube.com/@MustafaGamers" target="_blank">شاهد الشرح <i class="fab fa-youtube"></i></a>
-      </div>
-    </div>
-
-    <div class="game-card" data-category="horror">
-      <div class="img-container"><img src="images/repo.jpg" alt="R.E.P.O" /></div>
-      <h2>R.E.P.O</h2>
-      <div class="rating-stars" data-stars="4"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
-      <p>افضل لعب رعب بطابع كوميدي</p>
-      <div class="card-buttons">
-        <a class="download-link" href="https://modsfire.com/tk0FODw2mqUKXhp" onclick="startDownload(event, this)">تحميل</a>
-        <a class="youtube-link" href="https://www.youtube.com/@MustafaGamers" target="_blank">شاهد الشرح <i class="fab fa-youtube"></i></a>
-      </div>
-    </div>
-  
-    <div class="game-card" data-category="horror">
-      <div class="img-container"><img src="images/d2.jpg" alt="into the dead 2 unleashed" /></div>
-      <h2>into the dead 2 unleashed</h2>
-      <div class="rating-stars" data-stars="4"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
-      <p>افضل لعبة زومبي</p>
-      <div class="card-buttons">
-        <a class="download-link" href="https://modsfire.com/A82bsaJ2TA1H522" onclick="startDownload(event, this)">تحميل</a>
-        <a class="youtube-link" href="https://www.youtube.com/@MustafaGamers" target="_blank">شاهد الشرح <i class="fab fa-youtube"></i></a>
-      </div>
-    </div>
-
-  </main>
-
-  <footer>
-    <div class="footer-content">
-      <p class="footer-title">مصطفى جيمرز</p>
-      
-      <div class="social-links">
-        <a href="https://www.youtube.com/@MustafaGamers" target="_blank" class="social-icon youtube" title="قناتي على اليوتيوب">
-          <i class="fab fa-youtube"></i>
-        </a>
-        <a href="https://t.me/mustafaGWZ" target="_blank" class="social-icon telegram" title="قناتي على التليجرام">
-          <i class="fab fa-telegram-plane"></i>
-        </a>
-      </div>
-
-      <p class="footer-rights">جميع الحقوق محفوظة © 2026</p>
-    </div>
-  </footer>
-
-  <script>
-    let currentCategory = 'all';
-
-    function filterCategory(category) {
-      currentCategory = category;
-      const buttons = document.querySelectorAll('.category-btn');
-      buttons.forEach(btn => btn.classList.remove('active'));
-      if(event) {
-        event.target.classList.add('active');
-      }
-      applyFilter();
-    }
-
-    const searchInput = document.getElementById('searchInput');
-    searchInput.addEventListener('input', applyFilter);
-
-    function applyFilter() {
-      const query = searchInput.value.toLowerCase();
-      const gameCards = document.querySelectorAll('.game-card');
-
-      gameCards.forEach(card => {
-        const title = card.querySelector('h2').textContent.toLowerCase();
-        const description = card.querySelector('p').textContent.toLowerCase();
-        const cardCategory = card.getAttribute('data-category');
-
-        const matchesSearch = title.includes(query) || description.includes(query);
-        const matchesCategory = currentCategory === 'all' || cardCategory === currentCategory;
-
-        if (matchesSearch && matchesCategory) {
-          card.classList.remove('hidden');
-        } else {
-          card.classList.add('hidden');
-        }
-      });
-    }
-
-    // نظام الإشعارات المنبثقة
-    function showToast(message, isRating = false) {
-      const container = document.getElementById('toast-container');
-      const toast = document.createElement('div');
-      toast.className = 'toast-notification';
-      if(isRating) {
-        toast.classList.add('toast-rating');
-      }
-      toast.innerHTML = message;
-      container.appendChild(toast);
-
-      setTimeout(() => {
-        toast.classList.add('show');
-      }, 50);
-
-      setTimeout(() => {
-        toast.classList.remove('show');
-        setTimeout(() => {
-          toast.remove();
-        }, 400);
-      }, 3000);
-    }
-
-    // العداد التنازلي للتحميل
-    function startDownload(event, element) {
-      event.preventDefault(); 
-      
-      const targetUrl = element.getAttribute('href');
-      const gameTitle = element.parentElement.parentElement.querySelector('h2').textContent;
-      let timeLeft = 3; 
-      
-      element.classList.add('counting');
-      element.textContent = `تجهيز.. (${timeLeft})`;
-      
-      showToast(`🛡️ جاري تجهيز رابط آمن للعبة: <br><span style="color:#00f7ff">${gameTitle}</span>`);
-
-      const countdown = setInterval(() => {
-        timeLeft--;
-        if (timeLeft <= 0) {
-          clearInterval(countdown);
-          element.classList.remove('counting');
-          element.textContent = 'تحميل';
-          window.open(targetUrl, '_blank'); 
-        } else {
-          element.textContent = `تجهيز.. (${timeLeft})`;
-        }
-      }, 1000);
-    }
-
-    // التقييم بالنجوم التفاعلية
-    document.querySelectorAll('.rating-stars').forEach(container => {
-      const defaultStars = parseInt(container.getAttribute('data-stars')) || 5;
-      const stars = container.querySelectorAll('span');
-      
-      const setStarsValue = (val) => {
-        stars.forEach(star => {
-          const starValue = parseInt(star.getAttribute('data-value'));
-          if (starValue <= val) {
-            star.classList.add('active');
-          } else {
-            star.classList.remove('active');
-          }
-        });
-      };
-
-      setStarsValue(defaultStars);
-
-      stars.forEach(star => {
-        star.addEventListener('click', (e) => {
-          e.stopPropagation(); 
-          const clickedValue = parseInt(star.getAttribute('data-value'));
-          const gameTitle = container.parentElement.querySelector('h2').textContent;
+          // تحديد الكرت الحالي للحصول على العنوان بدقة
+          const card = container.closest('.game-card');
+          const gameTitle = card ? card.querySelector('h2').textContent : "اللعبة";
           
           container.setAttribute('data-stars', clickedValue);
           setStarsValue(clickedValue);
