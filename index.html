@@ -449,6 +449,9 @@
   </div>
   
   <main class="games-container">
+    <div id="pagination" style="display: flex; justify-content: center; gap: 10px; margin: 20px 0;">
+    </div>
+
 
     <div class="game-card" data-category="open-world">
       <div class="badge-new">الافضل</div>
@@ -746,30 +749,57 @@
     searchInput.addEventListener('input', applyFilter);
 
         // نعدل الدالة لتقرأ القيمة من القائمة المنسدلة
-    function filterAndSort() {
-      const selectElement = document.getElementById('sortSelect');
-      const category = selectElement.value; // القيمة المختارة من القائمة
-      const query = document.getElementById('searchInput').value.toLowerCase();
-      const gameCards = document.querySelectorAll('.game-card');
+        let currentPage = 1;
+    const gamesPerPage = 5;
 
-      gameCards.forEach(card => {
+    function filterAndSort() {
+      currentPage = 1; // عند البحث أو تغيير الفئة، نعود للصفحة الأولى
+      renderGames();
+    }
+
+    function renderGames() {
+      const selectElement = document.getElementById('sortSelect');
+      const category = selectElement.value;
+      const query = document.getElementById('searchInput').value.toLowerCase();
+      const gameCards = Array.from(document.querySelectorAll('.game-card'));
+
+      // 1. تصفية الألعاب بناءً على البحث والفئة
+      const filteredGames = gameCards.filter(card => {
         const title = card.querySelector('h2').textContent.toLowerCase();
         const cardCategory = card.getAttribute('data-category');
-
-        // منطق التصفية:
-        // 1. هل النص موجود في العنوان؟
-        const matchesSearch = title.includes(query);
-        
-        // 2. هل الفئة مطابقة؟ (إذا اختار "الكل" تظهر الجميع)
-        const matchesCategory = (category === 'all') || (cardCategory === category);
-
-        if (matchesSearch && matchesCategory) {
-          card.classList.remove('hidden');
-        } else {
-          card.classList.add('hidden');
-        }
+        return (category === 'all' || cardCategory === category) && title.includes(query);
       });
+
+      // 2. إخفاء الكل أولاً
+      gameCards.forEach(card => card.classList.add('hidden'));
+
+      // 3. إظهار فقط الألعاب الخاصة بالصفحة الحالية
+      const start = (currentPage - 1) * gamesPerPage;
+      const end = start + gamesPerPage;
+      const paginatedGames = filteredGames.slice(start, end);
+      paginatedGames.forEach(card => card.classList.remove('hidden'));
+
+      // 4. رسم أزرار الصفحات
+      const totalPages = Math.ceil(filteredGames.length / gamesPerPage);
+      const paginationContainer = document.getElementById('pagination');
+      paginationContainer.innerHTML = '';
+
+      for (let i = 1; i <= totalPages; i++) {
+        const btn = document.createElement('button');
+        btn.textContent = i;
+        btn.className = 'category-btn'; // نستخدم تصميم أزرارك الجاهز
+        if (i === currentPage) btn.style.background = '#00f7ff'; // تمييز الصفحة الحالية
+        btn.onclick = () => {
+          currentPage = i;
+          renderGames();
+        };
+        paginationContainer.appendChild(btn);
+      }
     }
+
+    // استدعاء أولي لعرض الألعاب
+    renderGames();
+
 
     // تأكد من ربط خانة البحث أيضاً بنفس الدالة
     document.getElementById('searchInput').addEventListener('input', filterAndSort);
