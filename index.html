@@ -747,17 +747,23 @@
     const searchInput = document.getElementById('searchInput');
     searchInput.addEventListener('input', applyFilter);
 
-    function applyFilter() {
-      const query = searchInput.value.toLowerCase();
+        // نعدل الدالة لتقرأ القيمة من القائمة المنسدلة
+    function filterAndSort() {
+      const selectElement = document.getElementById('sortSelect');
+      const category = selectElement.value; // القيمة المختارة من القائمة
+      const query = document.getElementById('searchInput').value.toLowerCase();
       const gameCards = document.querySelectorAll('.game-card');
 
       gameCards.forEach(card => {
         const title = card.querySelector('h2').textContent.toLowerCase();
-        const description = card.querySelector('p').textContent.toLowerCase();
         const cardCategory = card.getAttribute('data-category');
 
-        const matchesSearch = title.includes(query) || description.includes(query);
-        const matchesCategory = currentCategory === 'all' || cardCategory === currentCategory;
+        // منطق التصفية:
+        // 1. هل النص موجود في العنوان؟
+        const matchesSearch = title.includes(query);
+        
+        // 2. هل الفئة مطابقة؟ (إذا اختار "الكل" تظهر الجميع)
+        const matchesCategory = (category === 'all') || (cardCategory === category);
 
         if (matchesSearch && matchesCategory) {
           card.classList.remove('hidden');
@@ -766,6 +772,10 @@
         }
       });
     }
+
+    // تأكد من ربط خانة البحث أيضاً بنفس الدالة
+    document.getElementById('searchInput').addEventListener('input', filterAndSort);
+
 
     // نظام الإشعارات المنبثقة
     function showToast(message, isRating = false) {
