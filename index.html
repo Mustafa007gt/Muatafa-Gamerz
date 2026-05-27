@@ -116,7 +116,7 @@
     }
 
     .game-card:hover {
-      transform: scale(1.03);
+      transform: scale(1.02);
       box-shadow: 0 0 25px #00f7ff80;
     }
 
@@ -136,12 +136,33 @@
       letter-spacing: 1px;
     }
 
-    .game-card img {
+    /* حاوي الصورة لتأمين تأثير القص النيوني الداخلي */
+    .img-container {
       width: 100%;
       height: 180px;
-      object-fit: cover;
       border-radius: 10px;
+      overflow: hidden;
       margin-bottom: 15px;
+      border: 1px solid #00f7ff20;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .game-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease, filter 0.4s ease;
+    }
+
+    /* [الخيار رقم 1]: تأثير توهج النيون اللامع والزوم عند تمرير الماوس فوق الصورة */
+    .game-card:hover .img-container {
+      border-color: #00f7ff;
+      box-shadow: 0 0 20px #00f7ffcc, 0 0 10px #ff00f750;
+    }
+
+    .game-card:hover img {
+      transform: scale(1.06);
+      filter: brightness(1.1);
     }
 
     .game-card h2 {
@@ -151,13 +172,11 @@
       font-size: 1.4em;
     }
 
-    /* إصلاح نظام النجوم ليصبح متفاعلاً بشكل صحيح */
     .rating-stars {
       display: flex;
       justify-content: center;
       gap: 5px;
       margin-bottom: 10px;
-      /* تم تعديل الترتيب البرمجي ليتناسب مع الضغط من اليمين لليسار */
       flex-direction: row-reverse; 
     }
 
@@ -168,7 +187,6 @@
       transition: color 0.2s, transform 0.1s;
     }
 
-    /* تأثير تمرير الماوس والضغط للتلوين الذهبي النيوني */
     .rating-stars span:hover,
     .rating-stars span:hover ~ span,
     .rating-stars span.active,
@@ -300,7 +318,7 @@
 
     <div class="game-card" data-category="open-world">
       <div class="badge-new">جديد</div>
-      <img src="images/gtasa.jpg" alt="Gta San Andreas" />
+      <div class="img-container"><img src="images/gtasa.jpg" alt="Gta San Andreas" /></div>
       <h2>Gta san Andreas</h2>
       <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
       <p>اشهر لعبة عالم مفتوح على الاطلاق</p>
@@ -308,7 +326,7 @@
     </div>
 
     <div class="game-card" data-category="open-world">
-      <img src="images/tld.jpg" alt="السفر الطويل" />
+      <div class="img-container"><img src="images/tld.jpg" alt="السفر الطويل" /></div>
       <h2>السفر الطويل</h2>
       <div class="rating-stars" data-stars="4"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
       <p>لعبة عالم مفتوح شهيرة</p>
@@ -316,7 +334,7 @@
     </div>
 
     <div class="game-card" data-category="open-world">
-      <img src="images/rdr.jpg" alt="red dead redemption" />
+      <div class="img-container"><img src="images/rdr.jpg" alt="red dead redemption" /></div>
       <h2>red dead redemption</h2>
       <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
       <p>افضل لعبة العالم الغربي على الاطلاق</p>
@@ -324,7 +342,7 @@
     </div>
 
     <div class="game-card" data-category="open-world">
-      <img src="images/gta3.jpg" alt="GTA 3 The definitive edition" />
+      <div class="img-container"><img src="images/gta3.jpg" alt="GTA 3 The definitive edition" /></div>
       <h2>GTA 3 the definitive edition</h2>
       <div class="rating-stars" data-stars="4"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
       <p>لعبة الأكشن الشهيرة بنسختها الأصلية على الأندرويد.</p>
@@ -333,7 +351,7 @@
 
     <div class="game-card" data-category="open-world">
       <div class="badge-new">جديد</div>
-      <img src="images/de.jpg" alt="GTA: SA THE DEFINITIVE EDITION" />
+      <div class="img-container"><img src="images/de.jpg" alt="GTA: SA THE DEFINITIVE EDITION" /></div>
       <h2>GTA: SA THE DEFINITIVE EDITION</h2>
       <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
       <p>النسخة المحسنة من سان اندرياس</p>
@@ -341,7 +359,7 @@
     </div>
 
     <div class="game-card" data-category="open-world">
-      <img src="images/lcs.jpg" alt="GTA: LCS" />
+      <div class="img-container"><img src="images/lcs.jpg" alt="GTA: LCS" /></div>
       <h2>GTA:LCS</h2>
       <div class="rating-stars" data-stars="4"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
       <p>اخر جزء صدر على الموبايل</p>
@@ -349,7 +367,7 @@
     </div>
 
     <div class="game-card" data-category="open-world">
-      <img src="images/bully.jpg" alt="Bully" />
+      <div class="img-container"><img src="images/bully.jpg" alt="Bully" /></div>
       <h2>Bully</h2>
       <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
       <p>الشغب في المدرسة</p>
@@ -358,7 +376,7 @@
 
     <div class="game-card" data-category="cars">
       <div class="badge-new">جديد</div>
-      <img src="images/cpm2.jpg" alt="Car Parking Multiplayer 2" />
+      <div class="img-container"><img src="images/cpm2.jpg" alt="Car Parking Multiplayer 2" /></div>
       <h2>Car Parking Multiplayer 2</h2>
       <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
       <p>اشهر العاب العالم</p>
@@ -366,7 +384,7 @@
     </div>
   
     <div class="game-card" data-category="cars">
-      <img src="images/tru.jpg" alt="Truck Simulator Ultimate" />
+      <div class="img-container"><img src="images/tru.jpg" alt="Truck Simulator Ultimate" /></div>
       <h2>Truck Simulator Ultimate</h2>
       <div class="rating-stars" data-stars="4"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
       <p>افضل لعبة شاحنات</p>
@@ -374,7 +392,7 @@
     </div>
 
     <div class="game-card" data-category="cars">
-      <img src="images/asphalt 9.jpg" alt="asphalt 9" />
+      <div class="img-container"><img src="images/asphalt 9.jpg" alt="asphalt 9" /></div>
       <h2>asphalt 9</h2>
       <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
       <p>اقوى لعبة سباق سيارات بدون نت</p>
@@ -382,7 +400,7 @@
     </div>
 
     <div class="game-card" data-category="sports">
-      <img src="images/dls.jpg" alt="dls 19" />
+      <div class="img-container"><img src="images/dls.jpg" alt="dls 19" /></div>
       <h2>DlS 19</h2>
       <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
       <p>اكثر لعبة كرة قدم ممتعة للجوال باموال غير محدودة</p>
@@ -390,7 +408,7 @@
     </div>
 
     <div class="game-card" data-category="action">
-      <img src="images/dan.jpg" alt="dust and neon" />
+      <div class="img-container"><img src="images/dan.jpg" alt="dust and neon" /></div>
       <h2>dust and neon</h2>
       <div class="rating-stars" data-stars="4"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
       <p>لعبة اكشن بطابع غربي</p>
@@ -398,7 +416,7 @@
     </div>
 
     <div class="game-card" data-category="action">
-      <img src="images/hwn.jpg" alt="Huntdown" />
+      <div class="img-container"><img src="images/hwn.jpg" alt="Huntdown" /></div>
       <h2>Huntdown</h2>
       <div class="rating-stars" data-stars="4"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
       <p>كانت هذا اللعبة على ps4 وصدرت للاندرويد</p>
@@ -406,7 +424,7 @@
     </div>
 
     <div class="game-card" data-category="action">
-      <img src="images/gunsim.jpg" alt="gunsim" />
+      <div class="img-container"><img src="images/gunsim.jpg" alt="gunsim" /></div>
       <h2>gunsim 3d</h2>
       <div class="rating-stars" data-stars="4"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
       <p>لعبة تصويب واقعية جدا</p>
@@ -415,7 +433,7 @@
   
     <div class="game-card" data-category="action">
       <div class="badge-new">جديد</div>
-      <img src="images/silksong.jpg" alt="silksong" />
+      <div class="img-container"><img src="images/silksong.jpg" alt="silksong" /></div>
       <h2>silksong</h2>
       <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
       <p>كاملة للاندرويد</p>
@@ -423,7 +441,7 @@
     </div>
 
     <div class="game-card" data-category="action">
-      <img src="images/haak.jpg" alt="HAAK" />
+      <div class="img-container"><img src="images/haak.jpg" alt="HAAK" /></div>
       <h2>HAAK</h2>
       <div class="rating-stars" data-stars="4"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
       <p>لعبة مغامرات 2d تشبه هولو نايت</p>
@@ -431,7 +449,7 @@
     </div>
 
     <div class="game-card" data-category="action">
-      <img src="images/bm.jpg" alt="Bright memory infinit" />
+      <div class="img-container"><img src="images/bm.jpg" alt="Bright memory infinit" /></div>
       <h2>bright memory infunt</h2>
       <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
       <p>لعبة الكمبيوتر القوية صارت على الاندرويد</p>
@@ -439,7 +457,7 @@
     </div>
 
     <div class="game-card" data-category="action">
-      <img src="images/hk.jpg" alt="hollow knight" />
+      <div class="img-container"><img src="images/hk.jpg" alt="hollow knight" /></div>
       <h2>hollow knight</h2>
       <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
       <p>فارس الظلام الجزء الاول</p>
@@ -447,7 +465,7 @@
     </div>
     
     <div class="game-card" data-category="action">
-      <img src="images/hits.jpg" alt="hitman sniper" />
+      <div class="img-container"><img src="images/hits.jpg" alt="hitman sniper" /></div>
       <h2>hitman sniper</h2>
       <div class="rating-stars" data-stars="4"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
       <p>افضل لعبة قناص للموبايل</p>
@@ -456,7 +474,7 @@
 
     <div class="game-card" data-category="horror">
       <div class="badge-new">جديد</div>
-      <img src="images/ppt5.jpg" alt="poppy playtime 5" />
+      <div class="img-container"><img src="images/ppt5.jpg" alt="poppy playtime 5" /></div>
       <h2>poppy playtime 5</h2>
       <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
       <p>الجزء الخامس من اللعب مع بوبي</p>
@@ -464,7 +482,7 @@
     </div>
 
     <div class="game-card" data-category="horror">
-      <img src="images/repo.jpg" alt="R.E.P.O" />
+      <div class="img-container"><img src="images/repo.jpg" alt="R.E.P.O" /></div>
       <h2>R.E.P.O</h2>
       <div class="rating-stars" data-stars="4"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
       <p>افضل لعب رعب بطابع كوميدي</p>
@@ -472,7 +490,7 @@
     </div>
   
     <div class="game-card" data-category="horror">
-      <img src="images/d2.jpg" alt="into the dead 2 unleashed" />
+      <div class="img-container"><img src="images/d2.jpg" alt="into the dead 2 unleashed" /></div>
       <h2>into the dead 2 unleashed</h2>
       <div class="rating-stars" data-stars="4"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
       <p>افضل لعبة زومبي</p>
@@ -535,7 +553,7 @@
       });
     }
 
-    // العداد التنازلي بـ 3 ثوانٍ فقط ⚡
+    // العداد التنازلي الذكي (3 ثوانٍ) ⚡
     function startDownload(event, element) {
       event.preventDefault(); 
       
@@ -558,12 +576,11 @@
       }, 1000);
     }
 
-    // برمجة النجوم التفاعلية المصلحة بالكامل
+    // النجوم التفاعلية
     document.querySelectorAll('.rating-stars').forEach(container => {
       const defaultStars = parseInt(container.getAttribute('data-stars')) || 5;
       const stars = container.querySelectorAll('span');
       
-      // وظيفة تلوين النجوم بناء على القيمة المحددة
       const setStarsValue = (val) => {
         stars.forEach(star => {
           const starValue = parseInt(star.getAttribute('data-value'));
@@ -575,13 +592,11 @@
         });
       };
 
-      // تطبيق التقييم الافتراضي عند فتح الصفحة الأولى
       setStarsValue(defaultStars);
 
-      // الاستجابة الفورية عند ضغط الزائر للتقييم بنفسه
       stars.forEach(star => {
         star.addEventListener('click', (e) => {
-          e.stopPropagation(); // منع التداخل مع ضغطات كرت اللعبة
+          e.stopPropagation(); 
           const clickedValue = parseInt(star.getAttribute('data-value'));
           container.setAttribute('data-stars', clickedValue);
           setStarsValue(clickedValue);
