@@ -1,33 +1,16 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>مصطفى جيمرز</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>مصطفى جيمرز</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-<style>
-
-.filter-container {
-  text-align: center;
-  margin: 20px 0;
-}
-
-#sortSelect {
-  padding: 12px 18px;
-  border-radius: 12px;
-  border: 2px solid #00f7ff;
-  background: #121212;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-* {
-  box-sizing: border-box;
-}
     body {
       margin: 0;
       font-family: 'Cairo', sans-serif;
@@ -437,17 +420,15 @@
     </div>
   </header>
 
-  <div class="filter-container">
-    <select id="sortSelect" onchange="filterAndSort()">
-        <option value="all">الكل</option>
-        <option value="open-world">عالم مفتوح</option>
-        <option value="cars">سيارات وشاحنات</option>
-        <option value="sports">رياضة كرة قدم</option>
-        <option value="action">أكشن وقتال</option>
-        <option value="horror">رعب وغموض</option>
-    </select>
+  <div class="categories-container">
+    <button class="category-btn active" onclick="filterCategory('all')">الكل</button>
+    <button class="category-btn" onclick="filterCategory('open-world')">عالم مفتوح</button>
+    <button class="category-btn" onclick="filterCategory('cars')">سيارات وشاحنات</button>
+    <button class="category-btn" onclick="filterCategory('sports')">رياضة كرة قدم</button>
+    <button class="category-btn" onclick="filterCategory('action')">أكشن وقتال</button>
+    <button class="category-btn" onclick="filterCategory('horror')">رعب وغموض</button>
   </div>
-  
+
   <main class="games-container">
 
     <div class="game-card" data-category="open-world">
@@ -745,23 +726,17 @@
     const searchInput = document.getElementById('searchInput');
     searchInput.addEventListener('input', applyFilter);
 
-        // نعدل الدالة لتقرأ القيمة من القائمة المنسدلة
-    function filterAndSort() {
-      const selectElement = document.getElementById('sortSelect');
-      const category = selectElement.value; // القيمة المختارة من القائمة
-      const query = document.getElementById('searchInput').value.toLowerCase();
+    function applyFilter() {
+      const query = searchInput.value.toLowerCase();
       const gameCards = document.querySelectorAll('.game-card');
 
       gameCards.forEach(card => {
         const title = card.querySelector('h2').textContent.toLowerCase();
+        const description = card.querySelector('p').textContent.toLowerCase();
         const cardCategory = card.getAttribute('data-category');
 
-        // منطق التصفية:
-        // 1. هل النص موجود في العنوان؟
-        const matchesSearch = title.includes(query);
-        
-        // 2. هل الفئة مطابقة؟ (إذا اختار "الكل" تظهر الجميع)
-        const matchesCategory = (category === 'all') || (cardCategory === category);
+        const matchesSearch = title.includes(query) || description.includes(query);
+        const matchesCategory = currentCategory === 'all' || cardCategory === currentCategory;
 
         if (matchesSearch && matchesCategory) {
           card.classList.remove('hidden');
@@ -770,10 +745,6 @@
         }
       });
     }
-
-    // تأكد من ربط خانة البحث أيضاً بنفس الدالة
-    document.getElementById('searchInput').addEventListener('input', filterAndSort);
-
 
     // نظام الإشعارات المنبثقة
     function showToast(message, isRating = false) {
@@ -859,4 +830,3 @@
   </script>
 </body>
 </html>
-                  
