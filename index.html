@@ -716,17 +716,51 @@
   </footer>
 
   <script>
-    let currentCategory = 'all';
+const searchInput = document.getElementById('searchInput');
 
-    function filterCategory(category) {
-      currentCategory = category;
-      const buttons = document.querySelectorAll('.category-btn');
-      buttons.forEach(btn => btn.classList.remove('active'));
-      if(window.event && window.event.target) {
-        window.event.target.classList.add('active');
-      }
-      applyFilter();
+searchInput.addEventListener('input', filterAndSort);
+
+function filterAndSort() {
+    const query = searchInput.value.toLowerCase();
+    const selected = document.getElementById('sortSelect').value;
+    const container = document.querySelector('.games-container');
+    const cards = Array.from(document.querySelectorAll('.game-card'));
+
+    cards.forEach(card => {
+        const title = card.querySelector('h2').textContent.toLowerCase();
+        const description = card.querySelector('p').textContent.toLowerCase();
+        const category = card.getAttribute('data-category');
+
+        const matchesSearch =
+            title.includes(query) || description.includes(query);
+
+        let matchesCategory = true;
+
+        if (
+            selected !== 'all' &&
+            selected !== 'newest' &&
+            selected !== 'best'
+        ) {
+            matchesCategory = category === selected;
+        }
+
+        card.classList.toggle('hidden', !(matchesSearch && matchesCategory));
+    });
+
+    if (selected === 'best') {
+        cards.sort((a, b) => {
+            return parseInt(b.querySelector('.rating-stars').dataset.stars) -
+                   parseInt(a.querySelector('.rating-stars').dataset.stars);
+        });
     }
+
+    if (selected === 'newest') {
+        cards.reverse();
+    }
+
+    cards.forEach(card => container.appendChild(card));
+}
+ 
 
     const searchInput = document.getElementById('searchInput');
     searchInput.addEventListener('input', applyFilter);
