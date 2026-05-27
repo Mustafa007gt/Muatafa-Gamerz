@@ -63,18 +63,19 @@
       box-shadow: 0 0 10px #00f7ff50;
     }
 
-    <div class="filter-container">
-    <select id="sortSelect" onchange="filterAndSort()">
-        <option value="all">الكل</option>
-        <option value="newest">الأحدث</option>
-        <option value="best">الأفضل</option>
-        <option value="open-world">عالم مفتوح</option>
-        <option value="cars">سيارات وشاحنات</option>
-        <option value="sports">رياضة كرة قدم</option>
-        <option value="action">أكشن وقتال</option>
-        <option value="horror">رعب وغموض</option>
-    </select>
-</div>
+    .filter-container {
+  text-align: center;
+  margin: 20px 0;
+}
+
+#sortSelect {
+  padding: 12px 18px;
+  border-radius: 12px;
+  border: 2px solid #00f7ff;
+  background: #121212;
+  color: white;
+  font-size: 16px;
+}
 
     .category-btn {
       background: #121212dd;
@@ -425,13 +426,17 @@
     </div>
   </header>
 
-  <div class="categories-container">
-    <button class="category-btn active" onclick="filterCategory('all')">الكل</button>
-    <button class="category-btn" onclick="filterCategory('open-world')">عالم مفتوح</button>
-    <button class="category-btn" onclick="filterCategory('cars')">سيارات وشاحنات</button>
-    <button class="category-btn" onclick="filterCategory('sports')">رياضة كرة قدم</button>
-    <button class="category-btn" onclick="filterCategory('action')">أكشن وقتال</button>
-    <button class="category-btn" onclick="filterCategory('horror')">رعب وغموض</button>
+  <div class="filter-container">
+    <select id="sortSelect" onchange="filterAndSort()">
+        <option value="all">الكل</option>
+        <option value="newest">الأحدث</option>
+        <option value="best">الأفضل</option>
+        <option value="open-world">عالم مفتوح</option>
+        <option value="cars">سيارات وشاحنات</option>
+        <option value="sports">رياضة كرة قدم</option>
+        <option value="action">أكشن وقتال</option>
+        <option value="horror">رعب وغموض</option>
+    </select>
   </div>
 
   <main class="games-container">
