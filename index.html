@@ -151,26 +151,34 @@
       font-size: 1.4em;
     }
 
+    /* إصلاح نظام النجوم ليصبح متفاعلاً بشكل صحيح */
     .rating-stars {
       display: flex;
       justify-content: center;
-      gap: 4px;
+      gap: 5px;
       margin-bottom: 10px;
-      direction: ltr;
+      /* تم تعديل الترتيب البرمجي ليتناسب مع الضغط من اليمين لليسار */
+      flex-direction: row-reverse; 
     }
 
     .rating-stars span {
-      font-size: 20px;
+      font-size: 22px;
       color: #444;
       cursor: pointer;
       transition: color 0.2s, transform 0.1s;
     }
 
+    /* تأثير تمرير الماوس والضغط للتلوين الذهبي النيوني */
     .rating-stars span:hover,
-    .rating-stars span.active {
-      color: #ffcc00;
-      text-shadow: 0 0 8px #ffcc00ff;
-      transform: scale(1.15);
+    .rating-stars span:hover ~ span,
+    .rating-stars span.active,
+    .rating-stars span.active ~ span {
+      color: #ffcc00 !important;
+      text-shadow: 0 0 10px #ffcc00;
+    }
+
+    .rating-stars span:hover {
+      transform: scale(1.2);
     }
 
     .game-card p {
@@ -181,7 +189,6 @@
       margin-bottom: 15px;
     }
 
-    /* تنسيق أزرار روابط التحميل الاحترافية */
     .download-link {
       position: relative;
       display: inline-block;
@@ -202,13 +209,12 @@
       width: 80%;
     }
 
-    /* تأثير التعطيل والعداد النيوني الجديد */
     .download-link.counting {
       background: #1a1a1a !important;
       border: 2px solid #ff00f7;
       animation: pulse-border 1.5s infinite;
       box-shadow: 0 0 15px #ff00f780;
-      pointer-events: none; /* حظر الضغط أثناء العد */
+      pointer-events: none;
       color: #ff00f7 !important;
       text-shadow: 0 0 8px #ff00f7;
     }
@@ -296,7 +302,7 @@
       <div class="badge-new">جديد</div>
       <img src="images/gtasa.jpg" alt="Gta San Andreas" />
       <h2>Gta san Andreas</h2>
-      <div class="rating-stars" data-stars="5"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
       <p>اشهر لعبة عالم مفتوح على الاطلاق</p>
       <a class="download-link" href="https://modsfire.com/iQlaOb7rX5o7299" onclick="startDownload(event, this)">تحميل</a>
     </div>
@@ -304,7 +310,7 @@
     <div class="game-card" data-category="open-world">
       <img src="images/tld.jpg" alt="السفر الطويل" />
       <h2>السفر الطويل</h2>
-      <div class="rating-stars" data-stars="4"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <div class="rating-stars" data-stars="4"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
       <p>لعبة عالم مفتوح شهيرة</p>
       <a class="download-link" href="https://modsfire.com/Q4NP5DbdfbOwwqu" onclick="startDownload(event, this)">تحميل</a>
     </div>
@@ -312,7 +318,7 @@
     <div class="game-card" data-category="open-world">
       <img src="images/rdr.jpg" alt="red dead redemption" />
       <h2>red dead redemption</h2>
-      <div class="rating-stars" data-stars="5"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
       <p>افضل لعبة العالم الغربي على الاطلاق</p>
       <a class="download-link" href="https://www.mediafire.com/file/vt7ytpf83w2nuks/red-dead-redemption-v1.53.61003005-mod.apk/file" onclick="startDownload(event, this)">تحميل</a>
     </div>
@@ -320,7 +326,7 @@
     <div class="game-card" data-category="open-world">
       <img src="images/gta3.jpg" alt="GTA 3 The definitive edition" />
       <h2>GTA 3 the definitive edition</h2>
-      <div class="rating-stars" data-stars="4"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <div class="rating-stars" data-stars="4"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
       <p>لعبة الأكشن الشهيرة بنسختها الأصلية على الأندرويد.</p>
       <a class="download-link" href="https://dl.apkvision.org/gta-iii-definitive/GTA-III-Definitive-v1.84.18-mod-money-apkvision.apk" onclick="startDownload(event, this)">تحميل</a>
     </div>
@@ -329,7 +335,7 @@
       <div class="badge-new">جديد</div>
       <img src="images/de.jpg" alt="GTA: SA THE DEFINITIVE EDITION" />
       <h2>GTA: SA THE DEFINITIVE EDITION</h2>
-      <div class="rating-stars" data-stars="5"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
       <p>النسخة المحسنة من سان اندرياس</p>
       <a class="download-link" href="https://www.mediafire.com/file_premium/besfl3k3fjb8eut/60FPS-GTA-SA-DE-1.86.44544238-full-apkvision.apks/file" onclick="startDownload(event, this)">تحميل</a>
     </div>
@@ -337,7 +343,7 @@
     <div class="game-card" data-category="open-world">
       <img src="images/lcs.jpg" alt="GTA: LCS" />
       <h2>GTA:LCS</h2>
-      <div class="rating-stars" data-stars="4"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <div class="rating-stars" data-stars="4"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
       <p>اخر جزء صدر على الموبايل</p>
       <a class="download-link" href="https://dl.apkvision.org/gta-liberty-city-stories/GTA-LCS-v2.4.362-mod-apkvision.apk" onclick="startDownload(event, this)">تحميل</a>
     </div>
@@ -345,7 +351,7 @@
     <div class="game-card" data-category="open-world">
       <img src="images/bully.jpg" alt="Bully" />
       <h2>Bully</h2>
-      <div class="rating-stars" data-stars="5"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
       <p>الشغب في المدرسة</p>
       <a class="download-link" href="https://dl.apkvision.org/bully-anniversary-edition/Bully-v1.4.299-60FPS-mod-apkvision.apk" onclick="startDownload(event, this)">تحميل</a>
     </div>
@@ -354,7 +360,7 @@
       <div class="badge-new">جديد</div>
       <img src="images/cpm2.jpg" alt="Car Parking Multiplayer 2" />
       <h2>Car Parking Multiplayer 2</h2>
-      <div class="rating-stars" data-stars="5"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
       <p>اشهر العاب العالم</p>
       <a class="download-link" href="https://modsfire.com/Z0ve5Oi45777c7k" onclick="startDownload(event, this)">تحميل</a>
     </div>
@@ -362,7 +368,7 @@
     <div class="game-card" data-category="cars">
       <img src="images/tru.jpg" alt="Truck Simulator Ultimate" />
       <h2>Truck Simulator Ultimate</h2>
-      <div class="rating-stars" data-stars="4"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <div class="rating-stars" data-stars="4"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
       <p>افضل لعبة شاحنات</p>
       <a class="download-link" href="https://modsfire.com/4SWwA64eGAc4MDb" onclick="startDownload(event, this)">تحميل</a>
     </div>
@@ -370,7 +376,7 @@
     <div class="game-card" data-category="cars">
       <img src="images/asphalt 9.jpg" alt="asphalt 9" />
       <h2>asphalt 9</h2>
-      <div class="rating-stars" data-stars="5"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
       <p>اقوى لعبة سباق سيارات بدون نت</p>
       <a class="download-link" href="https://modsfire.com/OUc3Atc1UiW0jgt" onclick="startDownload(event, this)">تحميل</a>
     </div>
@@ -378,7 +384,7 @@
     <div class="game-card" data-category="sports">
       <img src="images/dls.jpg" alt="dls 19" />
       <h2>DlS 19</h2>
-      <div class="rating-stars" data-stars="5"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
       <p>اكثر لعبة كرة قدم ممتعة للجوال باموال غير محدودة</p>
       <a class="download-link" href="https://modsfire.com/bza1Ej6rl9A1p94" onclick="startDownload(event, this)">تحميل</a>
     </div>
@@ -386,7 +392,7 @@
     <div class="game-card" data-category="action">
       <img src="images/dan.jpg" alt="dust and neon" />
       <h2>dust and neon</h2>
-      <div class="rating-stars" data-stars="4"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <div class="rating-stars" data-stars="4"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
       <p>لعبة اكشن بطابع غربي</p>
       <a class="download-link" href="https://modsfire.com/EPO884yuBSjBryO" onclick="startDownload(event, this)">تحميل</a>
     </div>
@@ -394,7 +400,7 @@
     <div class="game-card" data-category="action">
       <img src="images/hwn.jpg" alt="Huntdown" />
       <h2>Huntdown</h2>
-      <div class="rating-stars" data-stars="4"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <div class="rating-stars" data-stars="4"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
       <p>كانت هذا اللعبة على ps4 وصدرت للاندرويد</p>
       <a class="download-link" href="https://modsfire.com/c75w46p9kds4cjR" onclick="startDownload(event, this)">تحميل</a>
     </div>
@@ -402,7 +408,7 @@
     <div class="game-card" data-category="action">
       <img src="images/gunsim.jpg" alt="gunsim" />
       <h2>gunsim 3d</h2>
-      <div class="rating-stars" data-stars="4"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <div class="rating-stars" data-stars="4"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
       <p>لعبة تصويب واقعية جدا</p>
       <a class="download-link" href="https://www.mediafire.com/file/5p7pe43ts55gs2h/gsim08115mod-androidoyunclub.apk/file" onclick="startDownload(event, this)">تحميل</a>
     </div>
@@ -411,7 +417,7 @@
       <div class="badge-new">جديد</div>
       <img src="images/silksong.jpg" alt="silksong" />
       <h2>silksong</h2>
-      <div class="rating-stars" data-stars="5"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
       <p>كاملة للاندرويد</p>
       <a class="download-link" href="https://www.mediafire.com/file/0ip1psf307admi1/silksong_1.0.1.apk/file" onclick="startDownload(event, this)">تحميل</a>
     </div>
@@ -419,7 +425,7 @@
     <div class="game-card" data-category="action">
       <img src="images/haak.jpg" alt="HAAK" />
       <h2>HAAK</h2>
-      <div class="rating-stars" data-stars="4"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <div class="rating-stars" data-stars="4"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
       <p>لعبة مغامرات 2d تشبه هولو نايت</p>
       <a class="download-link" href="https://modsfire.com/pB5VHQCm9Ushw88" onclick="startDownload(event, this)">تحميل</a>
     </div>
@@ -427,7 +433,7 @@
     <div class="game-card" data-category="action">
       <img src="images/bm.jpg" alt="Bright memory infinit" />
       <h2>bright memory infunt</h2>
-      <div class="rating-stars" data-stars="5"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
       <p>لعبة الكمبيوتر القوية صارت على الاندرويد</p>
       <a class="download-link" href="https://dl.apkvision.org/bright-memory-infinite/bright-memory-infinite-1.31-mod-menu-apkvision.apk" onclick="startDownload(event, this)">تحميل</a>
     </div>
@@ -435,7 +441,7 @@
     <div class="game-card" data-category="action">
       <img src="images/hk.jpg" alt="hollow knight" />
       <h2>hollow knight</h2>
-      <div class="rating-stars" data-stars="5"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
       <p>فارس الظلام الجزء الاول</p>
       <a class="download-link" href="https://dl.apkvision.org/hollow-knight-mobile/hollow-knight-mobile-1.5.78.11833-mod-apkvision.apk" onclick="startDownload(event, this)">تحميل</a>
     </div>
@@ -443,7 +449,7 @@
     <div class="game-card" data-category="action">
       <img src="images/hits.jpg" alt="hitman sniper" />
       <h2>hitman sniper</h2>
-      <div class="rating-stars" data-stars="4"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <div class="rating-stars" data-stars="4"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
       <p>افضل لعبة قناص للموبايل</p>
       <a class="download-link" href="https://dl.apkvision.org/bully-anniversary-edition/Bully-v1.4.299-60FPS-mod-apkvision.apk" onclick="startDownload(event, this)">تحميل</a>
     </div>
@@ -452,7 +458,7 @@
       <div class="badge-new">جديد</div>
       <img src="images/ppt5.jpg" alt="poppy playtime 5" />
       <h2>poppy playtime 5</h2>
-      <div class="rating-stars" data-stars="5"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
       <p>الجزء الخامس من اللعب مع بوبي</p>
       <a class="download-link" href="https://modsfire.com/ALUYSXx9KEqoVx0" onclick="startDownload(event, this)">تحميل</a>
     </div>
@@ -460,7 +466,7 @@
     <div class="game-card" data-category="horror">
       <img src="images/repo.jpg" alt="R.E.P.O" />
       <h2>R.E.P.O</h2>
-      <div class="rating-stars" data-stars="4"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <div class="rating-stars" data-stars="4"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
       <p>افضل لعب رعب بطابع كوميدي</p>
       <a class="download-link" href="https://modsfire.com/tk0FODw2mqUKXhp" onclick="startDownload(event, this)">تحميل</a>
     </div>
@@ -468,7 +474,7 @@
     <div class="game-card" data-category="horror">
       <img src="images/d2.jpg" alt="into the dead 2 unleashed" />
       <h2>into the dead 2 unleashed</h2>
-      <div class="rating-stars" data-stars="4"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <div class="rating-stars" data-stars="4"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
       <p>افضل لعبة زومبي</p>
       <a class="download-link" href="https://modsfire.com/A82bsaJ2TA1H522" onclick="startDownload(event, this)">تحميل</a>
     </div>
@@ -529,9 +535,8 @@
       });
     }
 
-    // دالة العداد التنازلي المصححة بالكامل
+    // العداد التنازلي بـ 3 ثوانٍ فقط ⚡
     function startDownload(event, element) {
-      // منع فتح الرابط فوراً حتى ينتهي العداد
       event.preventDefault(); 
       
       const targetUrl = element.getAttribute('href');
@@ -546,8 +551,6 @@
           clearInterval(countdown);
           element.classList.remove('counting');
           element.textContent = 'تحميل';
-          
-          // فتح الرابط بشكل آمن وصحيح بعد انتهاء الوقت
           window.open(targetUrl, '_blank'); 
         } else {
           element.textContent = `جاري تجهيز الرابط.. (${timeLeft})`;
@@ -555,14 +558,16 @@
       }, 1000);
     }
 
-    // تشغيل نظام التقييم بالنجوم تلقائياً
+    // برمجة النجوم التفاعلية المصلحة بالكامل
     document.querySelectorAll('.rating-stars').forEach(container => {
       const defaultStars = parseInt(container.getAttribute('data-stars')) || 5;
       const stars = container.querySelectorAll('span');
       
-      const colorStars = (num) => {
-        stars.forEach((star, index) => {
-          if (index < num) {
+      // وظيفة تلوين النجوم بناء على القيمة المحددة
+      const setStarsValue = (val) => {
+        stars.forEach(star => {
+          const starValue = parseInt(star.getAttribute('data-value'));
+          if (starValue <= val) {
             star.classList.add('active');
           } else {
             star.classList.remove('active');
@@ -570,12 +575,16 @@
         });
       };
 
-      colorStars(defaultStars);
+      // تطبيق التقييم الافتراضي عند فتح الصفحة الأولى
+      setStarsValue(defaultStars);
 
-      stars.forEach((star, index) => {
-        star.addEventListener('click', () => {
-          colorStars(index + 1);
-          container.setAttribute('data-stars', index + 1);
+      // الاستجابة الفورية عند ضغط الزائر للتقييم بنفسه
+      stars.forEach(star => {
+        star.addEventListener('click', (e) => {
+          e.stopPropagation(); // منع التداخل مع ضغطات كرت اللعبة
+          const clickedValue = parseInt(star.getAttribute('data-value'));
+          container.setAttribute('data-stars', clickedValue);
+          setStarsValue(clickedValue);
         });
       });
     });
