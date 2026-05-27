@@ -63,13 +63,18 @@
       box-shadow: 0 0 10px #00f7ff50;
     }
 
-    .categories-container {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      padding: 20px;
-      flex-wrap: wrap;
-    }
+    <div class="filter-container">
+    <select id="sortSelect" onchange="filterAndSort()">
+        <option value="all">الكل</option>
+        <option value="newest">الأحدث</option>
+        <option value="best">الأفضل</option>
+        <option value="open-world">عالم مفتوح</option>
+        <option value="cars">سيارات وشاحنات</option>
+        <option value="sports">رياضة كرة قدم</option>
+        <option value="action">أكشن وقتال</option>
+        <option value="horror">رعب وغموض</option>
+    </select>
+</div>
 
     .category-btn {
       background: #121212dd;
