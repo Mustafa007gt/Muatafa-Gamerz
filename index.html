@@ -256,6 +256,61 @@
       transform: scale(1.2);
     }
 
+    .slider-container {
+  position: relative;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+.slider-container.show {
+  max-height: 300px;
+  opacity: 1;
+  margin-top: 10px;
+}
+
+.slider {
+  display: flex;
+  transition: transform 0.4s ease;
+}
+
+.slider img {
+  width: 100%;
+  flex-shrink: 0;
+  border-radius: 10px;
+}
+
+/* أزرار */
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.6);
+  border: none;
+  color: white;
+  font-size: 20px;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
+/* زر العرض */
+.images-btn {
+  display: block;
+  margin: 10px auto;
+  padding: 8px 15px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(90deg, #00f7ff, #ff00f7);
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+}
+
     .game-card p {
       color: #ccc;
       font-size: 14px;
@@ -500,6 +555,20 @@
         <button class="copy-btn" onclick="copyLink(this)">📋</button>
         <a class="youtube-icon-btn" href="https://youtu.be/ITCVnkDa1ww?si=BLOR0rlbL9fm6Gsg" target="_blank"><i class="fab fa-youtube"></i></a>
       </div>
+      <button class="images-btn" onclick="toggleSlider(this)">
+  عرض صور من اللعبة
+</button>
+
+<div class="slider-container">
+  <div class="slider">
+<img src="images/gtasa1.webp">
+<img src="images/gtasa2.webp">
+<img src="images/gtasa3.webp">
+  </div>
+
+  <button class="prev" onclick="slide(this, -1)">❮</button>
+  <button class="next" onclick="slide(this, 1)">❯</button>
+</div>
     </div>
 
      <div class="game-card" data-category="action">
@@ -937,6 +1006,33 @@
         }
       }, 1000);
     }
+
+    function toggleSlider(btn) {
+  const container = btn.nextElementSibling;
+  container.classList.toggle("show");
+
+  if (container.classList.contains("show")) {
+    btn.textContent = "إخفاء الصور";
+  } else {
+    btn.textContent = "عرض صور من اللعبة";
+  }
+}
+
+function slide(btn, direction) {
+  const container = btn.parentElement;
+  const slider = container.querySelector(".slider");
+
+  let index = slider.getAttribute("data-index") || 0;
+  index = parseInt(index) + direction;
+
+  const total = slider.children.length;
+
+  if (index < 0) index = 0;
+  if (index >= total) index = total - 1;
+
+  slider.style.transform = `translateX(-${index * 100}%)`;
+  slider.setAttribute("data-index", index);
+}
 
     function copyLink(btn) {
   const card = btn.closest(".game-card");
