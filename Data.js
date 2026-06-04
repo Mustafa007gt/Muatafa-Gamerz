@@ -1,12 +1,12 @@
 const games = [
   {
     id: 1,
-    name: "PUBG Mobile",
+    name: "Gta San Andreas",
     category: "action",
-    image: "images/pubg.jpg",
+    image: "images/gtasa.jpg",
     size: "1.5GB",
-    type: "Online",
-    link: "https://t.me/yourchannel"
+    type: "offline",
+    link: "https://modsfire.com/iQlaOb7rX5o7299"
   },
   {
     id: 2,
