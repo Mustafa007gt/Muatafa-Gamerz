@@ -91,6 +91,23 @@
       box-shadow: 0 0 15px #00f7ff80;
       transform: translateY(-2px);
     }
+    .copy-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(0, 247, 255, 0.1);
+  border: 2px solid #00f7ff;
+  color: #00f7ff;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.copy-btn:hover {
+  background: #00f7ff;
+  color: #000;
+  box-shadow: 0 0 15px #00f7ff;
+}
 
     .games-container {
       display: grid;
@@ -439,6 +456,7 @@
       <p>اشهر لعبة عالم مفتوح على الاطلاق</p>
       <div class="card-actions">
         <a class="download-link" href="https://modsfire.com/iQlaOb7rX5o7299" onclick="startDownload(event, this)">تحميل</a>
+        <button class="copy-btn" onclick="copyLink(this)">📋</button>
         <a class="youtube-icon-btn" href="https://youtu.be/ITCVnkDa1ww?si=BLOR0rlbL9fm6Gsg" target="_blank"><i class="fab fa-youtube"></i></a>
       </div>
     </div>
@@ -839,6 +857,16 @@
           element.textContent = `تجهيز.. (${timeLeft})`;
         }
       }, 1000);
+    }
+
+    function copyLink(btn) {
+  const card = btn.closest('.game-card');
+  const link = card.querySelector('.download-link').getAttribute('href');
+  const title = card.querySelector('h2').textContent;
+
+  navigator.clipboard.writeText(link);
+
+  showToast(`📋 تم نسخ رابط لعبة <span style="color:#00f7ff">${title}</span>`);
     }
 
     // التقييم بالنجوم التفاعلية - تم إصلاحه ليعمل بشكل معزول وصحيح لكل كرت
