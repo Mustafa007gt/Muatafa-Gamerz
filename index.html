@@ -209,7 +209,7 @@
 }
 
 .game-details.show {
-  max-height: 300px; /* مهم حتى يفتح */
+  max-height: 2000px; /* أو حتى 2000 */
   opacity: 1;
 }
 
@@ -959,15 +959,16 @@
     }
 
     function copyLink(btn) {
-  const card = btn.closest('.game-card');
-  const link = card.querySelector('.download-link').getAttribute('href');
-  const title = card.querySelector('h2').textContent;
+  const card = btn.closest(".game-card");
+  const link = card.querySelector(".download-link").href;
 
   navigator.clipboard.writeText(link);
 
-  showToast(`📋 تم نسخ رابط لعبة <span style="color:#00f7ff">${title}</span>`);
+  btn.textContent = "✔";
+  setTimeout(() => {
+    btn.textContent = "📋";
+  }, 1500);
     }
-
     // التقييم بالنجوم التفاعلية - تم إصلاحه ليعمل بشكل معزول وصحيح لكل كرت
     document.querySelectorAll('.rating-stars').forEach(container => {
       const defaultStars = parseInt(container.getAttribute('data-stars')) || 5;
