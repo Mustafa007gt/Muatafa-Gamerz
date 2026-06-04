@@ -900,11 +900,11 @@
   const card = btn.closest('.game-card');
   const details = card.querySelector('.game-details');
 
-  if (details.style.display === "block") {
-    details.style.display = "none";
+  if (details.style.maxHeight) {
+    details.style.maxHeight = null;
     btn.textContent = "تفاصيل اللعبة";
   } else {
-    details.style.display = "block";
+    details.style.maxHeight = details.scrollHeight + "px";
     btn.textContent = "إخفاء التفاصيل";
   }
     }
