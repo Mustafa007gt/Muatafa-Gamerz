@@ -10,11 +10,11 @@ const games = [
   },
   {
     id: 2,
-    name: "Asphalt 9",
-    category: "racing",
-    image: "images/asphalt.jpg",
-    size: "2GB",
+    name: "god of war 3",
+    category: "action",
+    image: "images/gow3.jpg",
+    size: "300mb",
     type: "Offline",
-    link: "https://t.me/yourchannel"
+    link: "https://modsfire.com/M5Db3LKa54QDmRE"
   }
 ];
