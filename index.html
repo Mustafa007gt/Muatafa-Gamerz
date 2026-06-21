@@ -164,12 +164,19 @@
       filter: brightness(1.1);
     }
 
-    .game-card h2 {
-      color: #00f7ff;
-      text-shadow: 0 0 5px #00f7ff;
-      margin: 10px 0 5px 0;
-      font-size: 1.4em;
-    }
+.game-card h2 {
+  color: #00f7ff;
+  text-shadow: 0 0 5px #00f7ff;
+  margin: 10px 0 5px 0;
+  font-size: 1.4em;
+  
+  /* التعديلات المطلوبة لجعل النص في سطر واحد */
+  white-space: nowrap;      /* منع النص من الانتقال لسطر جديد */
+  overflow: hidden;         /* إخفاء النص الزائد */
+  text-overflow: ellipsis;  /* إضافة نقاط (...) إذا كان النص طويلاً جداً */
+  max-width: 100%;          /* التأكد من عدم تجاوز عرض البطاقة */
+}
+
 
     .rating-stars {
       display: flex;
