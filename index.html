@@ -109,22 +109,37 @@
   box-shadow: 0 0 15px #00f7ff;
 }
 
-    .games-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
+    .game-card {
+  background: rgba(10,10,20,0.85);
+  border-radius: 20px;
   padding: 15px;
-  max-width: 1200px;
-  margin: 0 auto;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  height: 100%;
+  min-height: 380px;
+
+  box-shadow: 0 0 15px rgba(0,247,255,.25);
+  transition: .3s;
+  overflow: hidden;
+  position: relative;
     }
 
-    .game-card h2 {
-    font-size: 14px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin: 8px 0;
-    }
+.game-card h2 {
+  font-size: 18px;
+  min-height: 55px;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
 
     .game-card.hidden {
       display: none !important;
