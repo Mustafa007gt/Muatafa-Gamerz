@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>مصطفى جيمرز</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Cairo', sans-serif;
+      background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #1f1f1f);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      color: #fff;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    header {
+      background-color: #000000aa;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 2px 10px #00f7ff80;
+      backdrop-filter: blur(8px);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8em;
+      color: #fff;
+      text-shadow: 0 0 10px #00f7ff, 0 0 20px #00f7ff;
+    }
+
+    #searchInput {
+      padding: 8px 12px; 
+      font-size: 14px; 
+      border-radius: 8px; 
+      border: 2px solid #00f7ff30; 
+      outline: none;
+      background-color: #121212;
+      color: #fff;
+      font-family: 'Cairo', sans-serif;
+      transition: 0.3s;
+    }
+
+    #searchInput:focus {
+      border-color: #00f7ff;
+      box-shadow: 0 0 10px #00f7ff50;
+    }
+
+    .categories-container {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      padding: 20px;
+      flex-wrap: wrap;
+    }
+
+    .category-btn {
+      background: #121212dd;
+      color: #fff;
+      border: 1px solid #00f7ff50;
+      padding: 8px 20px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 15px;
+      font-weight: bold;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px #00f7ff20;
+    }
+
+    .category-btn.active, .category-btn:hover {
+      background: linear-gradient(90deg, #00f7ff, #ff00f7);
+      border-color: transparent;
+      box-shadow: 0 0 15px #00f7ff80;
+      transform: translateY(-2px);
+    }
+
+    .games-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .game-card {
+      background: #121212dd;
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 0 20px #00f7ff30;
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .game-card.hidden {
+      display: none !important;
+    }
+
+    .game-card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 25px #00f7ff80;
+    }
+
+    .badge-new {
+      position: absolute;
+      top: 15px;
+      right: -35px;
+      background: linear-gradient(45deg, #ff0055, #ff00a0);
+      color: white;
+      padding: 4px 35px;
+      font-size: 12px;
+      font-weight: bold;
+      transform: rotate(45deg);
+      box-shadow: 0 0 10px #ff0055;
+      text-shadow: 0 0 5px #fff;
+      z-index: 2;
+      letter-spacing: 1px;
+    }
+
+    .img-container {
+      width: 100%;
+      height: 180px;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 15px;
+      border: 1px solid #00f7ff20;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .game-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease, filter 0.4s ease;
+    }
+
+    .game-card:hover .img-container {
+      border-color: #00f7ff;
+      box-shadow: 0 0 20px #00f7ffcc, 0 0 10px #ff00f750;
+    }
+
+    .game-card:hover img {
+      transform: scale(1.06);
+      filter: brightness(1.1);
+    }
+
+    .game-card h2 {
+      color: #00f7ff;
+      text-shadow: 0 0 5px #00f7ff;
+      margin: 10px 0 5px 0;
+      font-size: 1.4em;
+    }
+
+    .rating-stars {
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+      margin-bottom: 10px;
+      flex-direction: row-reverse; 
+    }
+
+    .rating-stars span {
+      font-size: 22px;
+      color: #444;
+      cursor: pointer;
+      transition: color 0.2s, transform 0.1s;
+    }
+
+    .rating-stars span:hover,
+    .rating-stars span:hover ~ span,
+    .rating-stars span.active,
+    .rating-stars span.active ~ span {
+      color: #ffcc00 !important;
+      text-shadow: 0 0 10px #ffcc00;
+    }
+
+    .rating-stars span:hover {
+      transform: scale(1.2);
+    }
+
+    .game-card p {
+      color: #ccc;
+      font-size: 14px;
+      height: 40px;
+      overflow: hidden;
+      margin-bottom: 15px;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    .download-link {
+      position: relative;
+      display: inline-block;
+      padding: 12px 20px;
+      color: #fff;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 12px;
+      overflow: hidden;
+      background: linear-gradient(270deg, #ff00f7, #00f7ff, #00ff88, #fffb00);
+      background-size: 600% 600%;
+      animation: rgb-glow 8s ease infinite;
+      box-shadow: 0 0 15px #00f7ff88;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+      font-family: 'Cairo', sans-serif;
+      font-size: 16px;
+      flex: 1;
+    }
+
+    .download-link.counting {
+      background: #1a1a1a !important;
+      border: 2px solid #ff00f7;
+      animation: pulse-border 1.5s infinite;
+      box-shadow: 0 0 15px #ff00f780;
+      pointer-events: none;
+      color: #ff00f7 !important;
+      text-shadow: 0 0 8px #ff00f7;
+    }
+
+    @keyframes pulse-border {
+      0% { border-color: #ff00f7; box-shadow: 0 0 10px #ff00f750; }
+      50% { border-color: #00f7ff; box-shadow: 0 0 20px #00f7ff80; }
+      100% { border-color: #ff00f7; box-shadow: 0 0 10px #ff00f750; }
+    }
+
+    .download-link:not(.counting):hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 25px #00f7ffcc;
+    }
+
+    .youtube-icon-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(255, 0, 0, 0.1);
+      border: 2px solid #ff0000;
+      color: #ff3333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+    }
+
+    .youtube-icon-btn:hover {
+      background: #ff0000;
+      color: #fff;
+      box-shadow: 0 0 20px #ff0000;
+      transform: translateY(-2px);
+    }
+
+    @keyframes rgb-glow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    #toast-container {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 10000;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      pointer-events: none;
+    }
+
+    .toast-notification {
+      background: rgba(18, 18, 18, 0.95);
+      border: 2px solid #00f7ff;
+      color: #fff;
+      padding: 12px 25px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: bold;
+      box-shadow: 0 0 15px #00f7ff80, inset 0 0 10px #00f7ff20;
+      text-shadow: 0 0 5px #fff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 250px;
+      max-width: 350px;
+      transform: translateX(120%);
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s;
+      opacity: 0;
+      backdrop-filter: blur(5px);
+    }
+
+    .toast-notification.show {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    .toast-rating {
+      border-color: #ffcc00;
+      box-shadow: 0 0 15px #ffcc0080, inset 0 0 10px #ffcc0020;
+    }
+
+    footer {
+      background-color: rgba(6, 5, 15, 0.9);
+      margin-top: 60px;
+      padding: 30px 20px;
+      text-align: center;
+      position: relative;
+      border-top: 2px solid #ff00f7;
+      box-shadow: 0 -5px 25px rgba(255, 0, 247, 0.15);
+      backdrop-filter: blur(10px);
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, #ff00f7, #00f7ff, #ff00f7);
+      background-size: 200% 100%;
+      animation: rgb-glow 4s linear infinite;
+    }
+
+    .footer-content {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .footer-title {
+      font-size: 1.5em;
+      color: #fff;
+      text-shadow: 0 0 10px #ff00f7, 0 0 20px #ff00f7;
+      margin: 0;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin: 10px 0;
+    }
+
+    .social-icon {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: #121212;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .social-icon.youtube:hover {
+      color: #ff0000;
+      border-color: #ff0000;
+      box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
+      transform: translateY(-3px);
+    }
+
+    .social-icon.telegram:hover {
+      color: #0088cc;
+      border-color: #0088cc;
+      box-shadow: 0 0 15px rgba(0, 136, 204, 0.6);
+      transform: translateY(-3px);
+    }
+
+    .footer-rights {
+      color: #777;
+      font-size: 13px;
+      margin: 0;
+      letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="toast-container"></div>
+
+  <header>
+    <div style="display: flex; align-items: center; gap: 15px;">
+      <input id="searchInput" type="text" placeholder="ابحث عن لعبة..." />
+      <h1>مصطفى جيمرز</h1>
+    </div>
+  </header>
+
+  <div class="categories-container">
+    <button class="category-btn active" onclick="filterCategory('all')">الكل</button>
+    <button class="category-btn" onclick="filterCategory('open-world')">عالم مفتوح</button>
+    <button class="category-btn" onclick="filterCategory('cars')">سيارات وشاحنات</button>
+    <button class="category-btn" onclick="filterCategory('sports')">رياضة كرة قدم</button>
+    <button class="category-btn" onclick="filterCategory('action')">أكشن وقتال</button>
+    <button class="category-btn" onclick="filterCategory('horror')">رعب وغموض</button>
+  </div>
+
+  <main class="games-container">
+
+    <div class="game-card" data-category="open-world">
+      <div class="badge-new">الافضل</div>
+      <div class="img-container"><img src="images/gtasa.jpg" alt="Gta San Andreas" /></div>
+      <h2>Gta san Andreas</h2>
+      <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
+      <p>اشهر لعبة عالم مفتوح على الاطلاق</p>
+      <div class="card-actions">
+        <a class="download-link" href="https://modsfire.com/iQlaOb7rX5o7299" onclick="startDownload(event, this)">تحميل</a>
+        <a class="youtube-icon-btn" href="https://youtu.be/ITCVnkDa1ww?si=BLOR0rlbL9fm6Gsg" target="_blank"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+
+     <div class="game-card" data-category="action">
+      <div class="badge-new">جديد</div>
+      <div class="img-container"><img src="images/gow3.jpg" alt="god of war 3" /></div>
+      <h2> GOD OF WAR 3</h2>
+      <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
+      <p> نسخة من تطوير لمعجبين للعبة  </p>
+      <div class="card-actions">
+        <a class="download-link" href="https://modsfire.com/M5Db3LKa54QDmRE" onclick="startDownload(event, this)">تحميل</a>
+        <a class="youtube-icon-btn" href="https://youtu.be/bMUe_sYNI3Y?t=42&si=UuuqlmrMdlqpEthC" target="_blank"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+
+      <div class="game-card" data-category="action">
+      <div class="badge-new">جديد</div>
+      <div class="img-container"><img src="images/re4r.jpg" alt="re4 remake" /></div>
+      <h2> RE 4 REMAKE</h2>
+      <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
+      <p> نسخة من تطوير لمعجبين للعبة  </p>
+      <div class="card-actions">
+        <a class="download-link" href="https://modsfire.com/3htk8GJrfxiNFFI" onclick="startDownload(event, this)">تحميل</a>
+        <a class="youtube-icon-btn" href="https://youtu.be/VVzSwQYUZoo?si=ZIz0R6HjUNV-pxtK" target="_blank"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+
+
+     <div class="game-card" data-category="action">
+      <div class="badge-new">جديد</div>
+      <div class="img-container"><img src="images/mxp.jpg" alt="max Payne" /></div>
+      <h2>MAX PAYNE</h2>
+      <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
+      <p> واحدة من افضل واشهر العاب الاكشن  </p>
+      <div class="card-actions">
+        <a class="download-link" href="https://modsfire.com/5st2818U3n9fLxd" onclick="startDownload(event, this)">تحميل</a>
+        <a class="youtube-icon-btn" href="https://youtu.be/vkRF4GLCKJ8?si=Gj8fTnnTSUazd3w4" target="_blank"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+
+    <div class="game-card" data-category="open-world">
+      <div class="badge-new">جديد</div>
+      <div class="img-container"><img src="images/IMG_20260530_004238_914.jpg" alt="otr" /></div>
+      <h2>OFF THE ROAD 2</h2>
+      <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
+      <p>لعبة عالم مفتوح بتفاصيل وجرافيكس رائع  </p>
+      <div class="card-actions">
+        <a class="download-link" href="https://modsfire.com/69iSfnmB16mS8Dd" onclick="startDownload(event, this)">تحميل</a>
+        <a class="youtube-icon-btn" href="https://youtu.be/_zkU3XKWQfY?si=RRv-DbCM08Dyja_Z" target="_blank"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+    
+        <div class="game-card" data-category="open-world">
+      <div class="badge-new">جديد</div>
+      <div class="img-container"><img src="images/lmo.jpg" alt="limbo" /></div>
+      <h2>LIMBO</h2>
+      <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
+      <p>افضل لعبة غموض والغاز </p>
+      <div class="card-actions">
+        <a class="download-link" href="https://modsfire.com/D6ZDdyJ2X5Zk90h" onclick="startDownload(event, this)">تحميل</a>
+        <a class="youtube-icon-btn" href="https://youtu.be/W5RawKgWev0?t=723" target="_blank"><i class="fab fa-youtube"></i></a>
+      </div>
+        </div>
+
+
+        <div class="game-card" data-category="open-world">
+      <div class="badge-new">جديد</div>
+      <div class="img-container"><img src="images/sl.jpg" alt="slime rancher" /></div>
+      <h2>slime rancher</h2>
+      <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
+      <p>لعبة جميلة من منظور الشخص الاول بجرافيكس خيالي </p>
+      <div class="card-actions">
+        <a class="download-link" href="https://modsfire.com/699nesFMT7836x8" onclick="startDownload(event, this)">تحميل</a>
+        <a class="youtube-icon-btn" href="https://youtu.be/TQWM0wzZewk?t=38&si=CXdGJh0h6yCubKiz" target="_blank"><i class="fab fa-youtube"></i></a>
+      </div>
+        </div>
+
+    <div class="game-card" data-category="open-world">
+      <div class="img-container"><img src="images/tld.jpg" alt="السفر الطويل" /></div>
+      <h2>السفر الطويل</h2>
+      <div class="rating-stars" data-stars="4"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
+      <p>لعبة عالم مفتوح شهيرة</p>
+      <div class="card-actions">
+        <a class="download-link" href="https://modsfire.com/Q4NP5DbdfbOwwqu" onclick="startDownload(event, this)">تحميل</a>
+        <a class="youtube-icon-btn" href="https://youtu.be/OYKEvTqE7vU?t=13&si=Yym23_f4H8mvrFG7" target="_blank"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+
+    <div class="game-card" data-category="open-world">
+      <div class="img-container"><img src="images/rrr.jpg" alt="red dead redemption" /></div>
+      <h2>red dead redemption</h2>
+      <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
+      <p>افضل لعبة العالم الغربي على الاطلاق</p>
+      <div class="card-actions">
+        <a class="download-link" href="https://www.mediafire.com/file/vt7ytpf83w2nuks/red-dead-redemption-v1.53.61003005-mod.apk/file" onclick="startDownload(event, this)">تحميل</a>
+        <a class="youtube-icon-btn" href="https://youtu.be/iImD6FjN7Lk?si=gpFZ1Fi1CWTI1g5x" target="_blank"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+
+    <div class="game-card" data-category="open-world">
+      <div class="img-container"><img src="images/gta3.jpg" alt="GTA 3 The definitive edition" /></div>
+      <h2>GTA 3 the definitive edition</h2>
+      <div class="rating-stars" data-stars="4"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
+      <p>لعبة الأكشن الشهيرة بنسختها الأصلية على الأندرويد.</p>
+      <div class="card-actions">
+        <a class="download-link" href="https://modsfire.com/NzUAf3zevwVGbPb" onclick="startDownload(event, this)">تحميل</a>
+        <a class="youtube-icon-btn" href="https://youtu.be/o74gxajjFCo?t=24&si=rsnEHEpDnjZVxrf-" target="_blank"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+
+    <div class="game-card" data-category="open-world">
+      <div class="badge-new">الافضل</div>
+      <div class="img-container"><img src="images/de.jpg" alt="GTA: SA THE DEFINITIVE EDITION" /></div>
+      <h2>GTA: SA THE DEFINITIVE EDITION</h2>
+      <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
+      <p>النسخة المحسنة من سان اندرياس</p>
+      <div class="card-actions">
+        <a class="download-link" href="https://gofile.io/d/ZduuWj" onclick="startDownload(event, this)">تحميل</a>
+        <a class="youtube-icon-btn" href="https://youtu.be/AAbhjgNR2WU?si=FZBGSLfX1z3pl1Ch" target="_blank"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+
+    <div class="game-card" data-category="open-world">
+      <div class="img-container"><img src="images/lcs.jpg" alt="GTA: LCS" /></div>
+      <h2>GTA:LCS</h2>
+      <div class="rating-stars" data-stars="4"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
+      <p>اخر جزء صدر على الموبايل</p>
+      <div class="card-actions">
+        <a class="download-link" href="https://modsfire.com/W5otsSWJ8Bk8mI7" onclick="startDownload(event, this)">تحميل</a>
+        <a class="youtube-icon-btn" href="https://youtu.be/R2AwWcBBzZw?t=88&si=F7n80MAr0Cw1ASwH" target="_blank"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+
+    <div class="game-card" data-category="open-world">
+      <div class="img-container"><img src="images/bully.jpg" alt="Bully" /></div>
+      <h2>Bully</h2>
+      <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
+      <p>الشغب في المدرسة</p>
+      <div class="card-actions">
+        <a class="download-link" href="https://modsfire.com/6XFmub2AgGu5IUp" onclick="startDownload(event, this)">تحميل</a>
+        <a class="youtube-icon-btn" href="https://youtu.be/hpLCF1-c3VA?si=6Rg_kl9W-pufVA1w" target="_blank"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+
+    <div class="game-card" data-category="cars">
+      <div class="badge-new">جديد</div>
+      <div class="img-container"><img src="images/cpm2.jpg" alt="Car Parking Multiplayer 2" /></div>
+      <h2>Car Parking Multiplayer 2</h2>
+      <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
+      <p>اشهر العاب العالم</p>
+      <div class="card-actions">
+        <a class="download-link" href="https://modsfire.com/Z0ve5Oi45777c7k" onclick="startDownload(event, this)">تحميل</a>
+        <a class="youtube-icon-btn" href="https://youtu.be/MZcX6BcRizQ?si=N56hSO1j5BxhvRpq" target="_blank"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  
+    <div class="game-card" data-category="cars">
+      <div class="img-container"><img src="images/tru.jpg" alt="Truck Simulator Ultimate" /></div>
+      <h2>Truck Simulator Ultimate</h2>
+      <div class="rating-stars" data-stars="4"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
+      <p>افضل لعبة شاحنات</p>
+      <div class="card-actions">
+        <a class="download-link" href="https://modsfire.com/4SWwA64eGAc4MDb" onclick="startDownload(event, this)">تحميل</a>
+        <a class="youtube-icon-btn" href="https://youtu.be/WUrqPxZKSuc?si=TRrxfJf-BVjBVrl-" target="_blank"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+
+    <div class="game-card" data-category="cars">
+      <div class="img-container"><img src="images/asphalt 9.jpg" alt="asphalt 9" /></div>
+      <h2>asphalt 9</h2>
+      <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
+      <p>اقوى لعبة سباق سيارات بدون نت</p>
+      <div class="card-actions">
+        <a class="download-link" href="https://modsfire.com/OUc3Atc1UiW0jgt" onclick="startDownload(event, this)">تحميل</a>
+        <a class="youtube-icon-btn" href="https://youtu.be/Dr3TzUUSB_4?si=KQXUCmrDEirkKsEG" target="_blank"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+
+    <div class="game-card" data-category="sports">
+      <div class="img-container"><img src="images/dls.jpg" alt="dls 19" /></div>
+      <h2>DlS 19</h2>
+      <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
+      <p>اكثر لعبة كرة قدم ممتعة للجوال باموال غير محدودة</p>
+      <div class="card-actions">
+        <a class="download-link" href="https://modsfire.com/bza1Ej6rl9A1p94" onclick="startDownload(event, this)">تحميل</a>
+        <a class="youtube-icon-btn" href="https://youtu.be/RqI73hSSwMA?si=IleCJKcXoZ_GErTM" target="_blank"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+
+    <div class="game-card" data-category="action">
+      <div class="img-container"><img src="images/dan.jpg" alt="dust and neon" /></div>
+      <h2>dust and neon</h2>
+      <div class="rating-stars" data-stars="4"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
+      <p>لعبة اكشن بطابع غربي</p>
+      <div class="card-actions">
+        <a class="download-link" href="https://modsfire.com/EPO884yuBSjBryO" onclick="startDownload(event, this)">تحميل</a>
+        <a class="youtube-icon-btn" href="https://youtube.com/shorts/A0bNSr-Lbv8?si=mNr2Fl3SL1Sqqilq" target="_blank"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+
+    <div class="game-card" data-category="action">
+      <div class="img-container"><img src="images/hwn.jpg" alt="Huntdown" /></div>
+      <h2>Huntdown</h2>
+      <div class="rating-stars" data-stars="4"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
+      <p>كانت هذا اللعبة على ps4 وصدرت للاندرويد</p>
+      <div class="card-actions">
+        <a class="download-link" href="https://modsfire.com/1x5726Dxyqe1a72" onclick="startDownload(event, this)">تحميل</a>
+        <a class="youtube-icon-btn" href="https://youtu.be/QepvIm_-NHQ?si=H4mqX-eh7rprVuod" target="_blank"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+
+    <div class="game-card" data-category="action">
+      <div class="img-container"><img src="images/gunsim.jpg" alt="gunsim" /></div>
+      <h2>gunsim 3d</h2>
+      <div class="rating-stars" data-stars="4"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
+      <p>لعبة تصويب واقعية جدا</p>
+      <div class="card-actions">
+        <a class="download-link" href="https://www.mediafire.com/file/5p7pe43ts55gs2h/gsim08115mod-androidoyunclub.apk/file" onclick="startDownload(event, this)">تحميل</a>
+        <a class="youtube-icon-btn" href="https://youtu.be/y7GG3E-fTn0?si=6oNsomUgxyw3zyRG" target="_blank"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  
+    <div class="game-card" data-category="action">
+      <div class="badge-new">جديد</div>
+      <div class="img-container"><img src="images/silksong.jpg" alt="silksong" /></div>
+      <h2>silksong</h2>
+      <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
+      <p>كاملة للاندرويد</p>
+      <div class="card-actions">
+        <a class="download-link" href="https://www.mediafire.com/file/0ip1psf307admi1/silksong_1.0.1.apk/file" onclick="startDownload(event, this)">تحميل</a>
+        <a class="youtube-icon-btn" href="https://youtu.be/Hpjx2fECkZg?si=lmld41mh6Ers_fst" target="_blank"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+
+    <div class="game-card" data-category="action">
+      <div class="img-container"><img src="images/haak.jpg" alt="HAAK" /></div>
+      <h2>HAAK</h2>
+      <div class="rating-stars" data-stars="4"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
+      <p>لعبة مغامرات 2d تشبه هولو نايت</p>
+      <div class="card-actions">
+        <a class="download-link" href="https://modsfire.com/pB5VHQCm9Ushw88" onclick="startDownload(event, this)">تحميل</a>
+        <a class="youtube-icon-btn" href="https://youtu.be/joAlSw0mXAw?si=BSMYdUosmGyGrS8E" target="_blank"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+
+    <div class="game-card" data-category="action">
+      <div class="img-container"><img src="images/bm.jpg" alt="Bright memory infinit" /></div>
+      <h2>bright memory infunt</h2>
+      <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
+      <p>لعبة الكمبيوتر القوية صارت على الاندرويد</p>
+      <div class="card-actions">
+        <a class="download-link" href="https://modsfire.com/OeJr7gwSK66J3cP" onclick="startDownload(event, this)">تحميل</a>
+        <a class="youtube-icon-btn" href="https://youtu.be/DtMD-vgrawU?t=40" target="_blank"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+
+    <div class="game-card" data-category="action">
+      <div class="img-container"><img src="images/hk.jpg" alt="hollow knight" /></div>
+      <h2>hollow knight</h2>
+      <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
+      <p>فارس الظلام الجزء الاول</p>
+      <div class="card-actions">
+        <a class="download-link" href="https://modsfire.com/5u9P7eY6NewYPkV" onclick="startDownload(event, this)">تحميل</a>
+        <a class="youtube-icon-btn" href="https://youtu.be/icjUAiQo2rw?si=WoxiJxvWJdLrU8Lo" target="_blank"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+    
+    <div class="game-card" data-category="action">
+      <div class="img-container"><img src="images/hits.jpg" alt="hitman sniper" /></div>
+      <h2>hitman sniper</h2>
+      <div class="rating-stars" data-stars="4"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
+      <p>افضل لعبة قناص للموبايل</p>
+      <div class="card-actions">
+        <a class="download-link" href="https://modsfire.com/899yx0vwv649xf9" onclick="startDownload(event, this)">تحميل</a>
+        <a class="youtube-icon-btn" href="https://youtu.be/HwjpegH6Hyk?si=1UmvoMIIU4csuZpl" target="_blank"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+
+    <div class="game-card" data-category="horror">
+      <div class="badge-new">جديد</div>
+      <div class="img-container"><img src="images/ppt5.jpg" alt="poppy playtime 5" /></div>
+      <h2>poppy playtime 5</h2>
+      <div class="rating-stars" data-stars="5"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
+      <p>الجزء الخامس من اللعب مع بوبي</p>
+      <div class="card-actions">
+        <a class="download-link" href="https://modsfire.com/KfP791m23WbmqDj" onclick="startDownload(event, this)">تحميل</a>
+        <a class="youtube-icon-btn" href="https://youtu.be/gSX00Ew5VS4?si=C97FUp4wDXsOlrY2" target="_blank"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+
+    <div class="game-card" data-category="horror">
+      <div class="img-container"><img src="images/repo.jpg" alt="R.E.P.O" /></div>
+      <h2>R.E.P.O</h2>
+      <div class="rating-stars" data-stars="4"><span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span></div>
+      <p>افضل لعب رعب بطابع كوميدي</p>
+      <div class="card-actions">
+        <a class="download-link" href="https://modsfire.com/tk0FODw2mqUKXhp" onclick="startDownload(event, this)">تحميل</a>
+        <a class="youtube-icon-btn" href="https://youtu.be/mROF9GVROCc?si=EUrQLq32JNRGZ4dq" target="_blank"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <p class="footer-title">مصطفى جيمرز</p>
+      <div class="social-links">
+        <a href="https://youtube.com/@mustafqaz007?si=0ho55hQu1tRNxBTw" target="_blank" class="social-icon youtube">
+          <i class="fab fa-youtube"></i>
+        </a>
+        <a href="https://t.me/mustafaGWZ" target="_blank" class="social-icon telegram">
+          <i class="fab fa-telegram-plane"></i>
+        </a>
+      </div>
+      <p class="footer-rights">جميع الحقوق محفوظة © 2026</p>
+    </div>
+  </footer>
+
+  <script>
+    let currentCategory = 'all';
+
+    function filterCategory(category) {
+      currentCategory = category;
+      const buttons = document.querySelectorAll('.category-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      if(window.event && window.event.target) {
+        window.event.target.classList.add('active');
+      }
+      applyFilter();
+    }
+
+    const searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('input', applyFilter);
+
+    function applyFilter() {
+      const query = searchInput.value.toLowerCase();
+      const gameCards = document.querySelectorAll('.game-card');
+
+      gameCards.forEach(card => {
+        const title = card.querySelector('h2').textContent.toLowerCase();
+        const description = card.querySelector('p').textContent.toLowerCase();
+        const cardCategory = card.getAttribute('data-category');
+
+        const matchesSearch = title.includes(query) || description.includes(query);
+        const matchesCategory = currentCategory === 'all' || cardCategory === currentCategory;
+
+        if (matchesSearch && matchesCategory) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    }
+
+    // نظام الإشعارات المنبثقة
+    function showToast(message, isRating = false) {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.className = 'toast-notification';
+      if(isRating) {
+        toast.classList.add('toast-rating');
+      }
+      toast.innerHTML = message;
+      container.appendChild(toast);
+
+      setTimeout(() => {
+        toast.classList.add('show');
+      }, 50);
+
+      setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => {
+          toast.remove();
+        }, 400);
+      }, 3000);
+    }
+
+    // العداد التنازلي للتحميل
+    function startDownload(event, element) {
+      event.preventDefault();
+      const targetUrl = element.getAttribute('href');
+      const gameTitle = element.parentElement.parentElement.querySelector('h2').textContent;
+      let timeLeft = 3;
+
+      element.classList.add('counting');
+      element.textContent = `تجهيز.. (${timeLeft})`;
+      showToast(`🛡️ جاري تجهيز رابط آمن للعبة: <br><span style="color:#00f7ff">${gameTitle}</span>`);
+
+      const countdown = setInterval(() => {
+        timeLeft--;
+        if (timeLeft <= 0) {
+          clearInterval(countdown);
+          element.classList.remove('counting');
+          element.textContent = 'تحميل';
+          window.open(targetUrl, '_blank'); 
+        } else {
+          element.textContent = `تجهيز.. (${timeLeft})`;
+        }
+      }, 1000);
+    }
+
+    // التقييم بالنجوم التفاعلية - تم إصلاحه ليعمل بشكل معزول وصحيح لكل كرت
+    document.querySelectorAll('.rating-stars').forEach(container => {
+      const defaultStars = parseInt(container.getAttribute('data-stars')) || 5;
+      const stars = container.querySelectorAll('span');
+      
+      const setStarsValue = (val) => {
+        stars.forEach(star => {
+          const starValue = parseInt(star.getAttribute('data-value'));
+          if (starValue <= val) {
+            star.classList.add('active');
+          } else {
+            star.classList.remove('active');
+          }
+        });
+      };
+
+      setStarsValue(defaultStars);
+
+      stars.forEach(star => {
+        star.addEventListener('click', (e) => {
+          e.stopPropagation(); 
+          const clickedValue = parseInt(star.getAttribute('data-value'));
+          
+          // تحديد الكرت الحالي للحصول على العنوان بدقة
+          const card = container.closest('.game-card');
+          const gameTitle = card ? card.querySelector('h2').textContent : "اللعبة";
+          
+          container.setAttribute('data-stars', clickedValue);
+          setStarsValue(clickedValue);
+
+          showToast(`⭐ شكراً لتقييمك لعبة <span style="color:#ffcc00">${gameTitle}</span> بـ ${clickedValue} نجوم!`, true);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
