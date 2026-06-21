@@ -170,11 +170,21 @@
   margin: 10px 0 5px 0;
   font-size: 1.4em;
   
-  /* التعديلات المطلوبة لجعل النص في سطر واحد */
-  white-space: nowrap;      /* منع النص من الانتقال لسطر جديد */
-  overflow: hidden;         /* إخفاء النص الزائد */
-  text-overflow: ellipsis;  /* إضافة نقاط (...) إذا كان النص طويلاً جداً */
-  max-width: 100%;          /* التأكد من عدم تجاوز عرض البطاقة */
+  /* الإعدادات لجعل النص يتحرك */
+  white-space: nowrap;      /* منع النص من النزول لسطر جديد */
+  overflow: hidden;         /* إخفاء الجزء الخارج عن حدود البطاقة */
+  position: relative;
+}
+
+/* إضافة الحركة للنص عند مرور الماوس أو بشكل دائم */
+.game-card h2:hover {
+  animation: scrollText 7s linear infinite; /* تحريك تلقائي مستمر */
+}
+
+@keyframes scrollText {
+  0% { transform: translateX(0%); }
+  50% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
 }
 
 
