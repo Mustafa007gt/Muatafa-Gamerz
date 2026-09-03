@@ -83,31 +83,6 @@ header{
   max-width:1380px;margin:0 auto;padding:0 20px;
   display:flex;gap:20px;align-items:flex-start;
 }
-.sidebar-nav{
-  width:280px;flex-shrink:0;background:var(--panel);
-  border:1px solid var(--line);border-radius:20px;padding:18px;
-  backdrop-filter:blur(14px);position:sticky;top:80px;z-index:90;
-  box-shadow:0 10px 30px rgba(0,0,0,.3);
-}
-.sidebar-title{
-  font-size:16px;font-weight:800;color:var(--cyan);
-  margin-bottom:14px;display:flex;align-items:center;gap:8px;
-  border-bottom:1px solid var(--line);padding-bottom:10px;
-}
-.sidebar-links{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(2, 1fr);gap:10px}
-.sidebar-link{
-  display:flex;align-items:center;justify-content:space-between;padding:11px 12px;
-  background:var(--panel2);color:#ddd;text-decoration:none;
-  border-radius:12px;border:1px solid var(--line);font-size:13px;font-weight:700;
-  transition:all .25s ease;
-}
-.sidebar-link i{font-size:15px;color:var(--cyan);transition:transform .25s}
-.sidebar-link:hover,.sidebar-link.active{
-  background:linear-gradient(135deg,var(--cyan),var(--purple));
-  color:#051016;border-color:transparent;
-  box-shadow:0 5px 20px rgba(0,234,255,.25);
-}
-.sidebar-link:hover i,.sidebar-link.active i{color:#051016;transform:scale(1.1)}
 .content-area{flex:1;min-width:0}
 
 /* التنسيقات العامة للشبكة والمحتوى */
@@ -122,9 +97,16 @@ header{
   outline:none;background:rgba(13,13,23,.88);color:#fff;transition:.25s;
 }
 #searchInput:focus{border-color:var(--cyan);box-shadow:0 0 20px rgba(0,234,255,.12)}
-.sort-select{
-  padding:12px 14px;border-radius:13px;border:1px solid var(--line);
-  background:#0e0e18;color:#fff;outline:none;cursor:pointer;
+.category-select{
+  min-width:190px;padding:12px 16px;border-radius:13px;border:1px solid rgba(0,234,255,.16);
+  background:linear-gradient(135deg,rgba(16,16,27,.96),rgba(20,14,32,.96));
+  color:#fff;outline:none;cursor:pointer;font-weight:800;
+  box-shadow:0 8px 24px rgba(0,0,0,.18);transition:.25s;
+}
+.category-select:hover,.category-select:focus{
+  border-color:var(--cyan);box-shadow:0 0 20px rgba(0,234,255,.12);
+}
+.category-select option{background:#10101b;color:#fff;font-weight:700;
 }
 .fav-filter{
   padding:12px 15px;border-radius:13px;border:1px solid rgba(255,40,215,.25);
@@ -243,8 +225,8 @@ footer{
   .featured-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:850px){
-  .main-wrapper{flex-direction:column;padding:0 12px}
-  .sidebar-nav{width:100%;position:static;margin-bottom:15px}
+  .main-wrapper{padding:0 12px}
+  .category-select{flex:1;min-width:180px}
 }
 @media(max-width:600px){
   header{padding:10px 12px}
@@ -287,75 +269,6 @@ footer{
 <!-- الهيكل الرئيسي المزود بالقائمة الجانبية على اليمين -->
 <div class="main-wrapper">
 
-  <!-- القائمة الجانبية (شريط التنقل بين الأقسام والمواقع) -->
-  <aside class="sidebar-nav">
-    <div class="sidebar-title">
-      <i class="fa-solid fa-layer-group"></i> أقسام الألعاب
-    </div>
-    <ul class="sidebar-links">
-      <li>
-        <a href="https://mustafa007gt.github.io/mustafaAPPS/" target="_blank" class="sidebar-link">
-          <span>تطبيقات أندرويد</span>
-          <i class="fa-brands fa-android"></i>
-        </a>
-      </li>
-      <li>
-        <a href="https://mustafa007gt.github.io/mustafaPSP/" target="_blank" class="sidebar-link">
-          <span>ألعاب PSP</span>
-          <i class="fa-solid fa-gamepad"></i>
-        </a>
-      </li>
-      <li>
-        <a href="https://mustafa007gt.github.io/mustafaPS2/" target="_blank" class="sidebar-link">
-          <span>ألعاب PS2</span>
-          <i class="fa-solid fa-compact-disc"></i>
-        </a>
-      </li>
-      <li>
-        <a href="https://mustafa007gt.github.io/mustafaPS1/" target="_blank" class="sidebar-link">
-          <span>ألعاب PS1</span>
-          <i class="fa-solid fa-playstation"></i>
-        </a>
-      </li>
-      <li>
-        <a href="https://mustafa007gt.github.io/mustafaPC/" target="_blank" class="sidebar-link">
-          <span>ألعاب PC</span>
-          <i class="fa-solid fa-desktop"></i>
-        </a>
-      </li>
-      <li>
-        <a href="https://mustafa007gt.github.io/mustafaGC/" target="_blank" class="sidebar-link">
-          <span>ألعاب دولفين</span>
-          <i class="fa-solid fa-fish"></i>
-        </a>
-      </li>
-      <li>
-        <a href="https://mustafa007gt.github.io/GWZarabic/" target="_blank" class="sidebar-link">
-          <span>تعريب الألعاب</span>
-          <i class="fa-solid fa-language"></i>
-        </a>
-      </li>
-      <li>
-        <a href="https://mustafa007gt.github.io/Gta/" target="_blank" class="sidebar-link">
-          <span>ألعاب GTA</span>
-          <i class="fa-solid fa-car"></i>
-        </a>
-      </li>
-      <li>
-        <a href="https://mustafa007gt.github.io/Gow/" target="_blank" class="sidebar-link">
-          <span>God of War</span>
-          <i class="fa-solid fa-khanda"></i>
-        </a>
-      </li>
-      <li>
-        <a href="https://mustafa007gt.github.io/RE/" target="_blank" class="sidebar-link">
-          <span>Resident Evil</span>
-          <i class="fa-solid fa-biohazard"></i>
-        </a>
-      </li>
-    </ul>
-  </aside>
-
   <!-- المنطقة الرئيسية للمحتوى -->
   <main class="content-area">
     
@@ -371,11 +284,18 @@ footer{
         <i class="fa-solid fa-magnifying-glass"></i>
         <input id="searchInput" type="text" placeholder="ابحث عن لعبة..." autocomplete="off">
       </div>
-      <select class="sort-select" id="sortSelect" aria-label="ترتيب الألعاب">
-        <option value="default">الترتيب الافتراضي</option>
-        <option value="az">أبجدي A-Z</option>
-        <option value="za">أبجدي Z-A</option>
-        <option value="new">الأحدث أولاً</option>
+      <select class="category-select" id="categorySelect" aria-label="أقسام الألعاب">
+        <option value="" selected>🎮 أقسام الألعاب</option>
+        <option value="https://mustafa007gt.github.io/mustafaAPPS/">📱 تطبيقات أندرويد</option>
+        <option value="https://mustafa007gt.github.io/mustafaPSP/">🎮 ألعاب PSP</option>
+        <option value="https://mustafa007gt.github.io/mustafaPS2/">💿 ألعاب PS2</option>
+        <option value="https://mustafa007gt.github.io/mustafaPS1/">🎮 ألعاب PS1</option>
+        <option value="https://mustafa007gt.github.io/mustafaPC/">🖥️ ألعاب PC</option>
+        <option value="https://mustafa007gt.github.io/mustafaGC/">🐬 ألعاب دولفين</option>
+        <option value="https://mustafa007gt.github.io/GWZarabic/">🌐 تعريب الألعاب</option>
+        <option value="https://mustafa007gt.github.io/Gta/">🚗 ألعاب GTA</option>
+        <option value="https://mustafa007gt.github.io/Gow/">⚔️ God of War</option>
+        <option value="https://mustafa007gt.github.io/RE/">☣️ Resident Evil</option>
       </select>
       <button class="fav-filter" id="favFilter"><i class="fa-solid fa-heart"></i> المفضلة</button>
     </section>
@@ -1108,7 +1028,7 @@ let currentCategory='all';
 let showFavorites=false;
 const cards=[...document.querySelectorAll('.game-card')];
 const searchInput=document.getElementById('searchInput');
-const sortSelect=document.getElementById('sortSelect');
+const categorySelect=document.getElementById('categorySelect');
 const gamesGrid=document.getElementById('gamesGrid');
 const emptyState=document.getElementById('emptyState');
 const favFilter=document.getElementById('favFilter');
@@ -1189,18 +1109,10 @@ function applyFilter(){
 
 searchInput.addEventListener('input',applyFilter);
 
-sortSelect.addEventListener('change',()=>{
-  const mode=sortSelect.value;
-  const sorted=[...cards].sort((a,b)=>{
-    const A=a.querySelector('h2').textContent.trim().toLowerCase();
-    const B=b.querySelector('h2').textContent.trim().toLowerCase();
-    if(mode==='az') return A.localeCompare(B);
-    if(mode==='za') return B.localeCompare(A);
-    return Number(a.dataset.index)-Number(b.dataset.index);
-  });
-  sorted.forEach(c=>gamesGrid.appendChild(c));
-  gamesGrid.appendChild(emptyState);
-  applyFilter();
+categorySelect.addEventListener('change',()=>{
+  const url=categorySelect.value;
+  if(url) window.location.href=url;
+  categorySelect.value='';
 });
 
 favFilter.addEventListener('click',()=>{
