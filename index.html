@@ -33,7 +33,7 @@ body::before{
   background-size:42px 42px;mask-image:linear-gradient(to bottom,#000,transparent 80%);
 }
 a{color:inherit}
-button,input{font:inherit}
+button,input,select{font:inherit}
 
 header{
   position:sticky;top:0;z-index:1000;padding:12px 18px;
@@ -41,7 +41,7 @@ header{
   border-bottom:1px solid var(--line);box-shadow:0 8px 30px rgba(0,0,0,.25);
 }
 .nav{
-  max-width:1280px;margin:auto;display:flex;align-items:center;gap:14px;
+  max-width:1380px;margin:auto;display:flex;align-items:center;gap:14px;
 }
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;white-space:nowrap}
 .logo{
@@ -59,49 +59,63 @@ header{
 .nav-btn:hover{transform:translateY(-2px);border-color:var(--cyan);box-shadow:0 0 18px rgba(0,234,255,.18)}
 
 .hero{
-  max-width:1280px;margin:0 auto;padding:58px 20px 35px;position:relative;
+  max-width:1380px;margin:0 auto;padding:38px 20px 28px;position:relative;
 }
 .hero-box{
   position:relative;overflow:hidden;border:1px solid rgba(0,234,255,.13);
-  border-radius:30px;padding:48px 42px;
+  border-radius:30px;padding:34px 20px;min-height:125px;
+  display:flex;align-items:center;justify-content:center;text-align:center;
   background:
     radial-gradient(circle at 80% 35%,rgba(168,85,247,.22),transparent 25%),
     radial-gradient(circle at 15% 80%,rgba(0,234,255,.13),transparent 25%),
     linear-gradient(135deg,rgba(22,22,38,.94),rgba(8,8,15,.92));
   box-shadow:0 25px 70px rgba(0,0,0,.38),inset 0 0 50px rgba(0,234,255,.025);
 }
-.hero-box::after{
-  content:"";position:absolute;width:330px;height:330px;border-radius:50%;
-  left:-120px;bottom:-180px;background:rgba(0,234,255,.12);filter:blur(70px);
+.center-brand{
+  margin:0;font-size:clamp(34px,7vw,58px);font-weight:900;
+  background:linear-gradient(90deg,#ffffff,var(--cyan),#d26bff);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  text-shadow:0 0 28px rgba(0,234,255,.16);
 }
-.hero h1{margin:0 0 10px;font-size:clamp(30px,5vw,58px);line-height:1.15}
-.gradient-text{background:linear-gradient(90deg,#fff,var(--cyan),#d26bff);-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero p{color:#b9bbca;max-width:680px;font-size:16px;margin:0 0 25px}
-.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
-.primary-btn,.secondary-btn{
-  border:0;border-radius:13px;padding:12px 20px;text-decoration:none;font-weight:800;
-  cursor:pointer;transition:.25s;display:inline-flex;align-items:center;gap:8px;
-}
-.primary-btn{background:linear-gradient(135deg,var(--cyan),#4b7cff);color:#041016;box-shadow:0 8px 25px rgba(0,234,255,.18)}
-.secondary-btn{background:rgba(255,255,255,.06);border:1px solid var(--line)}
-.primary-btn:hover,.secondary-btn:hover{transform:translateY(-3px)}
 
-.stats{
-  max-width:1280px;margin:0 auto;padding:0 20px 20px;
-  display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
+/* --- الهيكل الرئيسي المضاف لتقسيم القائمة والمحتوى --- */
+.main-wrapper{
+  max-width:1380px;margin:0 auto;padding:0 20px;
+  display:flex;gap:20px;align-items:flex-start;
 }
-.stat{
-  background:rgba(18,18,29,.65);border:1px solid var(--line);border-radius:17px;
-  padding:16px;text-align:center;backdrop-filter:blur(12px);
+.sidebar-nav{
+  width:280px;flex-shrink:0;background:var(--panel);
+  border:1px solid var(--line);border-radius:20px;padding:18px;
+  backdrop-filter:blur(14px);position:sticky;top:80px;z-index:90;
+  box-shadow:0 10px 30px rgba(0,0,0,.3);
 }
-.stat b{display:block;font-size:25px;color:var(--cyan)}
-.stat span{color:var(--muted);font-size:13px}
+.sidebar-title{
+  font-size:16px;font-weight:800;color:var(--cyan);
+  margin-bottom:14px;display:flex;align-items:center;gap:8px;
+  border-bottom:1px solid var(--line);padding-bottom:10px;
+}
+.sidebar-links{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(2, 1fr);gap:10px}
+.sidebar-link{
+  display:flex;align-items:center;justify-content:space-between;padding:11px 12px;
+  background:var(--panel2);color:#ddd;text-decoration:none;
+  border-radius:12px;border:1px solid var(--line);font-size:13px;font-weight:700;
+  transition:all .25s ease;
+}
+.sidebar-link i{font-size:15px;color:var(--cyan);transition:transform .25s}
+.sidebar-link:hover,.sidebar-link.active{
+  background:linear-gradient(135deg,var(--cyan),var(--purple));
+  color:#051016;border-color:transparent;
+  box-shadow:0 5px 20px rgba(0,234,255,.25);
+}
+.sidebar-link:hover i,.sidebar-link.active i{color:#051016;transform:scale(1.1)}
+.content-area{flex:1;min-width:0}
 
+/* التنسيقات العامة للشبكة والمحتوى */
 .toolbar{
-  max-width:1280px;margin:auto;padding:12px 20px 18px;display:flex;gap:10px;
+  padding:12px 0 18px;display:flex;gap:10px;
   align-items:center;flex-wrap:wrap;position:sticky;top:68px;z-index:50;
 }
-.search-wrap{position:relative;flex:1;min-width:230px}
+.search-wrap{position:relative;flex:1;min-width:200px}
 .search-wrap i{position:absolute;right:14px;top:50%;transform:translateY(-50%);color:#777}
 #searchInput{
   width:100%;padding:13px 42px 13px 14px;border-radius:13px;border:1px solid var(--line);
@@ -117,29 +131,11 @@ header{
   background:rgba(255,40,215,.07);color:#fff;cursor:pointer;
 }
 
-.categories-container{
-  max-width:1280px;margin:auto;padding:4px 20px 20px;display:flex;gap:8px;overflow:auto;
-  scrollbar-width:none;
-}
-.categories-container::-webkit-scrollbar{display:none}
-.category-btn{
-  white-space:nowrap;background:rgba(255,255,255,.04);color:#ddd;border:1px solid var(--line);
-  padding:9px 16px;border-radius:30px;cursor:pointer;transition:.25s;font-weight:700;
-}
-.category-btn.active,.category-btn:hover{
-  color:#051016;background:linear-gradient(90deg,var(--cyan),var(--purple));
-  border-color:transparent;box-shadow:0 0 18px rgba(0,234,255,.18);
-}
-
-.featured{
-  max-width:1280px;margin:auto;padding:10px 20px 24px;
-}
+.featured{padding:0 0 24px}
 .section-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:13px}
 .section-head h2{font-size:22px;margin:0}
 .section-head span{color:var(--muted);font-size:13px}
-.featured-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:13px;
-}
+.featured-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
 .featured-card{
   position:relative;min-height:175px;border-radius:20px;overflow:hidden;border:1px solid var(--line);
   background:#10101a;cursor:pointer;box-shadow:0 12px 35px rgba(0,0,0,.25);
@@ -150,8 +146,7 @@ header{
 .featured-title{position:absolute;z-index:2;bottom:12px;right:13px;left:13px;font-weight:900;font-size:17px}
 
 .games-container{
-  max-width:1280px;margin:auto;padding:5px 20px 35px;
-  display:grid;grid-template-columns:repeat(4,1fr);gap:15px;
+  padding:5px 0 35px;display:grid;grid-template-columns:repeat(3,1fr);gap:15px;
 }
 .game-card{
   background:linear-gradient(160deg,rgba(20,20,33,.9),rgba(11,11,18,.95));
@@ -167,7 +162,7 @@ header{
   position:absolute;top:12px;right:12px;z-index:3;background:linear-gradient(135deg,#ff246f,#ff28d7);
   padding:5px 9px;border-radius:8px;font-size:11px;font-weight:900;box-shadow:0 5px 15px rgba(255,40,215,.25);
 }
-.img-container{height:175px;border-radius:12px;overflow:hidden;margin-bottom:11px;border:1px solid var(--line)}
+.img-container{height:175px;border-radius:12px;overflow:hidden;margin-bottom:11px;border:1px solid var(--line);cursor:pointer}
 .game-card img{width:100%;height:100%;object-fit:cover;transition:.4s}
 .game-card:hover img{transform:scale(1.06);filter:brightness(1.08)}
 .game-card h2{
@@ -221,7 +216,6 @@ footer{
   opacity:0;transition:.35s;backdrop-filter:blur(14px);font-size:13px
 }
 .toast-notification.show{transform:translateX(0);opacity:1}
-.toast-rating{border-color:var(--gold)}
 
 .modal{
   position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(10px);
@@ -243,22 +237,20 @@ footer{
   border:1px solid rgba(255,255,255,.18);background:rgba(0,0,0,.45);color:#fff;cursor:pointer
 }
 
-@media(max-width:1000px){
-  .games-container{grid-template-columns:repeat(3,1fr)}
+/* التجاوب مع مختلف أحجام الشاشات */
+@media(max-width:1100px){
+  .games-container{grid-template-columns:repeat(2,1fr)}
   .featured-grid{grid-template-columns:repeat(2,1fr)}
 }
-@media(max-width:700px){
+@media(max-width:850px){
+  .main-wrapper{flex-direction:column;padding:0 12px}
+  .sidebar-nav{width:100%;position:static;margin-bottom:15px}
+}
+@media(max-width:600px){
   header{padding:10px 12px}
   .brand strong{font-size:15px}
-  .hero{padding:25px 12px 20px}
-  .hero-box{padding:30px 22px;border-radius:22px}
-  .stats{padding:0 12px 15px;gap:8px}
-  .stat{padding:11px 5px}
-  .stat b{font-size:20px}
-  .toolbar{padding:8px 12px 12px;top:63px}
-  .categories-container{padding:3px 12px 15px}
-  .games-container{grid-template-columns:repeat(2,1fr);padding:5px 12px 25px;gap:10px}
-  .featured{padding:5px 12px 20px}
+  .hero{padding:20px 12px 15px}
+  .games-container{grid-template-columns:repeat(2,1fr);gap:10px}
   .featured-grid{grid-template-columns:repeat(2,1fr);gap:9px}
   .featured-card,.featured-card img{min-height:135px;height:135px}
   .img-container{height:130px}
@@ -268,35 +260,7 @@ footer{
   .download-link{font-size:12px;padding:9px 7px}
   .fav-btn{width:39px;height:39px}
 }
-@media(max-width:390px){
-  .games-container{gap:8px}
-  .img-container{height:112px}
-  .game-meta{display:none}
-}
 </style>
-
-<style>
-.hero { padding: 38px 20px 28px; }
-.hero-box {
-  padding: 34px 20px;
-  min-height: 125px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-.center-brand {
-  margin: 0;
-  font-size: clamp(34px, 7vw, 58px);
-  font-weight: 900;
-  background: linear-gradient(90deg, #ffffff, var(--cyan), #d26bff);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  text-shadow: 0 0 28px rgba(0,234,255,.16);
-}
-</style>
-
 </head>
 
 <body>
@@ -320,738 +284,798 @@ footer{
   </div>
 </section>
 
-<section class="featured">
-  <div class="section-head">
-    <h2>🔥 ألعاب مميزة</h2><span>اختيارات مصطفى جيمرز</span>
-  </div>
-  <div class="featured-grid" id="featuredGrid"></div>
-</section>
+<!-- الهيكل الرئيسي المزود بالقائمة الجانبية على اليمين -->
+<div class="main-wrapper">
 
-<section class="toolbar" id="games">
-  <div class="search-wrap">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <input id="searchInput" type="text" placeholder="ابحث عن لعبة..." autocomplete="off">
-  </div>
-  <select class="sort-select" id="sortSelect" aria-label="ترتيب الألعاب">
-    <option value="default">الترتيب الافتراضي</option>
-    <option value="az">أبجدي A-Z</option>
-    <option value="za">أبجدي Z-A</option>
-    <option value="new">الأحدث أولاً</option>
-  </select>
-  <button class="fav-filter" id="favFilter"><i class="fa-solid fa-heart"></i> المفضلة</button>
-</section>
-
-<main class="games-container" id="gamesGrid">
-
-      <div class="game-card" data-category="action">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="https://i.ibb.co/0RcC2Zcn/Picsart-26-08-27-03-57-44-049.jpg" alt="bbc2" /></div>
-      <h2> GTA 6 </h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/OScz51xFDIhKC43" onclick="startDownload(event, this)">تحميل</a>
-        </div>
-      </div>
-
-  <div class="game-card" data-category="open-world">
-      <div class="badge-new">الافضل</div>
-      <div class="img-container"><img src="images/gtasa.jpg" alt="Gta San Andreas" /></div>
-      <h2>Gta san Andreas</h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/iQlaOb7rX5o7299" onclick="startDownload(event, this)">تحميل</a>
-        </div>
-
-      </div>
-    <div class="game-card" data-category="open-world">
-      <div class="badge-new">الافضل</div>
-      <div class="img-container"><img src="https://i.ibb.co/spScbc0W/IMG-20260831-024654-072.jpg" alt="PES 2021 MOBILE" /></div>
-      <h2>PES 2024</h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/1128B9rUiBezCUO" onclick="startDownload(event, this)">تحميل</a>
-        </div>
+  <!-- القائمة الجانبية (شريط التنقل بين الأقسام والمواقع) -->
+  <aside class="sidebar-nav">
+    <div class="sidebar-title">
+      <i class="fa-solid fa-layer-group"></i> أقسام الألعاب
     </div>
+    <ul class="sidebar-links">
+      <li>
+        <a href="https://mustafa007gt.github.io/mustafaAPPS/" target="_blank" class="sidebar-link">
+          <span>تطبيقات أندرويد</span>
+          <i class="fa-brands fa-android"></i>
+        </a>
+      </li>
+      <li>
+        <a href="https://mustafa007gt.github.io/mustafaPSP/" target="_blank" class="sidebar-link">
+          <span>ألعاب PSP</span>
+          <i class="fa-solid fa-gamepad"></i>
+        </a>
+      </li>
+      <li>
+        <a href="https://mustafa007gt.github.io/mustafaPS2/" target="_blank" class="sidebar-link">
+          <span>ألعاب PS2</span>
+          <i class="fa-solid fa-compact-disc"></i>
+        </a>
+      </li>
+      <li>
+        <a href="https://mustafa007gt.github.io/mustafaPS1/" target="_blank" class="sidebar-link">
+          <span>ألعاب PS1</span>
+          <i class="fa-solid fa-playstation"></i>
+        </a>
+      </li>
+      <li>
+        <a href="https://mustafa007gt.github.io/mustafaPC/" target="_blank" class="sidebar-link">
+          <span>ألعاب PC</span>
+          <i class="fa-solid fa-desktop"></i>
+        </a>
+      </li>
+      <li>
+        <a href="https://mustafa007gt.github.io/mustafaGC/" target="_blank" class="sidebar-link">
+          <span>ألعاب دولفين</span>
+          <i class="fa-solid fa-fish"></i>
+        </a>
+      </li>
+      <li>
+        <a href="https://mustafa007gt.github.io/GWZarabic/" target="_blank" class="sidebar-link">
+          <span>تعريب الألعاب</span>
+          <i class="fa-solid fa-language"></i>
+        </a>
+      </li>
+      <li>
+        <a href="https://mustafa007gt.github.io/Gta/" target="_blank" class="sidebar-link">
+          <span>ألعاب GTA</span>
+          <i class="fa-solid fa-car"></i>
+        </a>
+      </li>
+      <li>
+        <a href="https://mustafa007gt.github.io/Gow/" target="_blank" class="sidebar-link">
+          <span>God of War</span>
+          <i class="fa-solid fa-khanda"></i>
+        </a>
+      </li>
+      <li>
+        <a href="https://mustafa007gt.github.io/RE/" target="_blank" class="sidebar-link">
+          <span>Resident Evil</span>
+          <i class="fa-solid fa-biohazard"></i>
+        </a>
+      </li>
+    </ul>
+  </aside>
+
+  <!-- المنطقة الرئيسية للمحتوى -->
+  <main class="content-area">
     
-  </div>
-    <div class="game-card" data-category="open-world">
-      <div class="badge-new">الافضل</div>
-      <div class="img-container"><img src="images/pes21mb.jpg" alt="PES 2021 MOBILE" /></div>
-      <h2>PES 2021</h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/gvWZwEOkYZ3dNZ1" onclick="startDownload(event, this)">تحميل</a>
-        </div>
-    </div>
-  
-    <div class="game-card" data-category="open-world">
-      <div class="badge-new">الافضل</div>
-      <div class="img-container"><img src="images/pes2018.jpg" alt="PES 2018 MOBILE" /></div>
-      <h2>PES 2018</h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/06146LU8W7pE7I5" onclick="startDownload(event, this)">تحميل</a>
-        </div>
-    </div>
-    
-    
+    <section class="featured">
+      <div class="section-head">
+        <h2>🔥 ألعاب مميزة</h2><span>اختيارات مصطفى جيمرز</span>
+      </div>
+      <div class="featured-grid" id="featuredGrid"></div>
+    </section>
+
+    <section class="toolbar" id="games">
+      <div class="search-wrap">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input id="searchInput" type="text" placeholder="ابحث عن لعبة..." autocomplete="off">
+      </div>
+      <select class="sort-select" id="sortSelect" aria-label="ترتيب الألعاب">
+        <option value="default">الترتيب الافتراضي</option>
+        <option value="az">أبجدي A-Z</option>
+        <option value="za">أبجدي Z-A</option>
+        <option value="new">الأحدث أولاً</option>
+      </select>
+      <button class="fav-filter" id="favFilter"><i class="fa-solid fa-heart"></i> المفضلة</button>
+    </section>
+
+    <div class="games-container" id="gamesGrid">
 
       <div class="game-card" data-category="action">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="https://i.ibb.co/FbwQkMH4/IMG-20260825-225128-637.jpg" alt="bbc2" /></div>
-      <h2> PES 2021 GOATS EDITION</h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://sharemods.com/u6jm4xg6ywys/PES2021-GOATS-EDITION-OFFLINE.zip.html" onclick="startDownload(event, this)">تحميل</a>
+        <div class="badge-new">جديد</div>
+        <div class="img-container"><img src="https://i.ibb.co/0RcC2Zcn/Picsart-26-08-27-03-57-44-049.jpg" alt="GTA 6" /></div>
+        <h2> GTA 6 </h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/OScz51xFDIhKC43" onclick="startDownload(event, this)">تحميل</a>
         </div>
       </div>
 
-
-
-      <div class="game-card" data-category="action">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="https://i.ibb.co/RTQrmhBm/IMG-20260827-181425-145.jpg" alt="bbc2" /></div>
-      <h2> FC 27 BETA </h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://sharemods.com/iy4hw3cxpg1c/FC27-BETA.xapk.html" onclick="startDownload(event, this)">تحميل</a>
+      <div class="game-card" data-category="open-world">
+        <div class="badge-new">الافضل</div>
+        <div class="img-container"><img src="images/gtasa.jpg" alt="Gta San Andreas" /></div>
+        <h2>Gta san Andreas</h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/iQlaOb7rX5o7299" onclick="startDownload(event, this)">تحميل</a>
         </div>
       </div>
 
-  
-
-      <div class="game-card" data-category="action">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="https://i.ibb.co/LXGmwsd1/3956601.jpg" alt="bbc2" /></div>
-      <h2> PES 2017 </h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://sharemods.com/jyffsehcwr56/PES-2017-offlline-v0.9.0.xapk.html" onclick="startDownload(event, this)">تحميل</a>
+      <div class="game-card" data-category="open-world">
+        <div class="badge-new">الافضل</div>
+        <div class="img-container"><img src="https://i.ibb.co/spScbc0W/IMG-20260831-024654-072.jpg" alt="PES 2024" /></div>
+        <h2>PES 2024</h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/1128B9rUiBezCUO" onclick="startDownload(event, this)">تحميل</a>
         </div>
       </div>
-
-  <div class="game-card" data-category="open-world">
-      <div class="badge-new">الافضل</div>
-      <div class="img-container"><img src="images/pes2019.jpg" alt="PES 2019 MOBILE" /></div>
-      <h2>PES 2019</h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/065z59luzpzCGP1" onclick="startDownload(event, this)">تحميل</a>
-        </div>
-  </div>
-
-  <div class="game-card" data-category="action">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="images/mxp.jpg" alt="max Payne" /></div>
-      <h2>MAX PAYNE</h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/5st2818U3n9fLxd" onclick="startDownload(event, this)">تحميل</a>
-        </div>
-  </div>
-  
-      <div class="game-card" data-category="action">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="https://i.ibb.co/3YMxpL0t/hq720.jpg" alt="bbc2" /></div>
-      <h2> BATMAN TDKR </h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/pb35WiOa76ZZl4U" onclick="startDownload(event, this)">تحميل</a>
-        </div>
-      </div>
-
-      <div class="game-card" data-category="action">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="https://i.ibb.co/Gvnz7S24/images-1-edit-25172309418365.jpg" alt="bbc2" /></div>
-      <h2> CYBERLINE RACING </h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/HNH1786f25A13TA" onclick="startDownload(event, this)">تحميل</a>
-        </div>
-      </div>
-
-      <div class="game-card" data-category="action">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="https://i.ibb.co/B2gDYzTb/maxresdefault-1.jpg" alt="bbc2" /></div>
-      <h2> الملوك لا يسقطون ابدا </h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/816Y8F91MK8SDp7" onclick="startDownload(event, this)">تحميل</a>
-        </div>
-      </div>
-
-      <div class="game-card" data-category="action">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="https://i.ibb.co/vvPTCJxm/IMG-20260827-053558-605.jpg" alt="bbc2" /></div>
-      <h2> HORIZON STREET CAR SIMULATOR </h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/78RK1Ax504e589v" onclick="startDownload(event, this)">تحميل</a>
-        </div>
-      </div>
-
-      <div class="game-card" data-category="action">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="https://i.ibb.co/VWkhcCWX/IMG-20260817-134601-946.jpg" alt="bbc2" /></div>
-      <h2> SALLY FACE </h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/9z4CK0q94X04gRb" onclick="startDownload(event, this)">تحميل</a>
-        </div>
-      </div>
-
-      <div class="game-card" data-category="action">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="https://i.ibb.co/93H87MR6/IMG-20260824-024048-710.jpg" alt="bbc2" /></div>
-      <h2> DLS 19 </h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/E306RbHTE7GR3gy" onclick="startDownload(event, this)">تحميل</a>
-        </div>
-      </div>
-
-      <div class="game-card" data-category="action">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="https://i.ibb.co/XZts4Sqb/IMG-20260824-022739-758.jpg" alt="bbc2" /></div>
-      <h2> FOOTBALL LEAGUE 2026 </h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/Z68wVgMh9vTs5wL" onclick="startDownload(event, this)">تحميل</a>
-        </div>
-      </div>
-
-      <div class="game-card" data-category="action">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="https://i.ibb.co/zhMKgLZY/IMG-20260824-022219-231.jpg" alt="bbc2" /></div>
-      <h2> CLASH ROYALE </h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/6BNlF2rPVAZq251" onclick="startDownload(event, this)">تحميل</a>
-        </div>
-      </div>
-
-      <div class="game-card" data-category="action">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="https://i.ibb.co/TBcGcQfk/IMG-20260824-022214-644.jpg" alt="bbc2" /></div>
-      <h2> CLASH OF CLANS </h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/y9h37R3B90n7DPH" onclick="startDownload(event, this)">تحميل</a>
-        </div>
-      </div>
-
-      <div class="game-card" data-category="action">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="https://i.ibb.co/QFsDJY20/IMG-20260821-050441-626.jpg" alt="bbc2" /></div>
-      <h2> RESIDENT EVIL 4 MOBILE </h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/4Ll7kLw61P05v2e" onclick="startDownload(event, this)">تحميل</a>
-        </div>
-      </div>
-
-      <div class="game-card" data-category="action">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="https://i.ibb.co/4Rh85SXt/IMG-20260821-050329-284.jpg" alt="bbc2" /></div>
-      <h2> BIA 2 </h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/V4vt8vHwz8T11xN" onclick="startDownload(event, this)">تحميل</a>
-        </div>
-      </div>
-
-      <div class="game-card" data-category="action">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="https://i.ibb.co/NdHYbXWk/IMG-20260821-050002-034.jpg" alt="bbc2" /></div>
-      <h2> BRUCE LEE </h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://sharemods.com/2uqj1ci1x6js/Bruce_Lee_Dragon_Warrior_apk_by_MUSTAFA_GAMERS.zip.html" onclick="startDownload(event, this)">تحميل</a>
-        </div>
-      </div>
-
-      <div class="game-card" data-category="action">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="https://i.ibb.co/fzxB1WQX/IMG-20260821-045719-029.jpg" alt="bbc2" /></div>
-      <h2> LITTLE NIGHTMARES </h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/J93fQks09cv1asQ" onclick="startDownload(event, this)">تحميل</a>
-        </div>
-      </div>
-
-      <div class="game-card" data-category="action">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="https://i.ibb.co/8nf658LP/IMG-20260821-045846-403.jpg" alt="bbc2" /></div>
-      <h2> CUPHEAD </h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://sharemods.com/up8at6r47373/Cuphead-DLC-v1.0.2-mod-menu.zip.html" onclick="startDownload(event, this)">تحميل</a>
-        </div>
-      </div>
-
-      <div class="game-card" data-category="action">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="https://i.ibb.co/0yJpWd1j/IMG-20260821-044820-848.jpg" alt="bbc2" /></div>
-      <h2> MINECRAFT </h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://sharemods.com/mef993lrhza8/Minecraft-v1.26.44.3-mod.zip.html" onclick="startDownload(event, this)">تحميل</a>
-        </div>
-      </div>
-
-      <div class="game-card" data-category="action">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="https://i.ibb.co/8Lh40Gtw/IMG-20260821-045221-765.jpg" alt="bbc2" /></div>
-      <h2> DEAD CELLS </h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://sharemods.com/c0hsxzfebpk6/dead-cells-3.5.9-mod-menu.7z.html" onclick="startDownload(event, this)">تحميل</a>
-        </div>
-      </div>
-
-      <div class="game-card" data-category="action">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="https://i.ibb.co/GfV002xC/IMG-20260821-045342-598.jpg" alt="bbc2" /></div>
-      <h2> MEDAL OF HONOR ALLIED ASSAULT </h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/4DfBermLmbPgvUm" onclick="startDownload(event, this)">تحميل</a>
-        </div>
-      </div>
-
-      <div class="game-card" data-category="action">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="https://i.ibb.co/yBWLqnrQ/IMG-20260820-082411-950.jpg" alt="bbc2" /></div>
-      <h2> GANGSTAR MIRAGE CITY </h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://play.google.com/store/apps/details?id=com.levelinfinite.gst" onclick="startDownload(event, this)">تحميل</a>
-        </div>
-    </div>
-
-      <div class="game-card" data-category="action">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="https://i.ibb.co/pj77BTfx/IMG-20260821-045033-440.jpg" alt="bbc2" /></div>
-      <h2> WALL OF INSANITY </h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://sharemods.com/cartroeeofhn/Wall-of-insanity-v1.65-mod-menu.zip.html" onclick="startDownload(event, this)">تحميل</a>
-        </div>
-      </div>
-
-      <div class="game-card" data-category="action">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="https://i.ibb.co/21DcgFkL/IMG-20260821-044313-353.jpg" alt="bbc2" /></div>
-      <h2> PES 2018 RMD FCB </h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/97NJ9wixeenWAlH" onclick="startDownload(event, this)">تحميل</a>
-        </div>
-      </div>
-
-      <div class="game-card" data-category="action">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="https://i.ibb.co/VYJ37303/IMG-20260821-044153-866.jpg" alt="bbc2" /></div>
-      <h2> RUSH RALLY 3 </h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://sharemods.com/wb0yiwr3vmqb/rush-rally-3-mod-v1.185.zip.html" onclick="startDownload(event, this)">تحميل</a>
-        </div>
-      </div>
-
-      <div class="game-card" data-category="action">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="https://i.ibb.co/hJ1pmjgD/apps-33627-13962820189274875-52846785-4fa1-4ff6-ae57-0b468a2f5e79-88867000-f9d4-4032-860a-8759f16953.jpg" alt="bbc2" /></div>
-      <h2> Tomb Raider I-III Remastered </h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://sharemods.com/8bhrqy3t5g1o/Tomb-Raider-I-III-Remastered-v1.3.0-mod.zip.html" onclick="startDownload(event, this)">تحميل</a>
-        </div>
-      </div>
-
-      <div class="game-card" data-category="action">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="https://i.ibb.co/TqTfz2KN/IMG-20260821-045515-032.jpg" alt="bbc2" /></div>
-      <h2> GRID AUTOSPORT </h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/L017Fqg2RfJ9YnI" onclick="startDownload(event, this)">تحميل</a>
-        </div>
-      </div>
-
-
-
-  <div class="game-card" data-category="action">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="https://i.ibb.co/v42hSrPK/IMG-20260817-133941-950.jpg" alt="bbc2" /></div>
-      <h2> MC5 </h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/Dofcmq5I9sw6Xo0" onclick="startDownload(event, this)">تحميل</a>
-        </div>
-  </div>
-
-      <div class="game-card" data-category="action">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="https://i.ibb.co/Lz31w5rm/IMG-20260817-133731-111.jpg" alt="bbc2" /></div>
-      <h2> BIA 3 </h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/2W92etdow88gT8W" onclick="startDownload(event, this)">تحميل</a>
+      
+      <div class="game-card" data-category="open-world">
+        <div class="badge-new">الافضل</div>
+        <div class="img-container"><img src="images/pes21mb.jpg" alt="PES 2021 MOBILE" /></div>
+        <h2>PES 2021</h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/gvWZwEOkYZ3dNZ1" onclick="startDownload(event, this)">تحميل</a>
         </div>
       </div>
     
-    <div class="game-card" data-category="action">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="images/bbc2.jpg" alt="bbc2" /></div>
-      <h2> BBC2 </h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/J9L0TNA3Cm27n6I" onclick="startDownload(event, this)">تحميل</a>
+      <div class="game-card" data-category="open-world">
+        <div class="badge-new">الافضل</div>
+        <div class="img-container"><img src="images/pes2018.jpg" alt="PES 2018 MOBILE" /></div>
+        <h2>PES 2018</h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/06146LU8W7pE7I5" onclick="startDownload(event, this)">تحميل</a>
         </div>
-    </div>
-
-    <div class="game-card" data-category="action">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="images/dmc4.jpg" alt="DMC 4" /></div>
-      <h2> DMC 4 </h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/Yy3118nkBhueBKf" onclick="startDownload(event, this)">تحميل</a>
-        </div>
-    </div>
-
-
-     <div class="game-card" data-category="action">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="images/gg3g.jpg" alt="gta 3" /></div>
-      <h2> GTA 3 </h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/7l6kj1RyuSg9d7B" onclick="startDownload(event, this)">تحميل</a>
-        </div>
-    </div>
-
-    <div class="game-card" data-category="action">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="images/vvc.jpg" alt="gta vc" /></div>
-      <h2> GTA VC </h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/9n08Aie3jHW07i6" onclick="startDownload(event, this)">تحميل</a>
-        </div>
-    </div>
-
-     <div class="game-card" data-category="action">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="images/llc.jpg" alt="gta lcs" /></div>
-      <h2> GTA LCS </h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/3aW10Tp0bVF6443" onclick="startDownload(event, this)">تحميل</a>
-        </div>
-    </div>
-
-    <div class="game-card" data-category="action">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="images/dshd.jpg" alt="dshd" /></div>
-      <h2>DEAD SPACE HD </h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/92S2lEIzgjFz0ln" onclick="startDownload(event, this)">تحميل</a>
-        </div>
-    </div>
-
-
-    <div class="game-card" data-category="action">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="images/dss.jpg" alt="dss" /></div>
-      <h2>DRONE SHADOW STRIKE </h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/nN9XK24rHUxe4u1" onclick="startDownload(event, this)">تحميل</a>
-        </div>
-    </div>
-
-    <div class="game-card" data-category="action">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="images/wolf.jpg" alt="wolf" /></div>
-      <h2> THE WOLF </h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/U108uX0JNWh3RpT" onclick="startDownload(event, this)">تحميل</a>
-        </div>
-    </div>
-
-
-     <div class="game-card" data-category="action">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="images/stk.jpg" alt="stock car" /></div>
-      <h2> STOCK CAR </h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/dNA8xgxaZb3qQ8t" onclick="startDownload(event, this)">تحميل</a>
-        </div>
-    </div>
-
-
-    <div class="game-card" data-category="action">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="images/crw.jpg" alt="carnage wars" /></div>
-      <h2> CARNAGE WARS </h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/EneU2K4BKFjX1x5" onclick="startDownload(event, this)">تحميل</a>
-        </div>
-    </div>
-
-
-     <div class="game-card" data-category="action">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="images/gow3.jpg" alt="god of war 3" /></div>
-      <h2> GOD OF WAR 3</h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/M5Db3LKa54QDmRE" onclick="startDownload(event, this)">تحميل</a>
-        </div>
-    </div>
+      </div>
 
       <div class="game-card" data-category="action">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="images/re4r.jpg" alt="re4 remake" /></div>
-      <h2> RE 4 REMAKE</h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/3htk8GJrfxiNFFI" onclick="startDownload(event, this)">تحميل</a>
+        <div class="badge-new">جديد</div>
+        <div class="img-container"><img src="https://i.ibb.co/FbwQkMH4/IMG-20260825-225128-637.jpg" alt="PES 2021 GOATS EDITION" /></div>
+        <h2> PES 2021 GOATS EDITION</h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://sharemods.com/u6jm4xg6ywys/PES2021-GOATS-EDITION-OFFLINE.zip.html" onclick="startDownload(event, this)">تحميل</a>
         </div>
-    </div>
+      </div>
 
-
-     
-
-    <div class="game-card" data-category="open-world">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="images/IMG_20260530_004238_914.jpg" alt="otr" /></div>
-      <h2>OFF THE ROAD 2</h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/69iSfnmB16mS8Dd" onclick="startDownload(event, this)">تحميل</a>
+      <div class="game-card" data-category="action">
+        <div class="badge-new">جديد</div>
+        <div class="img-container"><img src="https://i.ibb.co/RTQrmhBm/IMG-20260827-181425-145.jpg" alt="FC 27 BETA" /></div>
+        <h2> FC 27 BETA </h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://sharemods.com/iy4hw3cxpg1c/FC27-BETA.xapk.html" onclick="startDownload(event, this)">تحميل</a>
         </div>
-    </div>
+      </div>
+
+      <div class="game-card" data-category="action">
+        <div class="badge-new">جديد</div>
+        <div class="img-container"><img src="https://i.ibb.co/LXGmwsd1/3956601.jpg" alt="PES 2017" /></div>
+        <h2> PES 2017 </h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://sharemods.com/jyffsehcwr56/PES-2017-offlline-v0.9.0.xapk.html" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="open-world">
+        <div class="badge-new">الافضل</div>
+        <div class="img-container"><img src="images/pes2019.jpg" alt="PES 2019 MOBILE" /></div>
+        <h2>PES 2019</h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/065z59luzpzCGP1" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="action">
+        <div class="badge-new">جديد</div>
+        <div class="img-container"><img src="images/mxp.jpg" alt="max Payne" /></div>
+        <h2>MAX PAYNE</h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/5st2818U3n9fLxd" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
     
-        <div class="game-card" data-category="open-world">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="images/lmo.jpg" alt="limbo" /></div>
-      <h2>LIMBO</h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/D6ZDdyJ2X5Zk90h" onclick="startDownload(event, this)">تحميل</a>
+      <div class="game-card" data-category="action">
+        <div class="badge-new">جديد</div>
+        <div class="img-container"><img src="https://i.ibb.co/3YMxpL0t/hq720.jpg" alt="BATMAN TDKR" /></div>
+        <h2> BATMAN TDKR </h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/pb35WiOa76ZZl4U" onclick="startDownload(event, this)">تحميل</a>
         </div>
-        </div>
-
-
-        <div class="game-card" data-category="open-world">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="images/sl.jpg" alt="slime rancher" /></div>
-      <h2>slime rancher</h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/699nesFMT7836x8" onclick="startDownload(event, this)">تحميل</a>
-         </div>
-        </div>
-
-    <div class="game-card" data-category="open-world">
-      <div class="img-container"><img src="images/tld.jpg" alt="السفر الطويل" /></div>
-      <h2>السفر الطويل</h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/Q4NP5DbdfbOwwqu" onclick="startDownload(event, this)">تحميل</a>
-        </div>
-    </div>
-
-    <div class="game-card" data-category="open-world">
-      <div class="img-container"><img src="images/rrr.jpg" alt="red dead redemption" /></div>
-      <h2>red dead redemption</h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://www.mediafire.com/file/vt7ytpf83w2nuks/red-dead-redemption-v1.53.61003005-mod.apk/file" onclick="startDownload(event, this)">تحميل</a>
-        </div>
-    </div>
-
-    <div class="game-card" data-category="open-world">
-      <div class="img-container"><img src="images/gta3.jpg" alt="GTA 3 The definitive edition" /></div>
-      <h2>GTA 3 the definitive edition</h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/NzUAf3zevwVGbPb" onclick="startDownload(event, this)">تحميل</a>
-       </div>
-    </div>
-
-    <div class="game-card" data-category="open-world">
-      <div class="badge-new">الافضل</div>
-      <div class="img-container"><img src="images/de.jpg" alt="GTA: SA THE DEFINITIVE EDITION" /></div>
-      <h2>GTA: SA THE DEFINITIVE EDITION</h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://gofile.io/d/ZduuWj" onclick="startDownload(event, this)">تحميل</a>
-        </div>
-    </div>
-
-    <div class="game-card" data-category="open-world">
-      <div class="img-container"><img src="images/lcs.jpg" alt="GTA: LCS" /></div>
-      <h2>GTA:LCS</h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/W5otsSWJ8Bk8mI7" onclick="startDownload(event, this)">تحميل</a>
-       </div>
-    </div>
-
-    <div class="game-card" data-category="open-world">
-      <div class="img-container"><img src="images/bully.jpg" alt="Bully" /></div>
-      <h2>Bully</h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/6XFmub2AgGu5IUp" onclick="startDownload(event, this)">تحميل</a>
-        </div>
-    </div>
-
-    <div class="game-card" data-category="cars">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="images/cpm2.jpg" alt="Car Parking Multiplayer 2" /></div>
-      <h2>Car Parking Multiplayer 2</h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/Z0ve5Oi45777c7k" onclick="startDownload(event, this)">تحميل</a>
-        </div>
-    </div>
-  
-    <div class="game-card" data-category="cars">
-      <div class="img-container"><img src="images/tru.jpg" alt="Truck Simulator Ultimate" /></div>
-      <h2>Truck Simulator Ultimate</h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/4SWwA64eGAc4MDb" onclick="startDownload(event, this)">تحميل</a>
-       </div>
-    </div>
-
-    <div class="game-card" data-category="cars">
-      <div class="img-container"><img src="images/asphalt 9.jpg" alt="asphalt 9" /></div>
-      <h2>asphalt 9</h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/OUc3Atc1UiW0jgt" onclick="startDownload(event, this)">تحميل</a>
-        </div>
-    </div>
-
-    <div class="game-card" data-category="sports">
-      <div class="img-container"><img src="images/dls.jpg" alt="dls 19" /></div>
-      <h2>DlS 19</h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/bza1Ej6rl9A1p94" onclick="startDownload(event, this)">تحميل</a>
-        </div>
-    </div>
-
-    <div class="game-card" data-category="action">
-      <div class="img-container"><img src="images/dan.jpg" alt="dust and neon" /></div>
-      <h2>dust and neon</h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/EPO884yuBSjBryO" onclick="startDownload(event, this)">تحميل</a>
       </div>
-    </div>
 
-    <div class="game-card" data-category="action">
-      <div class="img-container"><img src="images/hwn.jpg" alt="Huntdown" /></div>
-      <h2>Huntdown</h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/1x5726Dxyqe1a72" onclick="startDownload(event, this)">تحميل</a>
+      <div class="game-card" data-category="action">
+        <div class="badge-new">جديد</div>
+        <div class="img-container"><img src="https://i.ibb.co/Gvnz7S24/images-1-edit-25172309418365.jpg" alt="CYBERLINE RACING" /></div>
+        <h2> CYBERLINE RACING </h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/HNH1786f25A13TA" onclick="startDownload(event, this)">تحميل</a>
+        </div>
       </div>
-    </div>
 
-    <div class="game-card" data-category="action">
-      <div class="img-container"><img src="images/gunsim.jpg" alt="gunsim" /></div>
-      <h2>gunsim 3d</h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://www.mediafire.com/file/5p7pe43ts55gs2h/gsim08115mod-androidoyunclub.apk/file" onclick="startDownload(event, this)">تحميل</a>
-       </div>
-    </div>
-  
-    <div class="game-card" data-category="action">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="images/silksong.jpg" alt="silksong" /></div>
-      <h2>silksong</h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://www.mediafire.com/file/0ip1psf307admi1/silksong_1.0.1.apk/file" onclick="startDownload(event, this)">تحميل</a>
-       </div>
-    </div>
-
-    <div class="game-card" data-category="action">
-      <div class="img-container"><img src="images/haak.jpg" alt="HAAK" /></div>
-      <h2>HAAK</h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/pB5VHQCm9Ushw88" onclick="startDownload(event, this)">تحميل</a>
+      <div class="game-card" data-category="action">
+        <div class="badge-new">جديد</div>
+        <div class="img-container"><img src="https://i.ibb.co/B2gDYzTb/maxresdefault-1.jpg" alt="الملوك لا يسقطون ابدا" /></div>
+        <h2> الملوك لا يسقطون ابدا </h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/816Y8F91MK8SDp7" onclick="startDownload(event, this)">تحميل</a>
+        </div>
       </div>
-    </div>
 
-    <div class="game-card" data-category="action">
-      <div class="img-container"><img src="images/bm.jpg" alt="Bright memory infinit" /></div>
-      <h2>bright memory infunt</h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/OeJr7gwSK66J3cP" onclick="startDownload(event, this)">تحميل</a>
-       </div>
-    </div>
+      <div class="game-card" data-category="action">
+        <div class="badge-new">جديد</div>
+        <div class="img-container"><img src="https://i.ibb.co/vvPTCJxm/IMG-20260827-053558-605.jpg" alt="HORIZON STREET CAR SIMULATOR" /></div>
+        <h2> HORIZON STREET CAR SIMULATOR </h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/78RK1Ax504e589v" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
 
-    <div class="game-card" data-category="action">
-      <div class="img-container"><img src="images/hk.jpg" alt="hollow knight" /></div>
-      <h2>hollow knight</h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/5u9P7eY6NewYPkV" onclick="startDownload(event, this)">تحميل</a>
-       </div>
-    </div>
+      <div class="game-card" data-category="action">
+        <div class="badge-new">جديد</div>
+        <div class="img-container"><img src="https://i.ibb.co/VWkhcCWX/IMG-20260817-134601-946.jpg" alt="SALLY FACE" /></div>
+        <h2> SALLY FACE </h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/9z4CK0q94X04gRb" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="action">
+        <div class="badge-new">جديد</div>
+        <div class="img-container"><img src="https://i.ibb.co/93H87MR6/IMG-20260824-024048-710.jpg" alt="DLS 19" /></div>
+        <h2> DLS 19 </h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/E306RbHTE7GR3gy" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="action">
+        <div class="badge-new">جديد</div>
+        <div class="img-container"><img src="https://i.ibb.co/XZts4Sqb/IMG-20260824-022739-758.jpg" alt="FOOTBALL LEAGUE 2026" /></div>
+        <h2> FOOTBALL LEAGUE 2026 </h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/Z68wVgMh9vTs5wL" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="action">
+        <div class="badge-new">جديد</div>
+        <div class="img-container"><img src="https://i.ibb.co/zhMKgLZY/IMG-20260824-022219-231.jpg" alt="CLASH ROYALE" /></div>
+        <h2> CLASH ROYALE </h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/6BNlF2rPVAZq251" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="action">
+        <div class="badge-new">جديد</div>
+        <div class="img-container"><img src="https://i.ibb.co/TBcGcQfk/IMG-20260824-022214-644.jpg" alt="CLASH OF CLANS" /></div>
+        <h2> CLASH OF CLANS </h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/y9h37R3B90n7DPH" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="action">
+        <div class="badge-new">جديد</div>
+        <div class="img-container"><img src="https://i.ibb.co/QFsDJY20/IMG-20260821-050441-626.jpg" alt="RESIDENT EVIL 4 MOBILE" /></div>
+        <h2> RESIDENT EVIL 4 MOBILE </h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/4Ll7kLw61P05v2e" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="action">
+        <div class="badge-new">جديد</div>
+        <div class="img-container"><img src="https://i.ibb.co/4Rh85SXt/IMG-20260821-050329-284.jpg" alt="BIA 2" /></div>
+        <h2> BIA 2 </h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/V4vt8vHwz8T11xN" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="action">
+        <div class="badge-new">جديد</div>
+        <div class="img-container"><img src="https://i.ibb.co/NdHYbXWk/IMG-20260821-050002-034.jpg" alt="BRUCE LEE" /></div>
+        <h2> BRUCE LEE </h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://sharemods.com/2uqj1ci1x6js/Bruce_Lee_Dragon_Warrior_apk_by_MUSTAFA_GAMERS.zip.html" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="action">
+        <div class="badge-new">جديد</div>
+        <div class="img-container"><img src="https://i.ibb.co/fzxB1WQX/IMG-20260821-045719-029.jpg" alt="LITTLE NIGHTMARES" /></div>
+        <h2> LITTLE NIGHTMARES </h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/J93fQks09cv1asQ" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="action">
+        <div class="badge-new">جديد</div>
+        <div class="img-container"><img src="https://i.ibb.co/8nf658LP/IMG-20260821-045846-403.jpg" alt="CUPHEAD" /></div>
+        <h2> CUPHEAD </h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://sharemods.com/up8at6r47373/Cuphead-DLC-v1.0.2-mod-menu.zip.html" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="action">
+        <div class="badge-new">جديد</div>
+        <div class="img-container"><img src="https://i.ibb.co/0yJpWd1j/IMG-20260821-044820-848.jpg" alt="MINECRAFT" /></div>
+        <h2> MINECRAFT </h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://sharemods.com/mef993lrhza8/Minecraft-v1.26.44.3-mod.zip.html" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="action">
+        <div class="badge-new">جديد</div>
+        <div class="img-container"><img src="https://i.ibb.co/8Lh40Gtw/IMG-20260821-045221-765.jpg" alt="DEAD CELLS" /></div>
+        <h2> DEAD CELLS </h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://sharemods.com/c0hsxzfebpk6/dead-cells-3.5.9-mod-menu.7z.html" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="action">
+        <div class="badge-new">جديد</div>
+        <div class="img-container"><img src="https://i.ibb.co/GfV002xC/IMG-20260821-045342-598.jpg" alt="MEDAL OF HONOR ALLIED ASSAULT" /></div>
+        <h2> MEDAL OF HONOR ALLIED ASSAULT </h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/4DfBermLmbPgvUm" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="action">
+        <div class="badge-new">جديد</div>
+        <div class="img-container"><img src="https://i.ibb.co/yBWLqnrQ/IMG-20260820-082411-950.jpg" alt="GANGSTAR MIRAGE CITY" /></div>
+        <h2> GANGSTAR MIRAGE CITY </h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://play.google.com/store/apps/details?id=com.levelinfinite.gst" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="action">
+        <div class="badge-new">جديد</div>
+        <div class="img-container"><img src="https://i.ibb.co/pj77BTfx/IMG-20260821-045033-440.jpg" alt="WALL OF INSANITY" /></div>
+        <h2> WALL OF INSANITY </h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://sharemods.com/cartroeeofhn/Wall-of-insanity-v1.65-mod-menu.zip.html" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="action">
+        <div class="badge-new">جديد</div>
+        <div class="img-container"><img src="https://i.ibb.co/21DcgFkL/IMG-20260821-044313-353.jpg" alt="PES 2018 RMD FCB" /></div>
+        <h2> PES 2018 RMD FCB </h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/97NJ9wixeenWAlH" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="action">
+        <div class="badge-new">جديد</div>
+        <div class="img-container"><img src="https://i.ibb.co/VYJ37303/IMG-20260821-044153-866.jpg" alt="RUSH RALLY 3" /></div>
+        <h2> RUSH RALLY 3 </h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://sharemods.com/wb0yiwr3vmqb/rush-rally-3-mod-v1.185.zip.html" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="action">
+        <div class="badge-new">جديد</div>
+        <div class="img-container"><img src="https://i.ibb.co/hJ1pmjgD/apps-33627-13962820189274875-52846785-4fa1-4ff6-ae57-0b468a2f5e79-88867000-f9d4-4032-860a-8759f16953.jpg" alt="Tomb Raider I-III Remastered" /></div>
+        <h2> Tomb Raider I-III Remastered </h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://sharemods.com/8bhrqy3t5g1o/Tomb-Raider-I-III-Remastered-v1.3.0-mod.zip.html" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="action">
+        <div class="badge-new">جديد</div>
+        <div class="img-container"><img src="https://i.ibb.co/TqTfz2KN/IMG-20260821-045515-032.jpg" alt="GRID AUTOSPORT" /></div>
+        <h2> GRID AUTOSPORT </h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/L017Fqg2RfJ9YnI" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="action">
+        <div class="badge-new">جديد</div>
+        <div class="img-container"><img src="https://i.ibb.co/v42hSrPK/IMG-20260817-133941-950.jpg" alt="MC5" /></div>
+        <h2> MC5 </h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/Dofcmq5I9sw6Xo0" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="action">
+        <div class="badge-new">جديد</div>
+        <div class="img-container"><img src="https://i.ibb.co/Lz31w5rm/IMG-20260817-133731-111.jpg" alt="BIA 3" /></div>
+        <h2> BIA 3 </h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/2W92etdow88gT8W" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
     
-    <div class="game-card" data-category="action">
-      <div class="img-container"><img src="images/hits.jpg" alt="hitman sniper" /></div>
-      <h2>hitman sniper</h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/899yx0vwv649xf9" onclick="startDownload(event, this)">تحميل</a>
+      <div class="game-card" data-category="action">
+        <div class="badge-new">جديد</div>
+        <div class="img-container"><img src="images/bbc2.jpg" alt="BBC2" /></div>
+        <h2> BBC2 </h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/J9L0TNA3Cm27n6I" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="action">
+        <div class="badge-new">جديد</div>
+        <div class="img-container"><img src="images/dmc4.jpg" alt="DMC 4" /></div>
+        <h2> DMC 4 </h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/Yy3118nkBhueBKf" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="action">
+        <div class="badge-new">جديد</div>
+        <div class="img-container"><img src="images/gg3g.jpg" alt="GTA 3" /></div>
+        <h2> GTA 3 </h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/7l6kj1RyuSg9d7B" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="action">
+        <div class="badge-new">جديد</div>
+        <div class="img-container"><img src="images/vvc.jpg" alt="GTA VC" /></div>
+        <h2> GTA VC </h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/9n08Aie3jHW07i6" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="action">
+        <div class="badge-new">جديد</div>
+        <div class="img-container"><img src="images/llc.jpg" alt="GTA LCS" /></div>
+        <h2> GTA LCS </h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/3aW10Tp0bVF6443" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="action">
+        <div class="badge-new">جديد</div>
+        <div class="img-container"><img src="images/dshd.jpg" alt="DEAD SPACE HD" /></div>
+        <h2>DEAD SPACE HD </h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/92S2lEIzgjFz0ln" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="action">
+        <div class="badge-new">جديد</div>
+        <div class="img-container"><img src="images/dss.jpg" alt="DRONE SHADOW STRIKE" /></div>
+        <h2>DRONE SHADOW STRIKE </h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/nN9XK24rHUxe4u1" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="action">
+        <div class="badge-new">جديد</div>
+        <div class="img-container"><img src="images/wolf.jpg" alt="THE WOLF" /></div>
+        <h2> THE WOLF </h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/U108uX0JNWh3RpT" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="action">
+        <div class="badge-new">جديد</div>
+        <div class="img-container"><img src="images/stk.jpg" alt="STOCK CAR" /></div>
+        <h2> STOCK CAR </h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/dNA8xgxaZb3qQ8t" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="action">
+        <div class="badge-new">جديد</div>
+        <div class="img-container"><img src="images/crw.jpg" alt="CARNAGE WARS" /></div>
+        <h2> CARNAGE WARS </h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/EneU2K4BKFjX1x5" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="action">
+        <div class="badge-new">جديد</div>
+        <div class="img-container"><img src="images/gow3.jpg" alt="GOD OF WAR 3" /></div>
+        <h2> GOD OF WAR 3</h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/M5Db3LKa54QDmRE" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="action">
+        <div class="badge-new">جديد</div>
+        <div class="img-container"><img src="images/re4r.jpg" alt="RE 4 REMAKE" /></div>
+        <h2> RE 4 REMAKE</h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/3htk8GJrfxiNFFI" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="open-world">
+        <div class="badge-new">جديد</div>
+        <div class="img-container"><img src="images/IMG_20260530_004238_914.jpg" alt="OFF THE ROAD 2" /></div>
+        <h2>OFF THE ROAD 2</h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/69iSfnmB16mS8Dd" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+      
+      <div class="game-card" data-category="open-world">
+        <div class="badge-new">جديد</div>
+        <div class="img-container"><img src="images/lmo.jpg" alt="LIMBO" /></div>
+        <h2>LIMBO</h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/D6ZDdyJ2X5Zk90h" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="open-world">
+        <div class="badge-new">جديد</div>
+        <div class="img-container"><img src="images/sl.jpg" alt="slime rancher" /></div>
+        <h2>slime rancher</h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/699nesFMT7836x8" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="open-world">
+        <div class="img-container"><img src="images/tld.jpg" alt="السفر الطويل" /></div>
+        <h2>السفر الطويل</h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/Q4NP5DbdfbOwwqu" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="open-world">
+        <div class="img-container"><img src="images/rrr.jpg" alt="red dead redemption" /></div>
+        <h2>red dead redemption</h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://www.mediafire.com/file/vt7ytpf83w2nuks/red-dead-redemption-v1.53.61003005-mod.apk/file" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="open-world">
+        <div class="img-container"><img src="images/gta3.jpg" alt="GTA 3 the definitive edition" /></div>
+        <h2>GTA 3 the definitive edition</h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/NzUAf3zevwVGbPb" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="open-world">
+        <div class="badge-new">الافضل</div>
+        <div class="img-container"><img src="images/de.jpg" alt="GTA: SA THE DEFINITIVE EDITION" /></div>
+        <h2>GTA: SA THE DEFINITIVE EDITION</h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://gofile.io/d/ZduuWj" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="open-world">
+        <div class="img-container"><img src="images/lcs.jpg" alt="GTA:LCS" /></div>
+        <h2>GTA:LCS</h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/W5otsSWJ8Bk8mI7" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="open-world">
+        <div class="img-container"><img src="images/bully.jpg" alt="Bully" /></div>
+        <h2>Bully</h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/6XFmub2AgGu5IUp" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="cars">
+        <div class="badge-new">جديد</div>
+        <div class="img-container"><img src="images/cpm2.jpg" alt="Car Parking Multiplayer 2" /></div>
+        <h2>Car Parking Multiplayer 2</h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/Z0ve5Oi45777c7k" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+    
+      <div class="game-card" data-category="cars">
+        <div class="img-container"><img src="images/tru.jpg" alt="Truck Simulator Ultimate" /></div>
+        <h2>Truck Simulator Ultimate</h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/4SWwA64eGAc4MDb" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="cars">
+        <div class="img-container"><img src="images/asphalt 9.jpg" alt="asphalt 9" /></div>
+        <h2>asphalt 9</h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/OUc3Atc1UiW0jgt" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="sports">
+        <div class="img-container"><img src="images/dls.jpg" alt="DlS 19" /></div>
+        <h2>DlS 19</h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/bza1Ej6rl9A1p94" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="action">
+        <div class="img-container"><img src="images/dan.jpg" alt="dust and neon" /></div>
+        <h2>dust and neon</h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/EPO884yuBSjBryO" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="action">
+        <div class="img-container"><img src="images/hwn.jpg" alt="Huntdown" /></div>
+        <h2>Huntdown</h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/1x5726Dxyqe1a72" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="action">
+        <div class="img-container"><img src="images/gunsim.jpg" alt="gunsim 3d" /></div>
+        <h2>gunsim 3d</h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://www.mediafire.com/file/5p7pe43ts55gs2h/gsim08115mod-androidoyunclub.apk/file" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+    
+      <div class="game-card" data-category="action">
+        <div class="badge-new">جديد</div>
+        <div class="img-container"><img src="images/silksong.jpg" alt="silksong" /></div>
+        <h2>silksong</h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://www.mediafire.com/file/0ip1psf307admi1/silksong_1.0.1.apk/file" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="action">
+        <div class="img-container"><img src="images/haak.jpg" alt="HAAK" /></div>
+        <h2>HAAK</h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/pB5VHQCm9Ushw88" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="action">
+        <div class="img-container"><img src="images/bm.jpg" alt="bright memory infunt" /></div>
+        <h2>bright memory infunt</h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/OeJr7gwSK66J3cP" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="action">
+        <div class="img-container"><img src="images/hk.jpg" alt="hollow knight" /></div>
+        <h2>hollow knight</h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/5u9P7eY6NewYPkV" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+      
+      <div class="game-card" data-category="action">
+        <div class="img-container"><img src="images/hits.jpg" alt="hitman sniper" /></div>
+        <h2>hitman sniper</h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/899yx0vwv649xf9" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="horror">
+        <div class="badge-new">جديد</div>
+        <div class="img-container"><img src="images/ppt5.jpg" alt="poppy playtime 5" /></div>
+        <h2>poppy playtime 5</h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/KfP791m23WbmqDj" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+      <div class="game-card" data-category="horror">
+        <div class="img-container"><img src="images/repo.jpg" alt="R.E.P.O" /></div>
+        <h2>R.E.P.O</h2>
+        <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
+        <div class="card-actions">
+          <a class="download-link" href="https://modsfire.com/tk0FODw2mqUKXhp" onclick="startDownload(event, this)">تحميل</a>
+        </div>
+      </div>
+
+    
+      <div class="empty-state" id="emptyState">
+        <i class="fa-solid fa-ghost" style="font-size:40px;color:#777"></i>
+        <h3>ما لكينا لعبة 😕</h3>
+        <p>جرّب اسم لعبة مختلف أو اختر تصنيفًا آخر.</p>
       </div>
     </div>
 
-    <div class="game-card" data-category="horror">
-      <div class="badge-new">جديد</div>
-      <div class="img-container"><img src="images/ppt5.jpg" alt="poppy playtime 5" /></div>
-      <h2>poppy playtime 5</h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/KfP791m23WbmqDj" onclick="startDownload(event, this)">تحميل</a>
-       </div>
-    </div>
-
-    <div class="game-card" data-category="horror">
-      <div class="img-container"><img src="images/repo.jpg" alt="R.E.P.O" /></div>
-      <h2>R.E.P.O</h2>
-      <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
-      <div class="card-actions">
-        <a class="download-link" href="https://modsfire.com/tk0FODw2mqUKXhp" onclick="startDownload(event, this)">تحميل</a>
-       </div>
-    </div>
-
-  
-  <div class="empty-state" id="emptyState">
-    <i class="fa-solid fa-ghost" style="font-size:40px;color:#777"></i>
-    <h3>ما لكينا لعبة 😕</h3>
-    <p>جرّب اسم لعبة مختلف أو اختر تصنيفًا آخر.</p>
-  </div>
-</main>
+  </main>
+</div>
 
 <button id="backTop" title="العودة للأعلى"><i class="fa-solid fa-arrow-up"></i></button>
 
@@ -1093,7 +1117,6 @@ const favorites=new Set(JSON.parse(localStorage.getItem('mustafa_gamerz_favorite
 cards.forEach((card,index)=>{
   card.dataset.index=index;
   const title=card.querySelector('h2')?.textContent.trim()||'لعبة';
-  const action=card.querySelector('.download-link');
   const fav=document.createElement('button');
   fav.className='fav-btn';
   fav.type='button';
@@ -1119,15 +1142,12 @@ function toggleFavorite(title,btn){
   if(favorites.has(title)){favorites.delete(title);showToast('تم حذف اللعبة من المفضلة');}
   else{favorites.add(title);showToast('❤️ تمت إضافة اللعبة للمفضلة');}
   localStorage.setItem('mustafa_gamerz_favorites',JSON.stringify([...favorites]));
-  setFavUI(btn,favorites.has(title));updateStats();applyFilter();
+  setFavUI(btn,favorites.has(title));applyFilter();
 }
-function updateStats(){
-  }
-updateStats();
 
-function showToast(message,isRating=false){
+function showToast(message){
   const t=document.createElement('div');
-  t.className='toast-notification'+(isRating?' toast-rating':'');
+  t.className='toast-notification';
   t.innerHTML=message;
   document.getElementById('toast-container').appendChild(t);
   setTimeout(()=>t.classList.add('show'),30);
@@ -1158,27 +1178,14 @@ function applyFilter(){
   let visible=0;
   cards.forEach(card=>{
     const title=card.querySelector('h2')?.textContent.toLowerCase()||'';
-    const category=card.dataset.category;
     const matchesSearch=title.includes(query);
-    const matchesCategory=true;
     const matchesFav=!showFavorites||favorites.has(card.querySelector('h2').textContent.trim());
-    const ok=matchesSearch&&matchesCategory&&matchesFav;
+    const ok=matchesSearch&&matchesFav;
     card.classList.toggle('hidden',!ok);
     if(ok) visible++;
   });
   emptyState.classList.toggle('show',visible===0);
 }
-
-document.querySelectorAll('.category-btn').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    document.querySelectorAll('.category-btn').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    currentCategory=btn.dataset.category;
-    showFavorites=false;
-    favFilter.classList.remove('active');
-    applyFilter();
-  });
-});
 
 searchInput.addEventListener('input',applyFilter);
 
@@ -1189,7 +1196,6 @@ sortSelect.addEventListener('change',()=>{
     const B=b.querySelector('h2').textContent.trim().toLowerCase();
     if(mode==='az') return A.localeCompare(B);
     if(mode==='za') return B.localeCompare(A);
-    if(mode==='new') return Number(a.dataset.index)-Number(b.dataset.index);
     return Number(a.dataset.index)-Number(b.dataset.index);
   });
   sorted.forEach(c=>gamesGrid.appendChild(c));
@@ -1238,7 +1244,6 @@ modalFav.addEventListener('click',()=>{
   setFavUI(modalFav,favorites.has(modalGame));
 });
 
-// Build featured section from the first four existing games.
 const featuredGrid=document.getElementById('featuredGrid');
 cards.slice(0,4).forEach(card=>{
   const item=document.createElement('div');
