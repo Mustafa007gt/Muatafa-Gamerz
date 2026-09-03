@@ -17,14 +17,14 @@
   --cyan:#00eaff;--purple:#a855f7;--pink:#ff28d7;--gold:#ffd43b;
   --text:#fff;--muted:#9ea0b2;--line:rgba(255,255,255,.08);
 }
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:hidden;width:100%;max-width:100%}
 body{
   margin:0;font-family:'Cairo',sans-serif;color:var(--text);
   background:
     radial-gradient(circle at 15% 10%,rgba(0,234,255,.11),transparent 28%),
     radial-gradient(circle at 85% 20%,rgba(168,85,247,.13),transparent 30%),
     linear-gradient(145deg,#050509,#0c0b16 48%,#06060a);
-  min-height:100vh;overflow-x:hidden;
+  min-height:100vh;overflow-x:hidden;width:100%;max-width:100%;position:relative;
 }
 body::before{
   content:"";position:fixed;inset:0;pointer-events:none;opacity:.25;
@@ -41,7 +41,7 @@ header{
   border-bottom:1px solid var(--line);box-shadow:0 8px 30px rgba(0,0,0,.25);
 }
 .nav{
-  max-width:1380px;margin:auto;display:flex;align-items:center;gap:14px;
+  max-width:1380px;margin:auto;width:auto;display:flex;align-items:center;gap:14px;
 }
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;white-space:nowrap}
 .logo{
@@ -59,7 +59,7 @@ header{
 .nav-btn:hover{transform:translateY(-2px);border-color:var(--cyan);box-shadow:0 0 18px rgba(0,234,255,.18)}
 
 .hero{
-  max-width:1380px;margin:0 auto;padding:38px 20px 28px;position:relative;
+  max-width:1380px;margin:0 auto;width:auto;padding:38px 20px 28px;position:relative;
 }
 .hero-box{
   position:relative;overflow:hidden;border:1px solid rgba(0,234,255,.13);
@@ -80,7 +80,7 @@ header{
 
 /* --- الهيكل الرئيسي المضاف لتقسيم القائمة والمحتوى --- */
 .main-wrapper{
-  max-width:1380px;margin:0 auto;padding:0 20px;
+  max-width:1380px;margin:0 auto;padding:0 20px;width:auto;
   display:flex;gap:20px;align-items:flex-start;
 }
 .content-area{flex:1;min-width:0}
@@ -127,6 +127,16 @@ header{
 }
 .category-select option{background:#10101b;color:#fff;font-weight:700;
 }
+.category-menu{position:relative;flex-shrink:0;z-index:120}
+.category-trigger{display:flex;align-items:center;gap:9px;padding:10px 13px;border:1px solid rgba(0,234,255,.22);border-radius:13px;background:linear-gradient(135deg,rgba(0,234,255,.10),rgba(168,85,247,.12));color:#fff;cursor:pointer;font-weight:800;white-space:nowrap;box-shadow:0 6px 20px rgba(0,0,0,.18);transition:.25s}
+.category-trigger:hover,.category-trigger[aria-expanded="true"]{border-color:var(--cyan);box-shadow:0 0 20px rgba(0,234,255,.14)}
+.category-trigger-icon{width:28px;height:28px;border-radius:9px;display:grid;place-items:center;background:linear-gradient(135deg,var(--cyan),var(--purple));color:#071016}
+.category-chevron{font-size:11px;color:#aaa;transition:.25s}.category-trigger[aria-expanded="true"] .category-chevron{transform:rotate(180deg);color:var(--cyan)}
+.category-dropdown{position:absolute;top:calc(100% + 9px);right:0;width:245px;padding:8px;border:1px solid rgba(0,234,255,.16);border-radius:16px;background:rgba(12,12,22,.96);backdrop-filter:blur(16px);box-shadow:0 18px 45px rgba(0,0,0,.45);opacity:0;visibility:hidden;transform:translateY(-7px);transition:.2s}
+.category-dropdown.show{opacity:1;visibility:visible;transform:translateY(0)}
+.category-dropdown a{display:flex;align-items:center;gap:10px;padding:10px 11px;border-radius:10px;text-decoration:none;color:#ddd;font-size:13px;font-weight:700;transition:.2s}
+.category-dropdown a i{width:22px;text-align:center;color:var(--cyan);font-size:15px}.category-dropdown a:hover{background:linear-gradient(135deg,rgba(0,234,255,.14),rgba(168,85,247,.14));color:#fff}.category-dropdown a:hover i{color:#fff}
+
 .fav-filter{
   padding:12px 15px;border-radius:13px;border:1px solid rgba(255,40,215,.25);
   background:rgba(255,40,215,.07);color:#fff;cursor:pointer;
@@ -239,12 +249,14 @@ footer{
 }
 
 /* التجاوب مع مختلف أحجام الشاشات */
+@media(max-width:700px){.category-menu{flex:1}.category-trigger{width:100%;justify-content:center}.category-dropdown{width:min(280px,calc(100vw - 24px))}}
 @media(max-width:1100px){
   .games-container{grid-template-columns:repeat(2,1fr)}
   .featured-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:850px){
-  .main-wrapper{padding:0 12px}
+  .main-wrapper{padding:0 12px;width:auto;max-width:100vw}
+  .nav,.hero{max-width:100vw;width:auto}
   .category-select{flex:1;min-width:180px}
 }
 @media(max-width:600px){
@@ -303,19 +315,25 @@ footer{
         <i class="fa-solid fa-magnifying-glass"></i>
         <input id="searchInput" type="text" placeholder="ابحث عن لعبة..." autocomplete="off">
       </div>
-      <select class="category-select" id="categorySelect" aria-label="أقسام الألعاب" title="اختيار قسم الألعاب">
-        <option value="" selected>🎮  أقسام الألعاب  ✨</option>
-        <option value="https://mustafa007gt.github.io/mustafaAPPS/">📱 تطبيقات أندرويد</option>
-        <option value="https://mustafa007gt.github.io/mustafaPSP/">🎮 ألعاب PSP</option>
-        <option value="https://mustafa007gt.github.io/mustafaPS2/">💿 ألعاب PS2</option>
-        <option value="https://mustafa007gt.github.io/mustafaPS1/">🎮 ألعاب PS1</option>
-        <option value="https://mustafa007gt.github.io/mustafaPC/">🖥️ ألعاب PC</option>
-        <option value="https://mustafa007gt.github.io/mustafaGC/">🐬 ألعاب دولفين</option>
-        <option value="https://mustafa007gt.github.io/GWZarabic/">🌐 تعريب الألعاب</option>
-        <option value="https://mustafa007gt.github.io/Gta/">🚗 ألعاب GTA</option>
-        <option value="https://mustafa007gt.github.io/Gow/">⚔️ God of War</option>
-        <option value="https://mustafa007gt.github.io/RE/">☣️ Resident Evil</option>
-      </select>
+      <div class="category-menu" id="categoryMenu">
+        <button class="category-trigger" id="categoryTrigger" type="button" aria-expanded="false">
+          <span class="category-trigger-icon"><i class="fa-solid fa-layer-group"></i></span>
+          <span>أقسام الألعاب</span>
+          <i class="fa-solid fa-chevron-down category-chevron"></i>
+        </button>
+        <div class="category-dropdown" id="categoryDropdown">
+          <a href="https://mustafa007gt.github.io/mustafaAPPS/" target="_blank"><i class="fa-brands fa-android"></i><span>تطبيقات أندرويد</span></a>
+          <a href="https://mustafa007gt.github.io/mustafaPSP/" target="_blank"><i class="fa-solid fa-gamepad"></i><span>العاب PSP بصيغة apk</span></a>
+          <a href="https://mustafa007gt.github.io/mustafaPS2/" target="_blank"><i class="fa-solid fa-compact-disc"></i><span>ألعاب PS2 بصيغة apk</span></a>
+          <a href="https://mustafa007gt.github.io/mustafaPS1/" target="_blank"><i class="fa-brands fa-playstation"></i><span>ألعاب PS1 بصيغة apk</span></a>
+          <a href="https://mustafa007gt.github.io/mustafaPC/" target="_blank"><i class="fa-solid fa-desktop"></i><span>ألعاب PC</span></a>
+          <a href="https://mustafa007gt.github.io/mustafaGC/" target="_blank"><i class="fa-solid fa-fish"></i><span>ألعاب دولفين بصيغة apk</span></a>
+          <a href="https://mustafa007gt.github.io/GWZarabic/" target="_blank"><i class="fa-solid fa-language"></i><span>تعريب العاب اندرويد</span></a>
+          <a href="https://mustafa007gt.github.io/Gta/" target="_blank"><i class="fa-solid fa-car"></i><span>ألعاب GTA</span></a>
+          <a href="https://mustafa007gt.github.io/Gow/" target="_blank"><i class="fa-solid fa-khanda"></i><span>God of War العاب</span></a>
+          <a href="https://mustafa007gt.github.io/RE/" target="_blank"><i class="fa-solid fa-biohazard"></i><span>Resident Evil العاب</span></a>
+        </div>
+      </div>
       <button class="fav-filter" id="favFilter"><i class="fa-solid fa-heart"></i> المفضلة</button>
     </section>
 
@@ -1047,7 +1065,6 @@ let currentCategory='all';
 let showFavorites=false;
 const cards=[...document.querySelectorAll('.game-card')];
 const searchInput=document.getElementById('searchInput');
-const categorySelect=document.getElementById('categorySelect');
 const gamesGrid=document.getElementById('gamesGrid');
 const emptyState=document.getElementById('emptyState');
 const favFilter=document.getElementById('favFilter');
@@ -1128,10 +1145,18 @@ function applyFilter(){
 
 searchInput.addEventListener('input',applyFilter);
 
-categorySelect.addEventListener('change',()=>{
-  const url=categorySelect.value;
-  if(url) window.location.href=url;
-  categorySelect.value='';
+const categoryMenu=document.getElementById('categoryMenu');
+const categoryTrigger=document.getElementById('categoryTrigger');
+const categoryDropdown=document.getElementById('categoryDropdown');
+categoryTrigger.addEventListener('click',()=>{
+  const open=categoryDropdown.classList.toggle('show');
+  categoryTrigger.setAttribute('aria-expanded',open?'true':'false');
+});
+document.addEventListener('click',e=>{
+  if(!categoryMenu.contains(e.target)){categoryDropdown.classList.remove('show');categoryTrigger.setAttribute('aria-expanded','false');}
+});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){categoryDropdown.classList.remove('show');categoryTrigger.setAttribute('aria-expanded','false');}
 });
 
 favFilter.addEventListener('click',()=>{
