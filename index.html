@@ -98,13 +98,32 @@ header{
 }
 #searchInput:focus{border-color:var(--cyan);box-shadow:0 0 20px rgba(0,234,255,.12)}
 .category-select{
-  min-width:190px;padding:12px 16px;border-radius:13px;border:1px solid rgba(0,234,255,.16);
-  background:linear-gradient(135deg,rgba(16,16,27,.96),rgba(20,14,32,.96));
-  color:#fff;outline:none;cursor:pointer;font-weight:800;
-  box-shadow:0 8px 24px rgba(0,0,0,.18);transition:.25s;
+  min-width:210px;padding:12px 16px;border-radius:14px;
+  border:1px solid rgba(0,234,255,.55);
+  background:
+    linear-gradient(135deg,rgba(0,234,255,.10),rgba(168,85,247,.13)),
+    linear-gradient(135deg,rgba(16,16,27,.97),rgba(20,14,32,.97));
+  color:#fff;outline:none;cursor:pointer;font-weight:900;
+  box-shadow:
+    0 8px 24px rgba(0,0,0,.25),
+    0 0 10px rgba(0,234,255,.18),
+    inset 0 0 14px rgba(0,234,255,.04);
+  transition:.25s;
+  animation:categoryGlow 2.8s ease-in-out infinite;
 }
 .category-select:hover,.category-select:focus{
-  border-color:var(--cyan);box-shadow:0 0 20px rgba(0,234,255,.12);
+  border-color:var(--cyan);
+  transform:translateY(-1px);
+  box-shadow:
+    0 10px 28px rgba(0,0,0,.3),
+    0 0 10px rgba(0,234,255,.35),
+    0 0 24px rgba(168,85,247,.22),
+    inset 0 0 16px rgba(0,234,255,.06);
+}
+.category-select option{background:#10101b;color:#fff;font-weight:700;}
+@keyframes categoryGlow{
+  0%,100%{box-shadow:0 8px 24px rgba(0,0,0,.25),0 0 8px rgba(0,234,255,.16),inset 0 0 14px rgba(0,234,255,.04);}
+  50%{box-shadow:0 8px 24px rgba(0,0,0,.25),0 0 15px rgba(0,234,255,.32),0 0 26px rgba(168,85,247,.12),inset 0 0 16px rgba(0,234,255,.06);}
 }
 .category-select option{background:#10101b;color:#fff;font-weight:700;
 }
@@ -284,8 +303,8 @@ footer{
         <i class="fa-solid fa-magnifying-glass"></i>
         <input id="searchInput" type="text" placeholder="ابحث عن لعبة..." autocomplete="off">
       </div>
-      <select class="category-select" id="categorySelect" aria-label="أقسام الألعاب">
-        <option value="" selected>🎮 أقسام الألعاب</option>
+      <select class="category-select" id="categorySelect" aria-label="أقسام الألعاب" title="اختيار قسم الألعاب">
+        <option value="" selected>🎮  أقسام الألعاب  ✨</option>
         <option value="https://mustafa007gt.github.io/mustafaAPPS/">📱 تطبيقات أندرويد</option>
         <option value="https://mustafa007gt.github.io/mustafaPSP/">🎮 ألعاب PSP</option>
         <option value="https://mustafa007gt.github.io/mustafaPS2/">💿 ألعاب PS2</option>
