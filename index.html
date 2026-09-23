@@ -54,7 +54,7 @@ header{
 .nav-btn{
   width:42px;height:42px;border:1px solid var(--line);border-radius:12px;
   background:rgba(255,255,255,.04);color:#fff;cursor:pointer;
-  transition:.25s;display:grid;place-items:center;
+  transition:.25s;display:grid;place-items:center;text-decoration:none;
 }
 .nav-btn:hover{transform:translateY(-2px);border-color:var(--cyan);box-shadow:0 0 18px rgba(0,234,255,.18)}
 
@@ -78,14 +78,12 @@ header{
   text-shadow:0 0 28px rgba(0,234,255,.16);
 }
 
-/* --- الهيكل الرئيسي المضاف لتقسيم القائمة والمحتوى --- */
 .main-wrapper{
   max-width:1380px;margin:0 auto;padding:0 20px;width:auto;
   display:flex;gap:20px;align-items:flex-start;
 }
 .content-area{flex:1;min-width:0}
 
-/* التنسيقات العامة للشبكة والمحتوى */
 .toolbar{
   padding:12px 0 18px;display:flex;gap:10px;
   align-items:center;flex-wrap:wrap;position:sticky;top:68px;z-index:50;
@@ -97,36 +95,7 @@ header{
   outline:none;background:rgba(13,13,23,.88);color:#fff;transition:.25s;
 }
 #searchInput:focus{border-color:var(--cyan);box-shadow:0 0 20px rgba(0,234,255,.12)}
-.category-select{
-  min-width:210px;padding:12px 16px;border-radius:14px;
-  border:1px solid rgba(0,234,255,.55);
-  background:
-    linear-gradient(135deg,rgba(0,234,255,.10),rgba(168,85,247,.13)),
-    linear-gradient(135deg,rgba(16,16,27,.97),rgba(20,14,32,.97));
-  color:#fff;outline:none;cursor:pointer;font-weight:900;
-  box-shadow:
-    0 8px 24px rgba(0,0,0,.25),
-    0 0 10px rgba(0,234,255,.18),
-    inset 0 0 14px rgba(0,234,255,.04);
-  transition:.25s;
-  animation:categoryGlow 2.8s ease-in-out infinite;
-}
-.category-select:hover,.category-select:focus{
-  border-color:var(--cyan);
-  transform:translateY(-1px);
-  box-shadow:
-    0 10px 28px rgba(0,0,0,.3),
-    0 0 10px rgba(0,234,255,.35),
-    0 0 24px rgba(168,85,247,.22),
-    inset 0 0 16px rgba(0,234,255,.06);
-}
-.category-select option{background:#10101b;color:#fff;font-weight:700;}
-@keyframes categoryGlow{
-  0%,100%{box-shadow:0 8px 24px rgba(0,0,0,.25),0 0 8px rgba(0,234,255,.16),inset 0 0 14px rgba(0,234,255,.04);}
-  50%{box-shadow:0 8px 24px rgba(0,0,0,.25),0 0 15px rgba(0,234,255,.32),0 0 26px rgba(168,85,247,.12),inset 0 0 16px rgba(0,234,255,.06);}
-}
-.category-select option{background:#10101b;color:#fff;font-weight:700;
-}
+
 .category-menu{position:relative;flex-shrink:0;z-index:120}
 .category-trigger{display:flex;align-items:center;gap:9px;padding:10px 13px;border:1px solid rgba(0,234,255,.22);border-radius:13px;background:linear-gradient(135deg,rgba(0,234,255,.10),rgba(168,85,247,.12));color:#fff;cursor:pointer;font-weight:800;white-space:nowrap;box-shadow:0 6px 20px rgba(0,0,0,.18);transition:.25s}
 .category-trigger:hover,.category-trigger[aria-expanded="true"]{border-color:var(--cyan);box-shadow:0 0 20px rgba(0,234,255,.14)}
@@ -141,6 +110,7 @@ header{
   padding:12px 15px;border-radius:13px;border:1px solid rgba(255,40,215,.25);
   background:rgba(255,40,215,.07);color:#fff;cursor:pointer;
 }
+.fav-filter.active{background:rgba(255,40,215,.25);border-color:var(--pink)}
 
 .featured{padding:0 0 24px}
 .section-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:13px}
@@ -194,6 +164,7 @@ header{
 .fav-btn{
   width:43px;height:43px;border-radius:11px;border:1px solid var(--line);
   background:rgba(255,255,255,.04);color:#aaa;cursor:pointer;transition:.2s;
+  display:grid;place-items:center;
 }
 .fav-btn.active{color:#ff3e8a;border-color:#ff3e8a;box-shadow:0 0 15px rgba(255,62,138,.18)}
 
@@ -248,7 +219,6 @@ footer{
   border:1px solid rgba(255,255,255,.18);background:rgba(0,0,0,.45);color:#fff;cursor:pointer
 }
 
-/* التجاوب مع مختلف أحجام الشاشات */
 @media(max-width:700px){.category-menu{flex:1}.category-trigger{width:100%;justify-content:center}.category-dropdown{width:min(280px,calc(100vw - 24px))}}
 @media(max-width:1100px){
   .games-container{grid-template-columns:repeat(2,1fr)}
@@ -257,7 +227,6 @@ footer{
 @media(max-width:850px){
   .main-wrapper{padding:0 12px;width:auto;max-width:100vw}
   .nav,.hero{max-width:100vw;width:auto}
-  .category-select{flex:1;min-width:180px}
 }
 @media(max-width:600px){
   header{padding:10px 12px}
@@ -297,10 +266,7 @@ footer{
   </div>
 </section>
 
-<!-- الهيكل الرئيسي المزود بالقائمة الجانبية على اليمين -->
 <div class="main-wrapper">
-
-  <!-- المنطقة الرئيسية للمحتوى -->
   <main class="content-area">
     
     <section class="featured">
@@ -337,11 +303,11 @@ footer{
       <button class="fav-filter" id="favFilter"><i class="fa-solid fa-heart"></i> المفضلة</button>
     </section>
 
-        <div class="games-container" id="gamesGrid">
+    <div class="games-container" id="gamesGrid">
 
       <div class="game-card" data-category="action">
         <div class="badge-new">جديد</div>
-        <div class="img-container"><img src="https://i.ibb.co/N2C8cTXL/IMG-20260923-211945-426.jpg" alt="GTA 6" /></div>
+        <div class="img-container"><img src="https://i.ibb.co/N2C8cTXL/IMG-20260923-211945-426.jpg" alt="GTA SA ARABIC" /></div>
         <h2> GTA SA ARABIC </h2>
         <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
         <div class="card-actions">
@@ -349,11 +315,9 @@ footer{
         </div>
       </div>
 
-    <div class="games-container" id="gamesGrid">
-
       <div class="game-card" data-category="action">
         <div class="badge-new">جديد</div>
-        <div class="img-container"><img src="https://i.ibb.co/qLh4n5Ny/9b8034e98815.jpg" alt="GTA 6" /></div>
+        <div class="img-container"><img src="https://i.ibb.co/qLh4n5Ny/9b8034e98815.jpg" alt="GTA 5 LITE" /></div>
         <h2> GTA 5 LITE </h2>
         <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
         <div class="card-actions">
@@ -361,25 +325,25 @@ footer{
         </div>
       </div>
 
-          <div class="game-card" data-category="action">
+      <div class="game-card" data-category="action">
         <div class="badge-new">جديد</div>
-        <div class="img-container"><img src="https://i.ibb.co/rVxsw5p/0e90126c-6c47-41f5-96f4-d5549dd88bea.png" alt="GTA 6" /></div>
+        <div class="img-container"><img src="https://i.ibb.co/rVxsw5p/0e90126c-6c47-41f5-96f4-d5549dd88bea.png" alt="GTA V" /></div>
         <h2> GTA V </h2>
         <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
         <div class="card-actions">
           <a class="download-link" href="https://buzzheavier.com/bev5l77hvkyy" onclick="startDownload(event, this)">تحميل</a>
         </div>
-          </div>
+      </div>
 
-            <div class="game-card" data-category="action">
+      <div class="game-card" data-category="action">
         <div class="badge-new">جديد</div>
-        <div class="img-container"><img src="https://i.ibb.co/VYvkMHc8/IMG-20260918-125939-026.jpg" alt="GTA 6" /></div>
+        <div class="img-container"><img src="https://i.ibb.co/VYvkMHc8/IMG-20260918-125939-026.jpg" alt="god Of War ghost of Sparta ARABIC" /></div>
         <h2> god Of War ghost of Sparta ARABIC </h2>
         <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
         <div class="card-actions">
           <a class="download-link" href="https://modsfire.com/7XUZRTcJgU963De" onclick="startDownload(event, this)">تحميل</a>
         </div>
-            </div>
+      </div>
 
       <div class="game-card" data-category="action">
         <div class="badge-new">جديد</div>
@@ -473,7 +437,7 @@ footer{
 
        <div class="game-card" data-category="action">
         <div class="badge-new">جديد</div>
-        <div class="img-container"><img src="https://i.ibb.co/LdyjKDsr/photo-2026-09-12-03-29-05.jpg" alt="max Payne" /></div>
+        <div class="img-container"><img src="https://i.ibb.co/LdyjKDsr/photo-2026-09-12-03-29-05.jpg" alt="BUS SIMULATOR WORLD" /></div>
         <h2>BUS SIMULATOR WORLD</h2>
         <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
         <div class="card-actions">
@@ -481,9 +445,9 @@ footer{
         </div>
       </div>
 
-        <div class="game-card" data-category="action">
+      <div class="game-card" data-category="action">
         <div class="badge-new">جديد</div>
-        <div class="img-container"><img src="https://i.ibb.co/4gPQy5x1/photo-2026-09-12-03-32-24.jpg" alt="max Payne" /></div>
+        <div class="img-container"><img src="https://i.ibb.co/4gPQy5x1/photo-2026-09-12-03-32-24.jpg" alt="GANGSTAR VEGAS" /></div>
         <h2>GANGSTAR VEGAS</h2>
         <div class="game-meta"><span><i class="fa-brands fa-android"></i> Android</span><span><i class="fa-solid fa-download"></i> APK</span></div>
         <div class="card-actions">
@@ -1085,12 +1049,12 @@ footer{
         </div>
       </div>
 
-    
       <div class="empty-state" id="emptyState">
         <i class="fa-solid fa-ghost" style="font-size:40px;color:#777"></i>
         <h3>ما لكينا لعبة 😕</h3>
         <p>جرّب اسم لعبة مختلف أو اختر تصنيفًا آخر.</p>
       </div>
+
     </div>
 
   </main>
@@ -1110,7 +1074,10 @@ footer{
 
 <div class="modal" id="gameModal">
   <div class="modal-box">
-    <div class="modal-cover"><button class="modal-close" id="modalClose"><i class="fa-solid fa-xmark"></i></button><img id="modalImg" src="" alt=""></div>
+    <div class="modal-cover">
+      <button class="modal-close" id="modalClose"><i class="fa-solid fa-xmark"></i></button>
+      <img id="modalImg" src="" alt="">
+    </div>
     <div class="modal-content">
       <h2 id="modalTitle"></h2>
       <p>🎮 لعبة أندرويد • 📦 APK • ⭐ يمكنك إضافتها للمفضلة والتحميل مباشرة.</p>
@@ -1123,151 +1090,177 @@ footer{
 </div>
 
 <script>
-let currentCategory='all';
-let showFavorites=false;
-const cards=[...document.querySelectorAll('.game-card')];
-const searchInput=document.getElementById('searchInput');
-const gamesGrid=document.getElementById('gamesGrid');
-const emptyState=document.getElementById('emptyState');
-const favFilter=document.getElementById('favFilter');
-const favorites=new Set(JSON.parse(localStorage.getItem('mustafa_gamerz_favorites')||'[]'));
+let showFavorites = false;
+const cards = [...document.querySelectorAll('.game-card')];
+const searchInput = document.getElementById('searchInput');
+const emptyState = document.getElementById('emptyState');
+const favFilter = document.getElementById('favFilter');
+const favorites = new Set(JSON.parse(localStorage.getItem('mustafa_gamerz_favorites') || '[]'));
 
-cards.forEach((card,index)=>{
-  card.dataset.index=index;
-  const title=card.querySelector('h2')?.textContent.trim()||'لعبة';
-  const fav=document.createElement('button');
-  fav.className='fav-btn';
-  fav.type='button';
-  fav.title='إضافة للمفضلة';
-  fav.innerHTML='<i class="fa-regular fa-heart"></i>';
-  fav.dataset.title=title;
-  card.querySelector('.card-actions').appendChild(fav);
-  if(favorites.has(title)) setFavUI(fav,true);
+cards.forEach((card, index) => {
+  card.dataset.index = index;
+  const title = card.querySelector('h2')?.textContent.trim() || 'لعبة';
+  
+  let fav = card.querySelector('.fav-btn');
+  if(!fav) {
+    fav = document.createElement('button');
+    fav.className = 'fav-btn';
+    fav.type = 'button';
+    fav.title = 'إضافة للمفضلة';
+    fav.innerHTML = '<i class="fa-regular fa-heart"></i>';
+    fav.dataset.title = title;
+    card.querySelector('.card-actions').appendChild(fav);
+  }
+  
+  if(favorites.has(title)) setFavUI(fav, true);
 
-  fav.addEventListener('click',e=>{
+  fav.addEventListener('click', e => {
     e.stopPropagation();
-    toggleFavorite(title,fav);
+    toggleFavorite(title, fav);
   });
 
-  card.querySelector('.img-container')?.addEventListener('click',()=>openModal(card));
+  card.querySelector('.img-container')?.addEventListener('click', () => openModal(card));
 });
 
-function setFavUI(btn,on){
-  btn.classList.toggle('active',on);
-  btn.innerHTML=on?'<i class="fa-solid fa-heart"></i>':'<i class="fa-regular fa-heart"></i>';
+function setFavUI(btn, on){
+  if(!btn) return;
+  btn.classList.toggle('active', on);
+  btn.innerHTML = on ? '<i class="fa-solid fa-heart"></i>' : '<i class="fa-regular fa-heart"></i>';
 }
-function toggleFavorite(title,btn){
-  if(favorites.has(title)){favorites.delete(title);showToast('تم حذف اللعبة من المفضلة');}
-  else{favorites.add(title);showToast('❤️ تمت إضافة اللعبة للمفضلة');}
-  localStorage.setItem('mustafa_gamerz_favorites',JSON.stringify([...favorites]));
-  setFavUI(btn,favorites.has(title));applyFilter();
+
+function toggleFavorite(title, btn){
+  if(favorites.has(title)){
+    favorites.delete(title);
+    showToast('تم حذف اللعبة من المفضلة');
+  } else {
+    favorites.add(title);
+    showToast('❤️ تمت إضافة اللعبة للمفضلة');
+  }
+  localStorage.setItem('mustafa_gamerz_favorites', JSON.stringify([...favorites]));
+  setFavUI(btn, favorites.has(title));
+  applyFilter();
 }
 
 function showToast(message){
-  const t=document.createElement('div');
-  t.className='toast-notification';
-  t.innerHTML=message;
+  const t = document.createElement('div');
+  t.className = 'toast-notification';
+  t.innerHTML = message;
   document.getElementById('toast-container').appendChild(t);
-  setTimeout(()=>t.classList.add('show'),30);
-  setTimeout(()=>{t.classList.remove('show');setTimeout(()=>t.remove(),350)},2600);
+  setTimeout(() => t.classList.add('show'), 30);
+  setTimeout(() => {
+    t.classList.remove('show');
+    setTimeout(() => t.remove(), 350);
+  }, 2600);
 }
 
-function startDownload(event,element){
+function startDownload(event, element){
   event.preventDefault();
-  const targetUrl=element.getAttribute('href');
-  const gameTitle=element.closest('.game-card')?.querySelector('h2')?.textContent.trim()||'اللعبة';
-  let timeLeft=3;
+  const targetUrl = element.getAttribute('href');
+  const gameTitle = element.closest('.game-card')?.querySelector('h2')?.textContent.trim() || 'اللعبة';
+  let timeLeft = 3;
   element.classList.add('counting');
-  element.textContent=`تجهيز.. (${timeLeft})`;
+  element.textContent = `تجهيز.. (${timeLeft})`;
   showToast(`🛡️ جاري تجهيز رابط التحميل:<br><b style="color:var(--cyan)">${gameTitle}</b>`);
-  const countdown=setInterval(()=>{
+  const countdown = setInterval(() => {
     timeLeft--;
-    if(timeLeft<=0){
+    if(timeLeft <= 0){
       clearInterval(countdown);
       element.classList.remove('counting');
-      element.textContent='تحميل';
-      window.open(targetUrl,'_blank');
-    }else element.textContent=`تجهيز.. (${timeLeft})`;
-  },1000);
+      element.textContent = 'تحميل';
+      window.open(targetUrl, '_blank');
+    } else {
+      element.textContent = `تجهيز.. (${timeLeft})`;
+    }
+  }, 1000);
 }
 
 function applyFilter(){
-  const query=searchInput.value.trim().toLowerCase();
-  let visible=0;
-  cards.forEach(card=>{
-    const title=card.querySelector('h2')?.textContent.toLowerCase()||'';
-    const matchesSearch=title.includes(query);
-    const matchesFav=!showFavorites||favorites.has(card.querySelector('h2').textContent.trim());
-    const ok=matchesSearch&&matchesFav;
-    card.classList.toggle('hidden',!ok);
+  const query = searchInput.value.trim().toLowerCase();
+  let visible = 0;
+  cards.forEach(card => {
+    const title = card.querySelector('h2')?.textContent.toLowerCase() || '';
+    const matchesSearch = title.includes(query);
+    const matchesFav = !showFavorites || favorites.has(card.querySelector('h2').textContent.trim());
+    const ok = matchesSearch && matchesFav;
+    card.classList.toggle('hidden', !ok);
     if(ok) visible++;
   });
-  emptyState.classList.toggle('show',visible===0);
+  emptyState.classList.toggle('show', visible === 0);
 }
 
-searchInput.addEventListener('input',applyFilter);
+searchInput.addEventListener('input', applyFilter);
 
-const categoryMenu=document.getElementById('categoryMenu');
-const categoryTrigger=document.getElementById('categoryTrigger');
-const categoryDropdown=document.getElementById('categoryDropdown');
-categoryTrigger.addEventListener('click',()=>{
-  const open=categoryDropdown.classList.toggle('show');
-  categoryTrigger.setAttribute('aria-expanded',open?'true':'false');
-});
-document.addEventListener('click',e=>{
-  if(!categoryMenu.contains(e.target)){categoryDropdown.classList.remove('show');categoryTrigger.setAttribute('aria-expanded','false');}
-});
-document.addEventListener('keydown',e=>{
-  if(e.key==='Escape'){categoryDropdown.classList.remove('show');categoryTrigger.setAttribute('aria-expanded','false');}
+const categoryMenu = document.getElementById('categoryMenu');
+const categoryTrigger = document.getElementById('categoryTrigger');
+const categoryDropdown = document.getElementById('categoryDropdown');
+
+categoryTrigger.addEventListener('click', () => {
+  const open = categoryDropdown.classList.toggle('show');
+  categoryTrigger.setAttribute('aria-expanded', open ? 'true' : 'false');
 });
 
-favFilter.addEventListener('click',()=>{
-  showFavorites=!showFavorites;
-  favFilter.classList.toggle('active',showFavorites);
+document.addEventListener('click', e => {
+  if(!categoryMenu.contains(e.target)){
+    categoryDropdown.classList.remove('show');
+    categoryTrigger.setAttribute('aria-expanded', 'false');
+  }
+});
+
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape'){
+    categoryDropdown.classList.remove('show');
+    categoryTrigger.setAttribute('aria-expanded', 'false');
+  }
+});
+
+favFilter.addEventListener('click', () => {
+  showFavorites = !showFavorites;
+  favFilter.classList.toggle('active', showFavorites);
   applyFilter();
 });
 
-document.getElementById('navSearch').addEventListener('click',()=>{
-  document.getElementById('games').scrollIntoView({behavior:'smooth'});
-  setTimeout(()=>searchInput.focus(),450);
+document.getElementById('navSearch').addEventListener('click', () => {
+  document.getElementById('games').scrollIntoView({behavior: 'smooth'});
+  setTimeout(() => searchInput.focus(), 450);
 });
 
-const backTop=document.getElementById('backTop');
-window.addEventListener('scroll',()=>backTop.classList.toggle('show',scrollY>500));
-backTop.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
+const backTop = document.getElementById('backTop');
+window.addEventListener('scroll', () => backTop.classList.toggle('show', scrollY > 500));
+backTop.addEventListener('click', () => scrollTo({top: 0, behavior: 'smooth'}));
 
-const modal=document.getElementById('gameModal');
-const modalImg=document.getElementById('modalImg');
-const modalTitle=document.getElementById('modalTitle');
-const modalDownload=document.getElementById('modalDownload');
-const modalFav=document.getElementById('modalFav');
-let modalGame='';
+const modal = document.getElementById('gameModal');
+const modalImg = document.getElementById('modalImg');
+const modalTitle = document.getElementById('modalTitle');
+const modalDownload = document.getElementById('modalDownload');
+const modalFav = document.getElementById('modalFav');
+let modalGame = '';
 
 function openModal(card){
-  modalGame=card.querySelector('h2').textContent.trim();
-  modalImg.src=card.querySelector('img').src;
-  modalImg.alt=modalGame;
-  modalTitle.textContent=modalGame;
-  modalDownload.href=card.querySelector('.download-link').href;
-  setFavUI(modalFav,favorites.has(modalGame));
+  modalGame = card.querySelector('h2').textContent.trim();
+  modalImg.src = card.querySelector('img').src;
+  modalImg.alt = modalGame;
+  modalTitle.textContent = modalGame;
+  modalDownload.href = card.querySelector('.download-link').href;
+  setFavUI(modalFav, favorites.has(modalGame));
   modal.classList.add('show');
 }
-document.getElementById('modalClose').onclick=()=>modal.classList.remove('show');
-modal.addEventListener('click',e=>{if(e.target===modal)modal.classList.remove('show')});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')modal.classList.remove('show')});
 
-modalFav.addEventListener('click',()=>{
-  const original=cards.find(c=>c.querySelector('h2').textContent.trim()===modalGame)?.querySelector('.fav-btn');
-  toggleFavorite(modalGame,original||modalFav);
-  setFavUI(modalFav,favorites.has(modalGame));
+document.getElementById('modalClose').onclick = () => modal.classList.remove('show');
+modal.addEventListener('click', e => { if(e.target === modal) modal.classList.remove('show'); });
+document.addEventListener('keydown', e => { if(e.key === 'Escape') modal.classList.remove('show'); });
+
+modalFav.addEventListener('click', () => {
+  const original = cards.find(c => c.querySelector('h2').textContent.trim() === modalGame)?.querySelector('.fav-btn');
+  toggleFavorite(modalGame, original || modalFav);
+  setFavUI(modalFav, favorites.has(modalGame));
 });
 
-const featuredGrid=document.getElementById('featuredGrid');
-cards.slice(0,4).forEach(card=>{
-  const item=document.createElement('div');
-  item.className='featured-card';
-  item.innerHTML=`<img src="${card.querySelector('img').src}" alt=""><div class="featured-title">${card.querySelector('h2').textContent.trim()}</div>`;
-  item.addEventListener('click',()=>openModal(card));
+const featuredGrid = document.getElementById('featuredGrid');
+cards.slice(0, 4).forEach(card => {
+  const item = document.createElement('div');
+  item.className = 'featured-card';
+  item.innerHTML = `<img src="${card.querySelector('img').src}" alt=""><div class="featured-title">${card.querySelector('h2').textContent.trim()}</div>`;
+  item.addEventListener('click', () => openModal(card));
   featuredGrid.appendChild(item);
 });
 
