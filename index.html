@@ -112,20 +112,6 @@ header{
 }
 .fav-filter.active{background:rgba(255,40,215,.25);border-color:var(--pink)}
 
-.featured{padding:0 0 24px}
-.section-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:13px}
-.section-head h2{font-size:22px;margin:0}
-.section-head span{color:var(--muted);font-size:13px}
-.featured-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
-.featured-card{
-  position:relative;min-height:175px;border-radius:20px;overflow:hidden;border:1px solid var(--line);
-  background:#10101a;cursor:pointer;box-shadow:0 12px 35px rgba(0,0,0,.25);
-}
-.featured-card img{width:100%;height:100%;min-height:175px;object-fit:cover;display:block;transition:.45s}
-.featured-card::after{content:"";position:absolute;inset:35% 0 0;background:linear-gradient(transparent,rgba(0,0,0,.9))}
-.featured-card:hover img{transform:scale(1.07)}
-.featured-title{position:absolute;z-index:2;bottom:12px;right:13px;left:13px;font-weight:900;font-size:17px}
-
 .games-container{
   padding:5px 0 35px;display:grid;grid-template-columns:repeat(3,1fr);gap:15px;
 }
@@ -222,7 +208,6 @@ footer{
 @media(max-width:700px){.category-menu{flex:1}.category-trigger{width:100%;justify-content:center}.category-dropdown{width:min(280px,calc(100vw - 24px))}}
 @media(max-width:1100px){
   .games-container{grid-template-columns:repeat(2,1fr)}
-  .featured-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:850px){
   .main-wrapper{padding:0 12px;width:auto;max-width:100vw}
@@ -233,8 +218,6 @@ footer{
   .brand strong{font-size:15px}
   .hero{padding:20px 12px 15px}
   .games-container{grid-template-columns:repeat(2,1fr);gap:10px}
-  .featured-grid{grid-template-columns:repeat(2,1fr);gap:9px}
-  .featured-card,.featured-card img{min-height:135px;height:135px}
   .img-container{height:130px}
   .game-card{padding:8px;border-radius:14px}
   .game-card h2{font-size:13px}
@@ -268,13 +251,6 @@ footer{
 
 <div class="main-wrapper">
   <main class="content-area">
-    
-    <section class="featured">
-      <div class="section-head">
-        <h2>🔥 ألعاب مميزة</h2><span>اختيارات مصطفى جيمرز</span>
-      </div>
-      <div class="featured-grid" id="featuredGrid"></div>
-    </section>
 
     <section class="toolbar" id="games">
       <div class="search-wrap">
@@ -1429,15 +1405,6 @@ modalFav.addEventListener('click', () => {
   const original = cards.find(c => c.querySelector('h2').textContent.trim() === modalGame)?.querySelector('.fav-btn');
   toggleFavorite(modalGame, original || modalFav);
   setFavUI(modalFav, favorites.has(modalGame));
-});
-
-const featuredGrid = document.getElementById('featuredGrid');
-cards.slice(0, 4).forEach(card => {
-  const item = document.createElement('div');
-  item.className = 'featured-card';
-  item.innerHTML = `<img src="${card.querySelector('img').src}" alt=""><div class="featured-title">${card.querySelector('h2').textContent.trim()}</div>`;
-  item.addEventListener('click', () => openModal(card));
-  featuredGrid.appendChild(item);
 });
 
 applyFilter();
